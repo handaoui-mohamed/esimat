@@ -1,0 +1,14 @@
+{
+    "name": "oukhenniche/esimat",
+    "description": "site web de esimat",
+    "type": "n",
+    "authors": [
+        {
+            "name": "oukkhenniche",
+            "email": "da_oukhenniche@esi.dz"
+        }
+    ],
+        "autoload":{"psr-4":{"KikimR\\":"vendor/KikimR/","app\\":"app","admin\\":"admin"}},
+    "require": {}
+
+}
