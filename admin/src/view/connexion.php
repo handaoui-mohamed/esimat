@@ -12,9 +12,8 @@ use app\Glob;
 
 class Connexion
 {
-
     public static function showConnexion($key)
     {
-        echo "form de connexion ! key=$key <br> Domain ".Glob::DOMAIN;
+        echo "form de connexion !<hr> key=$key <br> Domain ".Glob::DOMAIN;
     }
 }

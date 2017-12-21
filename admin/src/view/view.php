@@ -13,12 +13,12 @@ class View
 {
     private static function showHeader()
     {
-        echo "<h1>From hedearv admin </h1><br>DOMAIN:".\app\Glob::DOMAIN;
+        echo "<h1>From hedear admin </h1><br>DOMAIN:".\app\Glob::DOMAIN;
     }
 
-    public static function showHome($name)
+    public static function showHome()
     {
-        echo "<h1>Vous etes dans l'homme : $name</h1>";
+        echo "@admin <hr><h1>Vous etes dans le home : </h1>";
     }
 
 }

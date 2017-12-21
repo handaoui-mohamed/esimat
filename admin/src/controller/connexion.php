@@ -28,7 +28,7 @@ class Connexion
 
    if (ControllerAutontification::isConnect())
    {
-       header("location:".Glob::DOMAIN."home");
+       header("location:".Glob::DOMAIN."admin/home");
        exit;
    }
    else

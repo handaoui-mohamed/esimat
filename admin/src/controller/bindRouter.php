@@ -66,9 +66,9 @@ class bindRouter
         self::templateController("controller::postScience");
     }
 
-    public static function postdownload()
+    public static function postDownload()
     {
-        self::templateController("controller::postdownload");
+        self::templateController("controller::postDownload");
     }
 
 

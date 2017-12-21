@@ -16,17 +16,18 @@ class Controller
 
     public static function home()
     {
-        Model::upConnection();
+        Model::init();
         if (Model::$can_connect)
         {
             //action
+            view\View::showHome();
         }
 
     }
 
     public static function sience()
     {
-        Model::upConnection();
+        Model::init();
         if (Model::$can_connect)
         {
             //action
@@ -36,7 +37,7 @@ class Controller
 
     public static function album()
     {
-        Model::upConnection();
+        Model::init();
         if (Model::$can_connect)
         {
             //action
@@ -46,7 +47,7 @@ class Controller
 
     public static function echec()
     {
-        Model::upConnection();
+        Model::init();
         if (Model::$can_connect)
         {
             //action
@@ -55,7 +56,7 @@ class Controller
 
     public static function postScience()
   {
-        Model::upConnection();
+        Model::init();
         if (Model::$can_connect)
         {
             //action
@@ -64,7 +65,7 @@ class Controller
 
     public static function postEchec()
     {
-        Model::upConnection();
+        Model::init();
         if (Model::$can_connect)
         {
             //action
@@ -74,7 +75,7 @@ class Controller
 
     public static function postAlbum()
     {
-        Model::upConnection();
+        Model::init();
         if (Model::$can_connect)
         {
             //action
