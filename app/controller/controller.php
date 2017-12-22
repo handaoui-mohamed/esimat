@@ -14,13 +14,18 @@ use app\model\Model;
 class controller
 {
 
+    private static function getUrlUser()
+    {
+        return $_url= (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    }
     public static function index()
     {
         Model::Init();
         if (Model::$can_connect)
         {
             // TRAITEMENT ... REQUETE BDD ...
-            view\View::startPage(0,"ESIMAT | HOME","noImage",['flexslider.css']);
+
+            view\View::startPage(0,"ESIMAT | HOME",self::getUrlUser(),"noImage",['flexslider.css']);
             view\View::header();
             // VUE SPECIFIQUE ...
             view\View::endPage(['jquery.flexslider.js','index.js','jquery.countup.js']);
@@ -34,7 +39,8 @@ class controller
         {
             // TRAITEMENT ... REQUETE BDD ...
 
-            view\View::startPage(10,"ESIMAT | Échiquienne","noImage");
+            url:
+            view\View::startPage(10,"ESIMAT | Échiquienne",self::getUrlUser(),"noImage");
             view\View::header(10);
             // VUE SPECIFIQUE ...
             view\View::endPage();
@@ -48,7 +54,7 @@ class controller
         {
             // TRAITEMENT ... REQUETE BDD ...
 
-            view\View::startPage(20,"ESIMAT | Scientifique","noImage");
+            view\View::startPage(20,"ESIMAT | Scientifique",self::getUrlUser(),"noImage");
             view\View::header(20);
             // VUE SPECIFIQUE ...
             view\View::endPage();
