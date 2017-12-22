@@ -4,14 +4,18 @@ require'vendor/autoload.php';
 use KikimR\router\Router;
 
 
-$Middlewares=array(array('fn'=>'app\\view\\view::header',"params"=>["logo"]));
+Router::init();// Middlewares ou fonctions toujours éxécutées
 
-Router::init($Middlewares);// Middlewares ou fonctions toujours éxécutées
+Router::get("/","app\\controller\controller::index");
 
-Router::get("/",function(){echo"HI site!!";});
+Router::get("echiquienne/[page]","app\\controller\controller::echiquienne")
+		->with("page",'[1-9][0-9]{0,9}')
+		->addPath("echiquienne/");// la première page soit avec /1 ou directement /
+Router::get("scientifique/[page]","app\\controller\controller::scientifique")
+    ->with("page",'[1-9][0-9]{0,9}')
+    ->addPath("scientifique/");// la première page soit avec /1 ou directement /
 
-Router::get("hello/[id]","app\\view\\view::header")
-		->with('id','[0-9]+');
+
 
 Router::when(404,"errors/404.html");
 
