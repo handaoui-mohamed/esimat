@@ -1,0 +1,7 @@
+CREATE TABLE album_image
+(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    title varchar(255),
+    album_id int,
+    FOREIGN KEY (album_id) REFERENCES album(id)
+);

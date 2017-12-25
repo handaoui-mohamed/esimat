@@ -1,0 +1,9 @@
+CREATE TABLE download
+(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    type int,
+    date date,
+    title varchar(255),
+    image varchar(255),
+    source varchar(255)
+);

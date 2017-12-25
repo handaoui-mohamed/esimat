@@ -1,0 +1,5 @@
+CREATE TABLE subsription
+(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    email varchar(200)
+);

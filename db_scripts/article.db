@@ -1,0 +1,10 @@
+CREATE TABLE article
+(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    type int,
+    title varchar(255),
+    images text,
+    videos text,
+    body text,
+    date date
+);
