@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="esimat@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="esimat">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="alger794579"/>
+    <schema id="4" parent="1" name="alps"/>
+    <schema id="5" parent="1" name="atlas"/>
+    <schema id="6" parent="1" name="base"/>
+    <schema id="7" parent="1" name="bdtp"/>
+    <schema id="8" parent="1" name="blogdev"/>
+    <schema id="9" parent="1" name="chat"/>
+    <schema id="10" parent="1" name="client"/>
+    <schema id="11" parent="1" name="db"/>
+    <schema id="12" parent="1" name="demo"/>
+    <schema id="13" parent="1" name="geo"/>
+    <schema id="14" parent="1" name="information_schema"/>
+    <schema id="15" parent="1" name="ino"/>
+    <schema id="16" parent="1" name="kikim"/>
+    <schema id="17" parent="1" name="kikim1"/>
+    <schema id="18" parent="1" name="memoire"/>
+    <schema id="19" parent="1" name="msgchat"/>
+    <schema id="20" parent="1" name="mutuelle"/>
+    <schema id="21" parent="1" name="mysql"/>
+    <schema id="22" parent="1" name="newalps"/>
+    <schema id="23" parent="1" name="oo"/>
+    <schema id="24" parent="1" name="osklsso"/>
+    <schema id="25" parent="1" name="osklsssso"/>
+    <schema id="26" parent="1" name="osksso"/>
+    <schema id="27" parent="1" name="oso"/>
+    <schema id="28" parent="1" name="osso"/>
+    <schema id="29" parent="1" name="ossso"/>
+    <schema id="30" parent="1" name="performance_schema"/>
+    <schema id="31" parent="1" name="pkl"/>
+    <schema id="32" parent="1" name="pl"/>
+    <schema id="33" parent="1" name="projet"/>
+    <schema id="34" parent="1" name="projet1"/>
+    <schema id="35" parent="1" name="projetweb"/>
+    <schema id="36" parent="1" name="sinf"/>
+    <schema id="37" parent="1" name="tchat"/>
+    <schema id="38" parent="1" name="td"/>
+    <schema id="39" parent="1" name="td1"/>
+    <schema id="40" parent="1" name="test"/>
+    <schema id="41" parent="1" name="testing"/>
+    <schema id="42" parent="1" name="testprojet"/>
+    <schema id="43" parent="1" name="testweb"/>
+    <schema id="44" parent="1" name="test_kikim"/>
+    <table id="45" parent="2" name="album"/>
+    <table id="46" parent="2" name="album_image"/>
+    <table id="47" parent="2" name="article"/>
+    <table id="48" parent="2" name="download"/>
+    <table id="49" parent="2" name="subsription"/>
+    <table id="50" parent="2" name="users"/>
+    <column id="51" parent="45" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="52" parent="45" name="title">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="53" parent="45" name="description">
+      <Position>3</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="54" parent="45" name="date_post">
+      <Position>4</Position>
+      <DataType>date|0</DataType>
+    </column>
+    <key id="55" parent="45" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="56" parent="46" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="57" parent="46" name="title">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="58" parent="46" name="album_id">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="59" parent="46" name="album_id">
+      <ColNames>album_id</ColNames>
+    </index>
+    <key id="60" parent="46" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="61" parent="46" name="album_image_ibfk_1">
+      <ColNames>album_id</ColNames>
+      <RefSchemaName>esimat</RefSchemaName>
+      <RefTableName>album</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="62" parent="47" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="63" parent="47" name="type">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="64" parent="47" name="title">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="65" parent="47" name="images">
+      <Position>4</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="66" parent="47" name="videos">
+      <Position>5</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="67" parent="47" name="body">
+      <Position>6</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="68" parent="47" name="date_post">
+      <Position>7</Position>
+      <DataType>date|0</DataType>
+    </column>
+    <key id="69" parent="47" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="70" parent="48" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="71" parent="48" name="type">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="72" parent="48" name="date_post">
+      <Position>3</Position>
+      <DataType>date|0</DataType>
+    </column>
+    <column id="73" parent="48" name="title">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="74" parent="48" name="image">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="75" parent="48" name="source">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="76" parent="48" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="77" parent="49" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="78" parent="49" name="email">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <key id="79" parent="49" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="80" parent="50" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="81" parent="50" name="email">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="82" parent="50" name="password">
+      <Position>3</Position>
+      <DataType>varchar(40)|0</DataType>
+    </column>
+    <column id="83" parent="50" name="role">
+      <Position>4</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <key id="84" parent="50" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

@@ -39,11 +39,33 @@ class View
      * @param $state 404/500/200
      * @return string
      */
+
     private static function genSEO ($title, $pageType, $url, $url_img, $state)
     {
         //Générer le SEO (s) d'une page
-        $s='SEO...';
-        return $s;
+        //$url=urlencode($url); si l url => par user
+        $url_img=Glob::DOMAIN.self::$staticFilesDir.$url_img;
+        return'<!--SeO part 1--> 
+              <meta property="og:type" content=""/>
+              <meta property="og:title" content="Le club '.$title.'">
+              <meta property="og:url" content="'.$url.'">
+              <meta property="og:image" content="'.$url_img.'">
+              <meta property="og:description" content="Description sur cette page"/>
+              <meta property="og:site_name" content="ESIMAT">
+              <meta property="fb:pages" content=""> 
+              <!--twitter-->   
+              <meta name="twitter:card" content="summary">
+              <meta name="twitter:creator" content="nom de site">
+              <meta name="twitter:description" content="Description sur cette page ">
+              <meta name="twitter:domain" content="esimat.com">
+              <meta name="twitter:image" content="'.$url_img.'">
+              <meta name="twitter:site" content="ESIMAT">
+              <meta name="twitter:title" content="">
+              <!--meta-->
+              <meta name="description" content="Description sur cette page">
+              <title>'.$title.'</title>
+             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+             <meta name="author" content="@EsiMat">';
     }
 
 
@@ -63,14 +85,9 @@ class View
         echo '<!DOCTYPE html>
 <html lang="en">
 <head>
-<title>'.$title.'</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Tract house Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-
 '.self::genSEO($title,$pageType,$url,$url_img,$state).'
-
 <link href="'.$StaticFilesDirLink.'css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="'.$StaticFilesDirLink.'css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="'.$StaticFilesDirLink.'css/font-awesome.min.css" />

@@ -1,26 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/vendor/KikimR" isTestSource="false" packagePrefix="KikimR\" />
-      <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" packagePrefix="app\" />
-      <sourceFolder url="file://$MODULE_DIR$/admin" isTestSource="false" packagePrefix="admin\" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/KikimR/router" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
-    </content>
+    <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library name="PHP" type="php">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/KikimR/router" />
-          <root url="file://$MODULE_DIR$/vendor/composer" />
-        </CLASSES>
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/KikimR/router" />
-          <root url="file://$MODULE_DIR$/vendor/composer" />
-        </SOURCES>
-      </library>
-    </orderEntry>
   </component>
 </module>

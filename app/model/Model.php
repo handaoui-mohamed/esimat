@@ -14,6 +14,7 @@ class Model
 {
     public static $can_connect=false;
     public static $connection=null;
+    const NB_TOPICS_IN_PAGE=6;
 
     public static function Init()
     {
@@ -38,17 +39,26 @@ class Model
      * @param $page int
      * return $nb scientifique topics de la page $page
      */
-    public static function getScientifiqueTopics($nb, $page)
-    {
 
+    private  static function getTopics($page,$type)
+    {
+        $premier_index=(int)($page-1)*self::NB_TOPICS_IN_PAGE;
+        $type=(int)$type;
+        $topicsReq=self::$connection->prepare('SELECT id,title,images,date_post from article where type='.$type.' ORDER BY id desc limit '. $premier_index.','.self::NB_TOPICS_IN_PAGE);
+        $topicsReq->execute(array());
+        $topics=$topicsReq->fetchAll(\PDO::FETCH_ASSOC);
+        $topicsReq->closeCursor();
+        return $topics;
+    }
+    public static function getScientifiqueTopics($page)
+    {
+        return self::getTopics($page,1);
     }
     /**
-     * @param $nb int
      * @param $page int
-     * return $nb scientifique topics de la page $page
      */
-    public static function getEchiquienneTopics($nb,$page)
+    public static function getEchiquienneTopics($page)
     {
-
+        return self::getTopics($page,0);
     }
 }
