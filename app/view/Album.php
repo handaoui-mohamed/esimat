@@ -8,7 +8,6 @@
 
 namespace app\view;
 use app\Glob;
-use app\view\View;
 
 
 class Album
@@ -100,5 +99,3 @@ public static function albumsPagin($albums,$start,$curpage,$end,$pagin=true)
     }
 
 }
-
-

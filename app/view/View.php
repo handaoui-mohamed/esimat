@@ -313,9 +313,9 @@ class View
         if ($start>$curpage){die("<b>Erreur controleur 3<br>");}
 
         if ($curpage>1)
-            $s='<li><a href="'.Glob::DOMAIN.$links[$pagetype].($curpage-1).'"><i class="fa fa-angle-left">«</i></a></li>';
+            $s='<li><a href="'.Glob::DOMAIN.$links[$pagetype].($curpage-1).'"><i class="fa fa-angle-left"></i></a></li>';
         else
-            $s='<li class="disabled"><a href="#"><i class="fa fa-angle-left">«</i></a></li>';
+            $s='<li class="disabled"><a ><i class="fa fa-angle-left"></i></a></li>';
 
         for ($i=$start;$i<$curpage;$i++)
             $s .= '<li><a href="'.Glob::DOMAIN.$links[$pagetype].$i.'">' . $i . '</a></li>';
@@ -326,11 +326,11 @@ class View
             $s .= '<li><a href="'.Glob::DOMAIN.$links[$pagetype].$i.'">' . $i . '</a></li>';
 
         if ($end>$curpage)
-            $s.='<li><a href="'.Glob::DOMAIN.$links[$pagetype].$i.'"><i class="fa fa-angle-right">»</i></a></li>';
+            $s.='<li><a href="'.Glob::DOMAIN.$links[$pagetype].($curpage+1).'"><i class="fa fa-angle-right"></i></a></li>';
         else
-            $s.='<li class="disabled"><a href="#"><i class="fa fa-angle-right">»</i></a></li>';
+            $s.='<li class="disabled"><a><i class="fa fa-angle-right"></i></a></li>';
 
-return '<div style="text-align: center;margin-top-top: 10px;"><br><br><ul class="pagination pagination-lg">'.$s.'</ul></div>';
+return '<div style="text-align: center;margin-top: 10px;"><br><br><ul class="pagination pagination-lg">'.$s.'</ul></div>';
         }
 
 
@@ -349,7 +349,7 @@ return '<div style="text-align: center;margin-top-top: 10px;"><br><br><ul class=
         $s.='<li><a href="'.Glob::DOMAIN.$link[$i]['link'].'">'.$link[$i]['name'].'</a></li>';
       }
 
-      $s.= '<li class="active">'.$link[$nb-1]['name'].'</a></li></ol>';
+      $s.= '<li class="active">'.$link[$nb-1]['name'].'</li></ol>';
 
       return $s;
   }

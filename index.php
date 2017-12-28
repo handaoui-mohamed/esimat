@@ -6,20 +6,20 @@ use KikimR\router\Router;
 
 Router::init();// Middlewares ou fonctions toujours éxécutées
 
-Router::get("/","app\\controller\controller::index");
+Router::get("/","app\\controller\Controller::index");
 
-Router::get("echiquienne/[page]","app\\controller\controller::echiquienne")
+Router::get("echiquienne/[page]","app\\controller\Controller::echiquienne")
 		->with("page",'[1-9][0-9]{0,9}')
 		->addPath("echiquienne/");// la première page soit avec /1 ou directement /
 
-Router::get("scientifique/[page]","app\\controller\controller::scientifique")
+Router::get("scientifique/[page]","app\\controller\Controller::scientifique")
     ->with("page",'[1-9][0-9]{0,9}')
     ->addPath("scientifique/");// la première page soit avec /1 ou directement /
 
-Router::get("albums/[page]","app\\controller\controller::albums")
+Router::get("albums/[page]","app\\controller\Controller::albums")
     ->with("page",'[1-9][0-9]{0,9}')
     ->addPath("albums/");
-Router::get("album/[id]","app\\controller\controller::album")
+Router::get("album/[id]","app\\controller\Controller::album")
     ->with("id",'[1-9][0-9]{0,9}');
 
 

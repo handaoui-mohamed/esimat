@@ -11,7 +11,7 @@ use app\view;
 use app\model\Model;
 
 
-class controller
+class Controller
 {
 
     private static function getUrlUser()
@@ -39,7 +39,6 @@ class controller
         {
             // TRAITEMENT ... REQUETE BDD ...
 
-            url:
             view\View::startPage(10,"ESIMAT | Échiquienne",self::getUrlUser(),"noImage");
             view\View::header(10);
             // VUE SPECIFIQUE ...
@@ -77,7 +76,8 @@ class controller
                 array("id" => 2, "title" => "album 4", "image" => "g1.jpg", "description" => "bla bla bla  blabla bla blabla bla b blabla bla blabla bla b blabla bla blabla bla b", "date_post" => "12/12/2012"),
                 array("id" => 3, "title" => "album 6", "image" => "g1.jpg", "description" => "bla blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla bla", "date_post" => "12/12/2012")
             );
-            view\Album::albumsPagin($data, 1, $page, 10);
+            $infosPagin=Logic::getInfosPagine($page,50);
+            view\Album::albumsPagin($data,$infosPagin['start'], $page, $infosPagin['end']);
             view\View::endPage();
         }
     }
