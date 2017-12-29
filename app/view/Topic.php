@@ -23,6 +23,7 @@ class Topic
                     <div class="textbox"></div>
                 </div>						
                 <h4>'.$topic['title'].'</h4>
+                <h6>Publie le '.$topic['date_post'].'</h6>
                 <p>'.$topicBodyPreview.'</p>
                <a class="read-more-link" href="'.$topicDetailsLink.'">Lire plus</a>
             </div>';
@@ -67,12 +68,11 @@ class Topic
         $dirImgTopicsOrigin = Glob::DOMAIN.self::$dirImgTopics.'origin/';
 
         return '<div class="w3_agile_portfolio_grid1">
-                    <a href="'.$dirImgTopicsOrigin.$image.'" class="showcase" data-rel="lightcase:myCollection:slideshow" title="hello">
+                    <a href="'.$dirImgTopicsOrigin.$image.'" class="showcase" data-rel="lightcase:myCollection:slideshow">
                         <div class="agileits_portfolio_sub_grid agileits_w3layouts_team_grid">	
                             <div class="w3layouts_port_head">
-                                <h3>hello agaim</h3>
                             </div>
-                            <img src="'.$dirImgTopicsMin.$image.'" alt="helooooa" class="img-responsive" />
+                            <img src="'.$dirImgTopicsMin.$image.'" alt="image" class="img-responsive" />
                         </div>
                     </a>
                 </div>';
@@ -103,6 +103,7 @@ class Topic
                     '.View::getlink([["name"=>ucfirst($topicsLink) ,"link"=>$topicsLink]  , ["name"=>$topic['title'],"link"=>$topicDetailsLink] ]).'
                     <div class="agileits_heading_section">
                         <h2 class="agileinfo_header">Article : '.$topic['title'].'</h2>
+                        <p class="agileits_dummy_para">Publie le '.$topic['date_post'].'</p>
                     </div>
                     <br>
                     <div class="topic-main-image" style="background-image: url('.Glob::DOMAIN.self::$dirImgTopics.$images[0].')"></div>

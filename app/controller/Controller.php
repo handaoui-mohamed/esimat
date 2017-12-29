@@ -80,7 +80,7 @@ class Controller
         if (Model::$can_connect) {
             $data = array(
                 "id" => 1,
-                "title" => "topic 1",
+                "title" => "Article 1",
                 "type" => 1,
                 "images" => "g1.jpg;g4.jpg;g8.jpg;g1.jpg",
                 "videos" => "",
@@ -95,7 +95,7 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
             );
             $pageType = $data['type'] ? 11 : 21;
 
-            view\View::startPage($pageType, "ESIMAT | Album", self::getUrlUser(), "noImage",['lightcase.css']);
+            view\View::startPage($pageType, "ESIMAT | Article", self::getUrlUser(), "noImage",['lightcase.css']);
             view\View::header($pageType);
 
             view\Topic::topicDetails($data);
