@@ -61,4 +61,28 @@ class Model
     {
         return self::getTopics($page,0);
     }
+
+    private static function getNbPages($type)
+    {
+        $Req=self::$connection->prepare('SELECT count(*) as nb from article where type='.$type);
+        $Req->execute(array());
+        $data=$Req->fetch();
+        $Req->closeCursor();
+        $data =(int)$data['nb'];
+        $nb=(int)($data/self::NB_TOPICS_IN_PAGE);
+        if ($data%self::NB_TOPICS_IN_PAGE>0) {
+            $nb++;
+        }
+        return $nb;
+    }
+
+    public static function getNbPagesEchiquienne()
+    {
+        return self::getNbPages(0);
+    }
+
+    public static function getNbPagesScientifique()
+    {
+        return self::getNbPages(1);
+    }
 }
