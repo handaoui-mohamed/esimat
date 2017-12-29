@@ -894,7 +894,7 @@ figure.agileits_effect_moses:hover img {
     outline: none;
     border: none;
     border-bottom: 1px solid #ffed21;
-    color: #777;
+    color: #fff;
     font-size: 14px;
     padding: 10px;
     width: 70%;
@@ -2550,4 +2550,16 @@ figure.agileits_effect_moses p {
 .w3ls_news_grid {
     padding: 0;
 }
+}
+
+/* topic main image */
+.topic-main-image {
+	height: 350px;
+	margin: 0 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.topic-body-paragraph{
+	text-indent: 20px;
 }

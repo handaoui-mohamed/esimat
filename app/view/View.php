@@ -118,8 +118,8 @@ class View
       return '<nav class="cl-effect-12" id="cl-effect-13">
 						<ul class="nav navbar-nav">
 							<li '.self::setActive($pageType,0).'><a href="'.Glob::DOMAIN.'">Home</a></li>
-							<li '.self::setActive($pageType,10).'><a href="'.Glob::DOMAIN.'echiquienne">Échiquienne</a></li>
-							<li '.self::setActive($pageType,20).'><a href="'.Glob::DOMAIN.'scientifique">Scientifique</a></li>
+							<li '.self::setActive($pageType,11).self::setActive($pageType,10).'><a href="'.Glob::DOMAIN.'echiquienne">Échiquienne</a></li>
+							<li '.self::setActive($pageType,21).self::setActive($pageType,20).'><a href="'.Glob::DOMAIN.'scientifique">Scientifique</a></li>
 							<li '.self::setActive($pageType,31).self::setActive($pageType,30).'><a href="'.Glob::DOMAIN.'albums">Albums</a></li>
 							
 							<li class="dropdown">
@@ -354,7 +354,24 @@ return '<div style="text-align: center;margin-top: 10px;"><br><br><ul class="pag
       return $s;
   }
 
-
+    public static function subscription()
+    {
+        echo
+            '<div class="newsletter">
+                <div class="container">
+                    <div class="agileinfo_newsletter_left">
+                        <h3>Abonnez-vous !</h3>
+                    </div>
+                    <div class="agileinfo_newsletter_right">
+                        <form action="#" method="post">
+                            <input class="email" type="email" placeholder="Votre Email..." required>
+                            <input type="submit" value="S\'abonner">
+                        </form>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>';
+    }
 
 }
 

@@ -12,6 +12,9 @@ Router::get("echiquienne/[page]","app\\controller\Controller::echiquienne")
 		->with("page",'[1-9][0-9]{0,9}')
 		->addPath("echiquienne/");// la première page soit avec /1 ou directement /
 
+Router::get("echiquienne/article/[id]","app\\controller\Controller::topic")
+    ->with("id",'[1-9][0-9]{0,9}');
+
 Router::get("scientifique/[page]","app\\controller\Controller::scientifique")
     ->with("page",'[1-9][0-9]{0,9}')
     ->addPath("scientifique/");// la première page soit avec /1 ou directement /

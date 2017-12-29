@@ -1,0 +1,117 @@
+<?php
+
+namespace app\view;
+use app\Glob;
+
+
+class Topic
+{
+    private static $topicBodyPreviewLength = 200;
+    private static $dirImgTopics= "images/album/"; // just for testing with album dir TODO : "images/topics/"
+
+    private static function topicPaginPresentation($topic)
+    {
+        $topicImage = explode(";", $topic['images'])[0];
+        $topicDetailsLink = Glob::DOMAIN.($topic['type'] ? 'echiquienne':'scientifique').'/article/'.$topic['id'];
+        $topicBodyPreview = substr($topic['body'], 0, self::$topicBodyPreviewLength);
+        $topicBodyPreview .= strlen($topic['body']) > self::$topicBodyPreviewLength ? " ..." : ".";
+
+        return
+            '<div class="col-md-4 list-grid" style="margin-bottom: 20px">
+                <div class="list-img">
+                    <img src="'.Glob::DOMAIN.self::$dirImgTopics.$topicImage.'" class="img-responsive" alt="image d\'article">
+                    <div class="textbox"></div>
+                </div>						
+                <h4>'.$topic['title'].'</h4>
+                <p>'.$topicBodyPreview.'</p>
+               <a class="read-more-link" href="'.$topicDetailsLink.'">Lire plus</a>
+            </div>';
+    }
+
+    public static function topicsPagin($topics, $type, $start,$curpage,$end,$pagin=true)
+    {
+        $topicsLink = $type ? 'echiquienne':'scientifique';
+
+        echo '<div class="overview w3-2" style="padding-top: 5px;">
+			    <div class="container">
+                 '.View::getlink([["name"=>ucfirst($topicsLink) ,"link"=>$topicsLink] , ["name"=>"Page ".$curpage] ]).'
+                    <h3 class="agileinfo_header"><span class="fa fa-bookmark-o"></span> Les derniers articles du club</h3>
+                    <p class="agileits_dummy_para">Page '.$curpage.'</p>
+                    <div class="overview-grids">';
+
+        $nb_topics = count($topics);
+
+        for ($i = 0; $i < 6; $i++) {
+            echo self::topicPaginPresentation($topics[0]);
+        }
+        echo "</div></div>";// .overview-grids
+        if ($pagin) {
+            echo View::pagine(30, $start, $curpage, $end);
+        }
+        echo '</div>';
+    }
+
+    private static function topicDetailsBody($body){
+        $paragraphs = explode("\n",$body);
+        $nb_paragraphs = count($paragraphs);
+        for ($i=0;$i<$nb_paragraphs;$i++){
+            if(strlen($paragraphs[$i]) > 1){
+                echo '<p class="topic-body-paragraph">'. $paragraphs[$i].'</p>';
+            }else echo '<br>';
+        }
+    }
+
+    private static function topicDetailsImage($image)
+    {
+        $dirImgTopicsMin = Glob::DOMAIN.self::$dirImgTopics.'min/';
+        $dirImgTopicsOrigin = Glob::DOMAIN.self::$dirImgTopics.'origin/';
+
+        return '<div class="w3_agile_portfolio_grid1">
+                    <a href="'.$dirImgTopicsOrigin.$image.'" class="showcase" data-rel="lightcase:myCollection:slideshow" title="hello">
+                        <div class="agileits_portfolio_sub_grid agileits_w3layouts_team_grid">	
+                            <div class="w3layouts_port_head">
+                                <h3>hello agaim</h3>
+                            </div>
+                            <img src="'.$dirImgTopicsMin.$image.'" alt="helooooa" class="img-responsive" />
+                        </div>
+                    </a>
+                </div>';
+
+    }
+
+    private static function topicDetailsImages($images){
+        $nb_images = count($images);
+        echo '<br><h4 class="agileinfo_header"><span class="fa fa-image"></span> Images d\'article</h4>
+                <div class="w3ls_portfolio_grids">';
+
+        for ($i=0;$i<$nb_images;$i++){
+            echo '<div class="col-md-4 agileinfo_portfolio_grid">'.self::topicDetailsImage($images[$i]).'</div>';
+        }
+
+        echo '</div>';
+    }
+
+    public static function topicDetails($topic)
+    {
+        $topicDetailsLink = ($topic['type'] ? 'echiquienne':'scientifique').'/article/'.$topic['id'];
+        $topicsLink = $topic['type'] ? 'echiquienne':'scientifique';
+        $images = explode(";", $topic['images']);
+
+        echo
+            '<div class="banner-bottom" style="padding-top: 5px;">
+                <div class="container">
+                    '.View::getlink([["name"=>ucfirst($topicsLink) ,"link"=>$topicsLink]  , ["name"=>$topic['title'],"link"=>$topicDetailsLink] ]).'
+                    <div class="agileits_heading_section">
+                        <h2 class="agileinfo_header">Article : '.$topic['title'].'</h2>
+                    </div>
+                    <br>
+                    <div class="topic-main-image" style="background-image: url('.Glob::DOMAIN.self::$dirImgTopics.$images[0].')"></div>
+                    <br>';
+
+        self::topicDetailsBody($topic['body']);
+        self::topicDetailsImages($images);
+
+        echo '</div></div>';
+    }
+
+}
