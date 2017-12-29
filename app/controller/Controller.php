@@ -128,6 +128,14 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
                     "image" => "g2.jpg",
                     "source" => "SpotifySetup.exe",
                     "date_post" => "12/12/2012"
+                ),
+                array(
+                    "id" => 1,
+                    "title" => "Spotify no img",
+                    "type" => 1,
+                    "image" => "",
+                    "source" => "SpotifySetup.exe",
+                    "date_post" => "12/12/2012"
                 )
             );
             $infosPagin=Logic::getInfosPagine($page,50);

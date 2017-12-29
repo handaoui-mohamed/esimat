@@ -6,11 +6,14 @@ use app\Glob;
 
 class Download
 {
-    private static $dirImgDownloads= "images/album/"; // just for testing with album dir TODO : "images/downloads/"
-    private static $dirDownloads= "downloads/";
+    private static $dirImgDownloads = "images/album/"; // just for testing with album dir TODO : "images/downloads/"
+    private static $dirDownloads = "downloads/";
+    private static $defaultDownloadImg = "g3.jpg"; //TODO : "default-img.jpg"
 
     private static function downloadPaginPresentation($download)
     {
+        if (!$download['image']) $download['image'] = self::$defaultDownloadImg;
+
         return
             '<div class="col-md-3 list-grid" style="margin-bottom: 20px">
                 <div class="list-img">
@@ -29,7 +32,7 @@ class Download
 
         echo '<div class="overview w3-2" style="padding-top: 5px;">
 			    <div class="container">
-                 '.View::getlink([["name"=>ucfirst($topicsLink) ,"link"=>$topicsLink] , ["name"=>"Page ".$curpage] ]).'
+                 '.View::getlink([["name"=>ucfirst($topicsLink) ,"link"=>$topicsLink."/downloads/"] , ["name"=>"Page ".$curpage] ]).'
                     <h3 class="agileinfo_header"><span class="fa fa-cloud-download"></span> Les article a telecharger</h3>
                     <p class="agileits_dummy_para">Page '.$curpage.'</p>
                     <div class="overview-grids">';

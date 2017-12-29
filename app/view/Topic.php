@@ -35,7 +35,7 @@ class Topic
 
         echo '<div class="overview w3-2" style="padding-top: 5px;">
 			    <div class="container">
-                 '.View::getlink([["name"=>ucfirst($topicsLink) ,"link"=>$topicsLink] , ["name"=>"Page ".$curpage] ]).'
+                 '.View::getlink([["name"=>ucfirst($topicsLink) ,"link"=>$topicsLink."/articles/"] , ["name"=>"Page ".$curpage] ]).'
                     <h3 class="agileinfo_header"><span class="fa fa-bookmark-o"></span> Les derniers articles du club</h3>
                     <p class="agileits_dummy_para">Page '.$curpage.'</p>
                     <div class="overview-grids">';
@@ -93,14 +93,13 @@ class Topic
 
     public static function topicDetails($topic)
     {
-        $topicDetailsLink = ($topic['type'] ? 'echiquienne':'scientifique').'/article/'.$topic['id'];
         $topicsLink = $topic['type'] ? 'echiquienne':'scientifique';
         $images = explode(";", $topic['images']);
 
         echo
             '<div class="banner-bottom" style="padding-top: 5px;">
                 <div class="container">
-                    '.View::getlink([["name"=>ucfirst($topicsLink) ,"link"=>$topicsLink]  , ["name"=>$topic['title'],"link"=>$topicDetailsLink] ]).'
+                    '.View::getlink([["name"=>ucfirst($topicsLink) ,"link"=>$topicsLink."/articles/"]  , ["name"=>$topic['title']] ]).'
                     <div class="agileits_heading_section">
                         <h2 class="agileinfo_header">Article : '.$topic['title'].'</h2>
                         <p class="agileits_dummy_para">Publie le '.$topic['date_post'].'</p>
