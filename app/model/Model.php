@@ -52,14 +52,14 @@ class Model
     }
     public static function getScientifiqueTopics($page)
     {
-        return self::getTopics($page,1);
+        return self::getTopics($page,0);
     }
     /**
      * @param $page int
      */
     public static function getEchiquienneTopics($page)
     {
-        return self::getTopics($page,0);
+        return self::getTopics($page,1);
     }
 
     private static function getNbPages($type)
@@ -78,11 +78,11 @@ class Model
 
     public static function getNbPagesEchiquienne()
     {
-        return self::getNbPages(0);
+        return self::getNbPages(1);
     }
 
     public static function getNbPagesScientifique()
     {
-        return self::getNbPages(1);
+        return self::getNbPages(0);
     }
 }

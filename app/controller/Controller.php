@@ -24,10 +24,10 @@ class Controller
         if (Model::$can_connect)
         {
             // TRAITEMENT ... REQUETE BDD ...
-
             view\View::startPage(0,"ESIMAT | HOME",self::getUrlUser(),"noImage",['flexslider.css']);
             view\View::header();
             // VUE SPECIFIQUE ...
+            view\View::contact();
             view\View::endPage(['jquery.flexslider.js','index.js','jquery.countup.js']);
         }
     }
@@ -54,7 +54,7 @@ class Controller
                         )
                     );
             $infosPagin=Logic::getInfosPagine($page,50);
-            view\Topic::topicsPagin($data, 1,$infosPagin['start'], $page, $infosPagin['end']);
+            view\Topic::topicsPagin($data, 10,$infosPagin['start'], $page, $infosPagin['end']);
             view\View::subscription();
             view\View::endPage();
         }
@@ -119,8 +119,9 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
                 array("id" => 2, "title" => "album 4", "image" => "g1.jpg", "description" => "bla bla bla  blabla bla blabla bla b blabla bla blabla bla b blabla bla blabla bla b", "date_post" => "12/12/2012"),
                 array("id" => 3, "title" => "album 6", "image" => "g1.jpg", "description" => "bla blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla bla", "date_post" => "12/12/2012")
             );
-            $infosPagin=Logic::getInfosPagine($page,50);
+            $infosPagin=Logic::getInfosPagine($page,3);
             view\Album::albumsPagin($data,$infosPagin['start'], $page, $infosPagin['end']);
+            view\View::subscription();
             view\View::endPage();
         }
     }

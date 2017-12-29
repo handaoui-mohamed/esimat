@@ -102,7 +102,7 @@ class View
 
     private static function setActive($pageType,$hisType)
     {
-        $pageState = $pageType==$hisType?'class="active"':'';
+        $pageState = $pageType==$hisType?'active':'';
         return $pageState;
     }
 
@@ -115,13 +115,24 @@ class View
     {
         $scroll="";
         if ($pageType==0) $scroll='class="scroll"';
-      return '<nav class="cl-effect-12" id="cl-effect-13">
+      return '<nav class="cl-effect-13" id="cl-effect-13">
 						<ul class="nav navbar-nav">
-							<li '.self::setActive($pageType,0).'><a href="'.Glob::DOMAIN.'">Home</a></li>
-							<li '.self::setActive($pageType,11).self::setActive($pageType,10).'><a href="'.Glob::DOMAIN.'echiquienne">Échiquienne</a></li>
-							<li '.self::setActive($pageType,21).self::setActive($pageType,20).'><a href="'.Glob::DOMAIN.'scientifique">Scientifique</a></li>
-							<li '.self::setActive($pageType,31).self::setActive($pageType,30).'><a href="'.Glob::DOMAIN.'albums">Albums</a></li>
-							
+							<li class="'.self::setActive($pageType,0).'"><a href="'.Glob::DOMAIN.'">Home</a></li>
+							<li class="'.self::setActive($pageType,31).self::setActive($pageType,30).'"><a href="'.Glob::DOMAIN.'albums">Albums</a></li>
+							<li class="dropdown '.self::setActive($pageType,10).self::setActive($pageType,11).self::setActive($pageType,12).'">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Échiquienne<b class="caret"></b></a>
+								<ul class="dropdown-menu agile_short_dropdown">
+									<li><a href="'.Glob::DOMAIN.'echiquienne/articles">Articles et Événements</a></li>
+									<li><a href="'.Glob::DOMAIN.'echiquienne/downloads">Téléchargement</a></li>
+								</ul>
+							</li>
+							<li class="dropdown '.self::setActive($pageType,20).self::setActive($pageType,21).self::setActive($pageType,22).'">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Scientifique<b class="caret"></b></a>
+								<ul class="dropdown-menu agile_short_dropdown">
+									<li><a href="'.Glob::DOMAIN.'scientifique/articles">Articles et Événements</a></li>
+									<li><a href="'.Glob::DOMAIN.'scientifique/downloads">Téléchargements</a></li>
+								</ul>
+							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">ESIMAT<b class="caret"></b></a>
 								<ul class="dropdown-menu agile_short_dropdown">
@@ -230,44 +241,7 @@ class View
             $scripts.='<script src="'. $StaticFilesDirLink.'js/'.$Arrayscript[$i].'"></script>';
 
 
-        echo'
-    <div class="footer" id="contact">
-		<div class="container">
-			<h2 class="agileinfo_header">Contact</h2>
-			<p class="agileits_dummy_para">Contacter le club ESIMAT ...</p>
-				<div class="agileits_mail_grids">
-				<div class="col-md-7 agileits_mail_grid_left">
-					<form action="#" method="post">
-						<h4>Votre nom *</h4>
-						<input type="text" name="Name" placeholder="Name..." required="">
-						<h4>Adress email*</h4>
-						<input type="email" name="Email" placeholder="Email..." required="">
-						<h4>Numero de téléphone</h4>
-						<input type="text" name="Phone" placeholder="Phone...">
-						<h4>Message *</h4>
-						<textarea placeholder="Message..." name="Message" required=""></textarea>
-						<input type="submit" value="Envoyer">
-					</form>
-				</div>
-				<div class="col-md-5 agileits_mail_grid_right">
-					<div class="agile-map">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d865.839200036845!2d3.1711340786054616!3d36.7051485466274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sfr!2sdz!4v1514384908392"  allowfullscreen></iframe>
-					</div>
-					<div class="left-agileits">
-						<h3>Adresse</h3>
-							<ul>
-								<li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 7th Street, Melbourne City, Australia.</li>
-								<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">info@example.com</a></li>
-								<li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> (4584) 5689 0254 128</li>
-							</ul>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-	
-		</div>
-	</div>
-        <div class="copyright" style="padding-top: 0;" >
+        echo'<div class="copyright" style="padding-top: 0;margin-top: 60px;" >
 		<div class="container" style="padding: 0;">
 			<div class="agileinfo">
 		    
@@ -306,7 +280,13 @@ class View
 
     public static function pagine($pagetype,$start,$curpage,$end)
     {
-        $links=array("10"=>"echiquienne/","20"=>"scientifique/","30"=>"albums/");
+        $links=array(
+            "10"=>"echiquienne/articles/",
+            "12"=>"echiquienne/downloads/",
+            "30"=>"albums/",
+            "20"=>"scientifique/articles/",
+            "22"=>"scientifique/downloads/"
+        );
 
         if (empty($links[$pagetype])) die("<b>Erreur controleur 1<br>");
         if ($curpage>$end){die("<b>Erreur controleur 2<br>");}
@@ -371,6 +351,46 @@ return '<div style="text-align: center;margin-top: 10px;"><br><br><ul class="pag
                     <div class="clearfix"> </div>
                 </div>
             </div>';
+    }
+
+    static public function contact()
+    {
+        echo '<div class="footer" id="contact">
+		<div class="container">
+			<h2 class="agileinfo_header">Contact</h2>
+			<p class="agileits_dummy_para">Contacter le club ESIMAT ...</p>
+				<div class="agileits_mail_grids">
+				<div class="col-md-7 agileits_mail_grid_left">
+					<form action="#" method="post">
+						<h4>Votre nom *</h4>
+						<input type="text" name="Name" placeholder="Name..." required="">
+						<h4>Adress email*</h4>
+						<input type="email" name="Email" placeholder="Email..." required="">
+						<h4>Numero de téléphone</h4>
+						<input type="text" name="Phone" placeholder="Phone...">
+						<h4>Message *</h4>
+						<textarea placeholder="Message..." name="Message" required=""></textarea>
+						<input type="submit" value="Envoyer">
+					</form>
+				</div>
+				<div class="col-md-5 agileits_mail_grid_right">
+					<div class="agile-map">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d865.839200036845!2d3.1711340786054616!3d36.7051485466274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sfr!2sdz!4v1514384908392"  allowfullscreen></iframe>
+					</div>
+					<div class="left-agileits">
+						<h3>Adresse</h3>
+							<ul>
+								<li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 7th Street, Melbourne City, Australia.</li>
+								<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">info@example.com</a></li>
+								<li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> (4584) 5689 0254 128</li>
+							</ul>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+	
+		</div>
+	</div>';
     }
 
 }

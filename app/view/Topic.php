@@ -9,10 +9,10 @@ class Topic
     private static $topicBodyPreviewLength = 200;
     private static $dirImgTopics= "images/album/"; // just for testing with album dir TODO : "images/topics/"
 
-    private static function topicPaginPresentation($topic)
+    private static function topicPaginPresentation($topic,$pagetype)
     {
         $topicImage = explode(";", $topic['images'])[0];
-        $topicDetailsLink = Glob::DOMAIN.($topic['type'] ? 'echiquienne':'scientifique').'/article/'.$topic['id'];
+        $topicDetailsLink = Glob::DOMAIN.($pagetype==10 ? 'echiquienne':'scientifique').'/article/'.$topic['id'];
         $topicBodyPreview = substr($topic['body'], 0, self::$topicBodyPreviewLength);
         $topicBodyPreview .= strlen($topic['body']) > self::$topicBodyPreviewLength ? " ..." : ".";
 
@@ -29,9 +29,9 @@ class Topic
             </div>';
     }
 
-    public static function topicsPagin($topics, $type, $start,$curpage,$end,$pagin=true)
+    public static function topicsPagin($topics, $pageType, $start,$curpage,$end,$pagin=true)
     {
-        $topicsLink = $type ? 'echiquienne':'scientifique';
+        $topicsLink = $pageType==10 ? 'echiquienne':'scientifique';
 
         echo '<div class="overview w3-2" style="padding-top: 5px;">
 			    <div class="container">
@@ -43,11 +43,11 @@ class Topic
         $nb_topics = count($topics);
 
         for ($i = 0; $i < 6; $i++) {
-            echo self::topicPaginPresentation($topics[0]);
+            echo self::topicPaginPresentation($topics[0],$pageType);
         }
         echo "</div></div>";// .overview-grids
         if ($pagin) {
-            echo View::pagine(30, $start, $curpage, $end);
+            echo View::pagine($pageType, $start, $curpage, $end);
         }
         echo '</div>';
     }
