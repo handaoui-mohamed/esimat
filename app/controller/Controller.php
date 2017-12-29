@@ -103,6 +103,41 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
         }
     }
 
+    public static function echiquienneDownloads($page=1){
+        Model::Init();
+        if (Model::$can_connect)
+        {
+            // TRAITEMENT ... REQUETE BDD ...
+
+            view\View::startPage(10,"ESIMAT | Échiquienne",self::getUrlUser(),"noImage");
+            view\View::header(10);
+            // VUE SPECIFIQUE ...
+            $data = array(
+                array(
+                    "id" => 1,
+                    "title" => "Cours ANAD",
+                    "type" => 1,
+                    "image" => "g1.jpg",
+                    "source" => "file1.pdf",
+                    "date_post" => "12/12/2012"
+                ),
+                array(
+                    "id" => 1,
+                    "title" => "Spotify",
+                    "type" => 1,
+                    "image" => "g2.jpg",
+                    "source" => "SpotifySetup.exe",
+                    "date_post" => "12/12/2012"
+                )
+            );
+            $infosPagin=Logic::getInfosPagine($page,50);
+            view\Download::downloadsPagin($data, 12,$infosPagin['start'], $page, $infosPagin['end']);
+            view\View::subscription();
+            view\View::endPage();
+        }
+    }
+
+
     public static function albums($page=1)
     {
         Model::Init();

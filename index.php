@@ -15,6 +15,10 @@ Router::get("echiquienne/articles/[page]","app\\controller\\Controller::echiquie
 Router::get("echiquienne/article/[id]","app\\controller\\Controller::topic")
     ->with("id",'[1-9][0-9]{0,9}');
 
+Router::get("echiquienne/downloads/[page]","app\\controller\\Controller::echiquienneDownloads")
+    ->with("page",'[1-9][0-9]{0,9}')
+    ->addPath("echiquienne/downloads");// la première page soit avec /1 ou directement /
+
 Router::get("scientifique/articles/[page]","app\\controller\\Controller::scientifique")
     ->with("page",'[1-9][0-9]{0,9}')
     ->addPath("scientifique/");// la première page soit avec /1 ou directement /
