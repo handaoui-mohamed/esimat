@@ -136,7 +136,7 @@ class View
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">ESIMAT<b class="caret"></b></a>
 								<ul class="dropdown-menu agile_short_dropdown">
-									<li><a href="#contact" class="scroll">Contact</a></li>
+									<li><a href="'.Glob::DOMAIN.'#contact" '.$scroll.'>Contact</a></li>
 									<li><a href="'.Glob::DOMAIN.'#apropos" '.$scroll.'>À propos</a></li>
 									<li><a href="#MSociaux" class="scroll">Médias Sociaux</a></li>
 								</ul>
