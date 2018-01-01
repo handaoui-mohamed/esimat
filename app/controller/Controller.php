@@ -32,49 +32,44 @@ class Controller
         }
     }
 
-    public static function echiquienne($page=1)
-    {
+    private static function topics($page, $pageType){
         Model::Init();
         if (Model::$can_connect)
         {
             // TRAITEMENT ... REQUETE BDD ...
 
-            view\View::startPage(10,"ESIMAT | Échiquienne",self::getUrlUser(),"noImage");
-            view\View::header(10);
+            view\View::startPage($pageType,"ESIMAT | Échiquienne",self::getUrlUser(),"noImage");
+            view\View::header($pageType);
             // VUE SPECIFIQUE ...
             $data = array(
-                        array(
-                            "id" => 1,
-                            "title" => "topic 1",
-                            "type" => 1,
-                            "images" => "g1.jpg;g4.jpg;g8.jpg;g1.jpg",
+                array(
+                    "id" => 1,
+                    "title" => "topic 1",
+                    "type" => 1,
+                    "images" => "g1.jpg;g4.jpg;g8.jpg;g1.jpg",
 //                            explode(";", "g1.jpg;g4.jpg;g8.jpg;g1.jpg",0)[0]
-                            "body" => "Bacon ipsum dolor amet alcatra doner cupim beef ribs meatloaf ham hock, pastrami sirloin pancetta andouille venison. Tri-tip prosciutto ham hock brisket frankfurter. Ground round boudin flank biltong landjaeger tongue tenderloin prosciutto. Tenderloin short ribs ground round meatloaf landjaeger ham. Turducken picanha shoulder, frankfurter jerky prosciutto bacon cupim sirloin biltong ball tip strip steak alcatra landjaeger.",
-                            "date_post" => "12/12/2012"
-                        )
-                    );
+                    "body" => "Bacon ipsum dolor amet alcatra doner cupim beef ribs meatloaf ham hock, pastrami sirloin pancetta andouille venison. Tri-tip prosciutto ham hock brisket frankfurter. Ground round boudin flank biltong landjaeger tongue tenderloin prosciutto. Tenderloin short ribs ground round meatloaf landjaeger ham. Turducken picanha shoulder, frankfurter jerky prosciutto bacon cupim sirloin biltong ball tip strip steak alcatra landjaeger.",
+                    "date_post" => "12/12/2012"
+                )
+            );
             $infosPagin=Logic::getInfosPagine($page,50);
-            view\Topic::topicsPagin($data, 10,$infosPagin['start'], $page, $infosPagin['end']);
+            view\Topic::topicsPagin($data, $pageType, $infosPagin['start'], $page, $infosPagin['end']);
             view\View::subscription();
             view\View::endPage();
         }
     }
 
-    public static function scientifique($page=1)
+    public static function echiquienneTopics($page=1)
     {
-        Model::Init();
-        if (Model::$can_connect)
-        {
-            // TRAITEMENT ... REQUETE BDD ...
-
-            view\View::startPage(20,"ESIMAT | Scientifique",self::getUrlUser(),"noImage");
-            view\View::header(20);
-            // VUE SPECIFIQUE ...
-            view\View::endPage();
-        }
+        self::topics($page, 10);
     }
 
-    public static function topic($id)
+    public static function scientifiqueTopics($page=1)
+    {
+        self::topics($page, 20);
+    }
+
+    private static function topic($id, $pageType)
     {
         Model::Init();
         if (Model::$can_connect) {
@@ -93,24 +88,33 @@ Burgdoggen picanha jowl turkey shoulder cow, beef beef ribs kevin andouille done
 Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!",
                 "date_post" => "12/12/2012"
             );
-            $pageType = $data['type'] ? 11 : 21;
 
             view\View::startPage($pageType, "ESIMAT | Article", self::getUrlUser(), "noImage",['lightcase.css']);
             view\View::header($pageType);
 
-            view\Topic::topicDetails($data);
+            view\Topic::topicDetails($data, $pageType);
             view\View::endPage(['lightcase.js','jquery.events.touch.js','diapo.js']);
         }
     }
 
-    public static function echiquienneDownloads($page=1){
+    public static function echiquienneTopic($id)
+    {
+        self::topic($id, 11);
+    }
+
+    public static function scientifiqueTopic($id)
+    {
+        self::topic($id, 21);
+    }
+
+    private static function downloads($page, $pageType){
         Model::Init();
         if (Model::$can_connect)
         {
             // TRAITEMENT ... REQUETE BDD ...
 
-            view\View::startPage(10,"ESIMAT | Échiquienne",self::getUrlUser(),"noImage");
-            view\View::header(10);
+            view\View::startPage($pageType,"ESIMAT | Échiquienne",self::getUrlUser(),"noImage");
+            view\View::header($pageType);
             // VUE SPECIFIQUE ...
             $data = array(
                 array(
@@ -139,10 +143,18 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
                 )
             );
             $infosPagin=Logic::getInfosPagine($page,50);
-            view\Download::downloadsPagin($data, 12,$infosPagin['start'], $page, $infosPagin['end']);
+            view\Download::downloadsPagin($data, $pageType,$infosPagin['start'], $page, $infosPagin['end']);
             view\View::subscription();
             view\View::endPage();
         }
+    }
+
+    public static function echiquienneDownloads($page=1){
+        self::downloads($page, 12);
+    }
+
+    public static function scientifiqueDownloads($page=1){
+        self::downloads($page, 22);
     }
 
 

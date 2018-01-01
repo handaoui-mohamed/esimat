@@ -91,9 +91,9 @@ class Topic
         echo '</div>';
     }
 
-    public static function topicDetails($topic)
+    public static function topicDetails($topic, $pageType)
     {
-        $topicsLink = $topic['type'] ? 'echiquienne':'scientifique';
+        $topicsLink = $pageType == 11 ? 'echiquienne':'scientifique';
         $images = explode(";", $topic['images']);
 
         echo
