@@ -35,7 +35,7 @@ class Topic
 
         echo '<div class="overview w3-2" style="padding-top: 5px;">
 			    <div class="container">
-                 '.View::getlink([["name"=>ucfirst($topicsLink) ,"link"=>$topicsLink."/articles/"] , ["name"=>"Page ".$curpage] ]).'
+                 '.View::getlink([["name"=>$topicsLink ,"link"=>$topicsLink."/articles/"] , ["name"=>"page ".$curpage] ]).'
                     <h3 class="agileinfo_header"><span class="fa fa-bookmark-o"></span> Les derniers articles du club</h3>
                     <p class="agileits_dummy_para">Page '.$curpage.'</p>
                     <div class="overview-grids">';
@@ -99,7 +99,7 @@ class Topic
         echo
             '<div class="banner-bottom" style="padding-top: 5px;">
                 <div class="container">
-                    '.View::getlink([["name"=>ucfirst($topicsLink) ,"link"=>$topicsLink."/articles/"]  , ["name"=>$topic['title']] ]).'
+                    '.View::getlink([["name"=>$topicsLink ,"link"=>$topicsLink."/articles/"]  , ["name"=>$topic['title']] ]).'
                     <div class="agileits_heading_section">
                         <h2 class="agileinfo_header">Article : '.$topic['title'].'</h2>
                         <p class="agileits_dummy_para">Publie le '.$topic['date_post'].'</p>

@@ -322,14 +322,14 @@ return '<div style="text-align: center;margin-top: 10px;"><br><br><ul class="pag
   {
       $nb=count($link);
       $s='<ol class="breadcrumb">
-            	    <li><a href="'.Glob::DOMAIN.'">ESIMAT</a></li>';
+            	    <li><a href="'.Glob::DOMAIN.'">@ESIMAT</a></li>';
 
       for ($i=0;$i<$nb-1;$i++)
       {
-        $s.='<li><a href="'.Glob::DOMAIN.$link[$i]['link'].'">'.$link[$i]['name'].'</a></li>';
+        $s.='<li><a href="'.Glob::DOMAIN.$link[$i]['link'].'">'.ucfirst($link[$i]['name']).'</a></li>';
       }
 
-      $s.= '<li class="active">'.$link[$nb-1]['name'].'</li></ol>';
+      $s.= '<li class="active">'.ucfirst($link[$nb-1]['name']).'</li></ol>';
 
       return $s;
   }

@@ -32,7 +32,7 @@ class Download
 
         echo '<div class="overview w3-2" style="padding-top: 5px;">
 			    <div class="container">
-                 '.View::getlink([["name"=>ucfirst($topicsLink) ,"link"=>$topicsLink."/downloads/"] , ["name"=>"Page ".$curpage] ]).'
+                 '.View::getlink([["name"=>'téléchargements ('.$topicsLink.')' ,"link"=>$topicsLink."/downloads/"] , ["name"=>"Page ".$curpage] ]).'
                     <h3 class="agileinfo_header"><span class="fa fa-cloud-download"></span> Les article a telecharger</h3>
                     <p class="agileits_dummy_para">Page '.$curpage.'</p>
                     <div class="overview-grids">';
@@ -40,7 +40,7 @@ class Download
         $nb_downloads = count($downloads);
 
         for ($i = 0; $i < $nb_downloads; $i++) {
-            echo self::downloadPaginPresentation($downloads[$i],$pageType);
+            echo self::downloadPaginPresentation($downloads[$i]);
         }
         echo "</div></div>";// .overview-grids
         if ($pagin) {
