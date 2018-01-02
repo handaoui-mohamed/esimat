@@ -32,13 +32,30 @@ class Controller
         }
     }
 
+    /**
+     * @param int $pagetype
+     * @return string
+     */
+    private static function getTitleByPageType($pagetype=0)
+    {
+        $pageTitles=[
+            "0"=>"Home",
+            '10'=>'Échiquienne',
+            '12'=>'Téléchargement (Échiquienne)',
+            '20'=>'Scientifique',
+            '22'=>'Téléchargement (Scientifique)'
+        ];
+        return 'ESIMAT | '.$pageTitles[$pagetype];
+    }
+
     private static function topics($page, $pageType){
         Model::Init();
         if (Model::$can_connect)
         {
             // TRAITEMENT ... REQUETE BDD ...
 
-            view\View::startPage($pageType,"ESIMAT | Échiquienne",self::getUrlUser(),"noImage");
+
+            view\View::startPage($pageType,self::getTitleByPageType($pageType),self::getUrlUser(),"noImage");
             view\View::header($pageType);
             // VUE SPECIFIQUE ...
             $data = array(
@@ -89,7 +106,7 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
                 "date_post" => "12/12/2012"
             );
 
-            view\View::startPage($pageType, "ESIMAT | Article", self::getUrlUser(), "noImage",['lightcase.css']);
+            view\View::startPage($pageType, $data['title'] ,self::getUrlUser(), "noImage",['lightcase.css']);
             view\View::header($pageType);
 
             view\Topic::topicDetails($data, $pageType);
@@ -113,7 +130,7 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
         {
             // TRAITEMENT ... REQUETE BDD ...
 
-            view\View::startPage($pageType,"ESIMAT | Échiquienne",self::getUrlUser(),"noImage");
+            view\View::startPage($pageType,self::getTitleByPageType($pageType),self::getUrlUser(),"noImage");
             view\View::header($pageType);
             // VUE SPECIFIQUE ...
             $data = array(
