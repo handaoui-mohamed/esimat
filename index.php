@@ -6,7 +6,7 @@ use KikimR\router\Router;
 
 Router::init();// Middlewares ou fonctions toujours éxécutées
 
-Router::get("/","app\\controller\Controller::index");
+Router::get("/","app\\controller\\Controller::index");
 
 Router::get("echiquienne/articles/[page]","app\\controller\\Controller::echiquienneTopics")
 		->with("page",'[1-9][0-9]{0,9}')

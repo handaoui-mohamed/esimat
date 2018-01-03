@@ -97,7 +97,15 @@ class View
 <link href=\'//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic\' rel=\'stylesheet\' type=\'text/css\'>
 '.$css.'
 </head>
-<body>';
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = \'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11\';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, \'script\', \'facebook-jssdk\'));</script>';
     }
 
     private static function setActive($pageType,$hisType)
@@ -242,31 +250,36 @@ class View
 
 
         echo'<div class="copyright" style="padding-top: 0;margin-top: 60px;" >
-		<div class="container" style="padding: 0;">
-			<div class="agileinfo">
-		    
+		<div class="container" style="padding-top: 15px;">
+			<div class="agileinfo"
 				<div class="footer-heading">
-				    <div class="col-lg-3">
+				    <div class="col-lg-4" style="margin-top: 20px;"><br>
                         <img src="'.Glob::DOMAIN.self::$staticFilesDir.'images/logo.png" style="display: inline-block;width: 50%;height: 50%;border-radius: 100% 100%;">
                         <div style="color: white;margin-top: 10px;">
-                           <p>© '.date("Y").' ESIMAT  Club d\'Echecs <br><br>Tous les droits sont réservés.</p> 
+                           <br>© '.date("Y").' <b>ESIMAT</b>  Club <b>d\'Echecs</b> .</p> 
                         </div>
                     </div>
-                    
-					<div class="footer-icons"  id="MSociaux">
-                        <ul>
-                            <p class="agileits_dummy_para"> <b>Suivez nous sur les réseaux sociaux !</b></p>
-                            <br><br>
-                            <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a><span>Twitter</span></li>
-                            <br><li><a href="#" class="twitter facebook"><i class="fa fa-facebook"></i></a><span>Facebook</span></li>
-                            <li><a href="#" class="twitter chrome"><i class="fa fa-google-plus"></i></a><span>Google +</span></li>
-                        </ul>
+                   
+					<div class="col-lg-4"  id="MSociaux">
+                            <p class="agileits_dummy_para"> <b>Suivez nous sur les réseaux sociaux</b> ! <br></p><br><br>
+                            <a href="javascript:open(\'https://www.facebook.com/club.esimat/\');" class="twitter facebook" style="font-size: 2em;"> <i class="fa fa-facebook"></i> </a><br>
+                            <a href="#" class="twitter" style="font-size: 2em;margin-right: 40px;"><i class="fa fa-twitter"></i> </a>
+                            <a href="#" class="twitter chrome" style="font-size: 2em;"> <i class="fa fa-google-plus"></i></a>
 			    	</div>
+			    	 <div class="col-lg-4">
+			    	 <p>Notre page facebook</p><br><br>
+                        <div class="fb-page" style="box-shadow: 1px 1px 12px #eee;" data-href="https://www.facebook.com/club.esimat/" data-tabs="timeline" data-height="100" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/club.esimat/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/club.esimat/">ESIMAT-Club d&#039;échecs</a></blockquote></div>
+                    </div>
+                    <br>
+               
 	
 				</div>
-				
+
 			</div>
+					<div style="text-align: center;font-weight: bold;color: white;margin-top: 10px;">
+                    Tous les droits sont réservés</div>
 		</div>
+
 	</div>
 <script src="'.$StaticFilesDirLink.'js/jquery-2.1.4.min.js"></script>
 <script src="'.$StaticFilesDirLink.'js/main.js"></script>
