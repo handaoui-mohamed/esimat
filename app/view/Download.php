@@ -21,7 +21,7 @@ class Download
                     <div class="textbox"></div>
                 </div>						
                 <h4>'.$download['title'].'</h4>
-                <h6>Publie le '.$download['date_post'].'</h6>
+                <h6  style="margin-bottom: 10px;">'.View::date($download['date_post']).'</h6>
                 <a class="read-more-link" target="_blank" href="'.Glob::DOMAIN.self::$dirDownloads.$download['source'].'"><i class="fa fa-download"></i> Telecharger</a>
             </div>';
     }

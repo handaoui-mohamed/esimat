@@ -405,6 +405,10 @@ return '<div style="text-align: center;margin-top: 10px;"><br><br><ul class="pag
 		</div>
 	</div>';
     }
+ public static function date($date)
+ {
+     return'<i class="fa fa-calendar" aria-hidden="true"></i> <span title="Date de publication ">'.Glob::getDate($date).'</span>';
+ }
 
 }
 

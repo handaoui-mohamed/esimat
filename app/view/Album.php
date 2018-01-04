@@ -22,7 +22,7 @@ private static function AlbumPaginPresentation($album)
 							<div class="textbox"></div>
 						</div>						
 						<h4>'.$album['title'].'</h4>
-						<p>Publier le '.$album['date_post'].'<a href="'.Glob::DOMAIN.'album/'.$album['id'].'" class="btn btn-primary" style="float: right">Visualiser</a></p>
+						<p>'.View::date($album['date_post']).'<a href="'.Glob::DOMAIN.'album/'.$album['id'].'" class="btn btn-primary" style="float: right">Visualiser</a></p>
 						<p style="text-overflow: ellipsis;height:50px;max-height: 50px;overflow: hidden">'.$album['description'].'</p>
 					</div>				
  ';

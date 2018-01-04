@@ -184,10 +184,10 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
             view\View::header(30);
 
             $data = array(
-                array("id" => 1, "title" => "album 1", "image" => "g1.jpg", "description" => "bla bla bla", "date_post" => "12/12/2012"),
-                array("id" => 2, "title" => "album 8", "image" => "g1.jpg", "description" => "bla bla bla", "date_post" => "12/12/2012"),
-                array("id" => 3, "title" => "album 2", "image" => "g1.jpg", "description" => "bla bla bla", "date_post" => "12/12/2012"),
-                array("id" => 1, "title" => "album 3", "image" => "g1.jpg", "description" => "bla bla bla", "date_post" => "12/12/2012"),
+                array("id" => 1, "title" => "album 1", "image" => "g1.jpg", "description" => "bla bla bla", "date_post" => "2018-11-10"),
+                array("id" => 2, "title" => "album 8", "image" => "g1.jpg", "description" => "bla bla bla", "date_post" => "2018-06-10"),
+                array("id" => 3, "title" => "album 2", "image" => "g1.jpg", "description" => "bla bla bla", "date_post" => "2017-05-1"),
+                array("id" => 1, "title" => "album 3", "image" => "g1.jpg", "description" => "bla bla bla", "date_post" => "2018-01-10"),
                 array("id" => 2, "title" => "album 4", "image" => "g1.jpg", "description" => "bla bla bla  blabla bla blabla bla b blabla bla blabla bla b blabla bla blabla bla b", "date_post" => "12/12/2012"),
                 array("id" => 3, "title" => "album 6", "image" => "g1.jpg", "description" => "bla blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla bla", "date_post" => "12/12/2012")
             );

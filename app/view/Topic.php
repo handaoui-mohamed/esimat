@@ -23,7 +23,7 @@ class Topic
                     <div class="textbox"></div>
                 </div>						
                 <h4>'.$topic['title'].'</h4>
-                <h6>Publie le '.$topic['date_post'].'</h6>
+                <h6>'.View::date($topic['date_post']).'</h6>
                 <p>'.$topicBodyPreview.'</p>
                <a class="read-more-link" href="'.$topicDetailsLink.'">Lire plus</a>
             </div>';
@@ -102,7 +102,7 @@ class Topic
                     '.View::getlink([["name"=>$topicsLink ,"link"=>$topicsLink."/articles/"]  , ["name"=>$topic['title']] ]).'
                     <div class="agileits_heading_section">
                         <h2 class="agileinfo_header">Article : '.$topic['title'].'</h2>
-                        <p class="agileits_dummy_para">Publie le '.$topic['date_post'].'</p>
+                        <p class="agileits_dummy_para">Publie '.Glob::getDate($topic['date_post']).'</p>
                     </div>
                     <br>
                     <div class="topic-main-image" style="background-image: url('.Glob::DOMAIN.self::$dirImgTopics.$images[0].')"></div>

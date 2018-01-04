@@ -15,5 +15,12 @@ class Glob
 
  const DB_PW=""; // mot de passe
 
+  public static function getDate($str)
+  {
+      $moiS = array("janvier", "février","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","decembre");
+      $time=strtotime($str);
+      return preg_replace('#\##',$moiS[(int)date(' m',$time)-1],date('\L\e d # Y',$time)) ;
+  }
+
 }
 ?>
