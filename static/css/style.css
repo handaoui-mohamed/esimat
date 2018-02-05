@@ -58,8 +58,9 @@ input[type="submit"],input[type="reset"],.w3layouts_mail_grid_left1,.w3layouts_m
 }
 /*-- banner --*/
 .banner{
-	background:url(../images/banner-1.jpg) no-repeat 0px 0px;
+	background:url(../images/chess-2730034_960_720.jpg) no-repeat 0px 0px;
 	background-size:cover;
+
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	-o-background-size:cover;
@@ -68,14 +69,19 @@ input[type="submit"],input[type="reset"],.w3layouts_mail_grid_left1,.w3layouts_m
 	position: relative;
 }
 .banner1{
-	background:url(../images/banner-1.jpg) no-repeat 0px 0px;
+	background:url(../images/chess-2730034_960_720.jpg);
+	background-position: center;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	-o-background-size:cover;
 	-ms-background-size:cover;
-	min-height:300px;
-	position: relative;
+	min-height:125px;
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 10000;
+	top:0;
 }
 /*-- nav --*/
 .navbar-default {
@@ -84,7 +90,8 @@ input[type="submit"],input[type="reset"],.w3layouts_mail_grid_left1,.w3layouts_m
 }
 .navbar {
     margin-bottom: 0;
-    padding: 2em 0 0;
+    padding: 2em  0;
+	background:rgba(0,0,0,0.9);
 }
 .navbar-brand {
     height: 50px;
@@ -1400,13 +1407,17 @@ h3.agileits-icons-title {
 	.icon-box {
 		margin: 0;
 	}
+
 }
 @media (max-width: 640px){
 	.icon-box {
 		float: left;
 		width: 50%;
 	}
+
 }
+
+
 @media (max-width: 480px){
 	.bs-glyphicons li {
 		width: 31%;
@@ -1821,7 +1832,7 @@ figure.agileits_effect_moses p {
 	min-height: 520px;
 }
 .banner1 {
-	min-height: 250px;
+	min-height: 140px;
 }
 .map iframe {
 	min-height: 350px;
@@ -1895,7 +1906,11 @@ figure.agileits_effect_moses h4 {
     padding: 13px 20px 0;
 }
 .navbar-nav {
-    margin: 0 0 0 0em;
+	margin: 0 0 0 0em;
+	display: block;
+	text-align: right;
+	margin-left: 80px;
+	padding-top: 5px;
 }
 .w3_agile_login a i {
 	margin-top: .7em;
@@ -2018,7 +2033,7 @@ figure.agileits_effect_moses h4 {
 }
 @media (max-width: 768px){
 .banner1 {
-	min-height: 175px;
+	min-height: 140px;
 }
 .agileinfo_header {
     font-size: 2.2em;
@@ -2185,7 +2200,7 @@ figure.agileits_effect_moses h4 {
     width: 100%;
 }
 .banner1 {
-    min-height: 150px;
+    min-height: 140px;
 }
 .agileinfo_header:after {
     right: 17%;
@@ -2577,4 +2592,8 @@ figure.agileits_effect_moses p {
 		font-size: 0.8em;
 	}
 
+}
+body
+{
+	padding-top: 140px;
 }

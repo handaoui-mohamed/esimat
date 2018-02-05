@@ -24,7 +24,7 @@ class Controller
         if (Model::$can_connect)
         {
             // TRAITEMENT ... REQUETE BDD ...
-            view\View::startPage(0,"ESIMAT | HOME",self::getUrlUser(),"noImage",['flexslider.css']);
+            view\View::startPage(0,"ESIMAT | HOME",self::getUrlUser(),"noImage",['home.css','flexslider.css']);
             view\View::header();
             // VUE SPECIFIQUE ...
             view\View::contact();

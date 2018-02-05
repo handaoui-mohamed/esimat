@@ -166,8 +166,8 @@ class View
 						<ul class="slides">
 							<li>
 								<div class="agileits_w3layouts_banner_info">
-									<h3>simply dummy text of the printing</h3>
-									<p>Standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+									 <h3>Esimat</h3>
+                  <p>E1</p>
 									<div class="agileits_w3layouts_banner_info_pos">
 										<ul>
 											<li><a href="#">Facebook</a><label></label></li>
@@ -180,8 +180,8 @@ class View
 							</li>
 							<li>
 								<div class="agileits_w3layouts_banner_info">
-									<h3>simply dummy text of the printing</h3>
-									<p>Standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+									 <h3>Esimat</h3>
+                  <p>2</p>
 									<div class="agileits_w3layouts_banner_info_pos">
 										<ul>
 											<li><a href="#">Instagram</a><label></label></li>
@@ -194,8 +194,8 @@ class View
 							</li>
 							<li>
 								<div class="agileits_w3layouts_banner_info">
-									<h3>simply dummy text of the printing</h3>
-									<p>Standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+									<h3>Esimat</h3>
+									<p>3</p>
 									<div class="agileits_w3layouts_banner_info_pos">
 										<ul>
 											<li><a href="#">Twitter</a><label></label></li>
@@ -393,9 +393,9 @@ return '<div style="text-align: center;margin-top: 10px;"><br><br><ul class="pag
 					<div class="left-agileits">
 						<h3>Adresse</h3>
 							<ul>
-								<li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 7th Street, Melbourne City, Australia.</li>
+								<li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ESI</li>
 								<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">info@example.com</a></li>
-								<li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> (4584) 5689 0254 128</li>
+								<li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> </li>
 							</ul>
 					</div>
 				</div>
