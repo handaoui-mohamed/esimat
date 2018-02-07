@@ -44,7 +44,8 @@ class ControllerAutontification
         }
         else
         {
-            self::killAll();
+            $_SESSION['admin_connect']=false;
+            $_SESSION['time_connection']=0;
             self::$connect=false;
         }
 

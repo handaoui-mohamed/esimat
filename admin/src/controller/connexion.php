@@ -32,17 +32,21 @@ class Connexion
        exit;
    }
    else
+
    {
        view\Connexion::showConnexion(self::generKeyFormConnexion());
+       exit;
    }
  }
 
- public  static function postLogin()
+ public static function postLogin()
  {
      if (!empty($_SESSION['key_form_connexion'])&&!empty($_POST['pw'])&&!empty($_POST['email'])&&!empty($_POST['key']))
      {
+
          if ($_POST['key']===$_SESSION['key_form_connexion'])
          {
+
              Model::Init();
              if (Model::$can_connect)
              {
@@ -55,7 +59,15 @@ class Connexion
                       header("location:".Glob::DOMAIN."admin/home");
                       exit();
                  }
+                 else
+                 {
+                     view\Connexion::showConnexion(self::generKeyFormConnexion(),"Informations non valides");
+                     exit;
+                 }
+
              }
+             view\Connexion::showConnexion(self::generKeyFormConnexion(),"Erreur 500");
+             exit;
          }
          else
          {
