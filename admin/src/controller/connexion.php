@@ -10,7 +10,7 @@ namespace admin\src\controller;
 
 use app\Glob;
 use admin\src\view;
-use admin\src\model;
+use admin\src\model\Model;
 //use captchagoogle
 
 class Connexion
@@ -37,9 +37,31 @@ class Connexion
    }
  }
 
- public static function vrefConnexion()
+ public  static function postLogin()
  {
+     if (!empty($_SESSION['key_form_connexion'])&&!empty($_POST['pw'])&&!empty($_POST['email'])&&!empty($_POST['key']))
+     {
+         if ($_POST['key']===$_SESSION['key_form_connexion'])
+         {
+             Model::Init();
+             if (Model::$can_connect)
+             {
+                 $user=Model::getAdmin($_POST['email'],$_POST['pw']);
+                 if  (!empty($user['id']))
+                 {
+                      $_SESSION['time_connection']=time();
+                      $_SESSION['admin_connect']=true;
+                      $_SESSION['role']=$user['role'];
+                      header("location:".Glob::DOMAIN."admin/home");
+                      exit();
+                 }
+             }
+         }
+         else
+         {
 
+         }
+     }
  }
 
 }

@@ -20,7 +20,7 @@ class ControllerAutontification
     {
         return !empty($_SESSION['time_connection']) &&
                !empty($_SESSION['admin_connect']) &&
-               !empty($_SESSION['key_communication']);
+               !empty($_SESSION['role']);
     }
 
     private static function killAll()
