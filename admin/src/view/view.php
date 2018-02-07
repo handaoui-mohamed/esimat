@@ -12,7 +12,7 @@ use app\Glob;
 
 class View
 {
-    private static $staticFilesDir='static/';
+    private static $staticFilesDir = 'static/';
 
     private static function showHeader()
     {
@@ -24,7 +24,7 @@ class View
         echo "@admin <hr><h1>Vous etes dans le home : </h1>";
     }
 
-    public static function startPage($pageType = 0, $title='Home', $arrayCSS = [],$user, $messages=[], $state = 200)
+    public static function startPage($pageType = 0, $title = 'Home', $arrayCSS = [], $user, $messages = [], $state = 200)
     {
         $StaticFilesDirLink = Glob::DOMAIN . self::$staticFilesDir;
 
@@ -40,7 +40,7 @@ class View
             <!DOCTYPE html>
             <html lang="en">
             <head>
-                <title>'.$title.'</title>
+                <title>' . $title . '</title>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link href="' . $StaticFilesDirLink . 'css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -53,8 +53,8 @@ class View
                 ' . $css . '
             </head>
             <body  class="sticky-header left-side-collapsed">
-            '.self::getSideBar($pageType)
-            .self::header($messages,$user);
+            ' . self::getSideBar($pageType)
+            . self::header($messages, $user);
     }
 
     private static function setActive($pageType, $hisType)
@@ -125,7 +125,52 @@ class View
 		</div>';
     }
 
-    private static function header($messages,$user){
+    private static function getNotifications($messages)
+    {
+        $nbMessages = count($messages);
+
+        $notifications = '
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-envelope"></i><span class="badge">' . ($nbMessages > 0 ? $nbMessages : ''). '</span>
+            </a>
+									
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="notification_header"><h3>';
+
+        if ($nbMessages == 0) $notifications .= 'Pas de notifications</h3>';
+        else if ($nbMessages == 1) $notifications .= 'Vous avez un nouveau message';
+        else $notifications .= 'Vous avez ' . $nbMessages . ' nouveaux messages';
+
+        $notifications .= '</h3> </div> </li> <li style="max-height: 200px;overflow-y: auto;">';
+
+        foreach ($messages as $message) {
+            $notifications .= '
+            <a href="#">
+               <div class="user_img"><img src="' . Glob::DOMAIN . 'static/images/user1.png" alt=""></div>
+               <div class="notification_desc">
+                    <p style="text-transform: capitalize"><b>'.$message['name'].'</b></p>
+                    <p style="text-overflow: ellipsis;width: 180px;overflow: hidden;">' . $message['body'] . '</p>
+                    <p><span>'.$message['email'].'</span></p>
+                </div>
+               <div class="clearfix"></div>	
+            </a>';
+        }
+
+        $notifications .= '
+             </li>
+            <li>
+                <div class="notification_bottom">
+                    <a href="#">Voir tous les messages</a>
+                </div> 
+            </li>
+        </ul>
+        ';
+        return $notifications;
+    }
+
+    private static function header($messages, $user)
+    {
         return '
         <!-- main content start-->
 		<div class="main-content">
@@ -142,147 +187,8 @@ class View
 					<div class="profile_details_left">
 						<ul class="nofitications-dropdown">
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge">3</span></a>
-									
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <div class="notification_header">
-                                                <h3>You have 3 new messages</h3>
-                                            </div>
-                                        </li>
-                                        <li><a href="#">
-                                           <div class="user_img"><img src="'.Glob::DOMAIN.'static/images/1.png" alt=""></div>
-                                           <div class="notification_desc">
-                                            <p>Lorem ipsum dolor sit amet</p>
-                                            <p><span>1 hour ago</span></p>
-                                            </div>
-                                           <div class="clearfix"></div>	
-                                         </a></li>
-                                         <li class="odd"><a href="#">
-                                            <div class="user_img"><img src="'.Glob::DOMAIN.'static/images/1.png" alt=""></div>
-                                           <div class="notification_desc">
-                                            <p>Lorem ipsum dolor sit amet </p>
-                                            <p><span>1 hour ago</span></p>
-                                            </div>
-                                          <div class="clearfix"></div>	
-                                         </a></li>
-                                        <li><a href="#">
-                                           <div class="user_img"><img src="'.Glob::DOMAIN.'static/images/1.png" alt=""></div>
-                                           <div class="notification_desc">
-                                            <p>Lorem ipsum dolor sit amet </p>
-                                            <p><span>1 hour ago</span></p>
-                                            </div>
-                                           <div class="clearfix"></div>	
-                                        </a></li>
-                                        <li>
-                                            <div class="notification_bottom">
-                                                <a href="#">See all messages</a>
-                                            </div> 
-                                        </li>
-                                    </ul>
-							</li>
-							<li class="login_box" id="loginContainer">
-                                <div class="search-box">
-                                    <div id="sb-search" class="sb-search">
-                                        <form>
-                                            <input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
-                                            <input class="sb-search-submit" type="submit" value="">
-                                            <span class="sb-icon-search"> </span>
-                                        </form>
-                                    </div>
-                                </div>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">3</span></a>
-									<ul class="dropdown-menu">
-										<li>
-											<div class="notification_header">
-												<h3>You have 3 new notification</h3>
-											</div>
-										</li>
-										<li><a href="#">
-											<div class="user_img"><img src="'.Glob::DOMAIN.'static/images/1.png" alt=""></div>
-										   <div class="notification_desc">
-											<p>Lorem ipsum dolor sit amet</p>
-											<p><span>1 hour ago</span></p>
-											</div>
-										  <div class="clearfix"></div>	
-										 </a></li>
-										 <li class="odd"><a href="#">
-											<div class="user_img"><img src="'.Glob::DOMAIN.'static/images/1.png" alt=""></div>
-										   <div class="notification_desc">
-											<p>Lorem ipsum dolor sit amet </p>
-											<p><span>1 hour ago</span></p>
-											</div>
-										   <div class="clearfix"></div>	
-										 </a></li>
-										 <li><a href="#">
-											<div class="user_img"><img src="'.Glob::DOMAIN.'static/images/1.png" alt=""></div>
-										   <div class="notification_desc">
-											<p>Lorem ipsum dolor sit amet </p>
-											<p><span>1 hour ago</span></p>
-											</div>
-										   <div class="clearfix"></div>	
-										 </a></li>
-										 <li>
-											<div class="notification_bottom">
-												<a href="#">See all notification</a>
-											</div> 
-										</li>
-									</ul>
-							</li>	
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">22</span></a>
-									<ul class="dropdown-menu">
-										<li>
-											<div class="notification_header">
-												<h3>You have 8 pending task</h3>
-											</div>
-										</li>
-										<li><a href="#">
-												<div class="task-info">
-												<span class="task-desc">Database update</span><span class="percentage">40%</span>
-												<div class="clearfix"></div>	
-											   </div>
-												<div class="progress progress-striped active">
-												 <div class="bar yellow" style="width:40%;"></div>
-											</div>
-										</a></li>
-										<li><a href="#">
-											<div class="task-info">
-												<span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
-											   <div class="clearfix"></div>	
-											</div>
-										   
-											<div class="progress progress-striped active">
-												 <div class="bar green" style="width:90%;"></div>
-											</div>
-										</a></li>
-										<li><a href="#">
-											<div class="task-info">
-												<span class="task-desc">Mobile App</span><span class="percentage">33%</span>
-												<div class="clearfix"></div>	
-											</div>
-										   <div class="progress progress-striped active">
-												 <div class="bar red" style="width: 33%;"></div>
-											</div>
-										</a></li>
-										<li><a href="#">
-											<div class="task-info">
-												<span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
-											   <div class="clearfix"></div>	
-											</div>
-											<div class="progress progress-striped active">
-												 <div class="bar  blue" style="width: 80%;"></div>
-											</div>
-										</a></li>
-										<li>
-											<div class="notification_bottom">
-												<a href="#">See all pending task</a>
-											</div> 
-										</li>
-									</ul>
-							</li>		   							   		
+								' . self::getNotifications($messages) . '
+							</li>							   		
 							<div class="clearfix"></div>	
 						</ul>
 					</div>
@@ -291,9 +197,9 @@ class View
 							<li class="dropdown profile_details_drop">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<div class="profile_img">	
-										<span style="background:url('.Glob::DOMAIN.'static/images/1.jpg) no-repeat center"> </span> 
+										<span style="background:url(' . Glob::DOMAIN . 'static/images/1.jpg) no-repeat center"> </span> 
 										 <div class="user-name">
-											<p>'.$user['name'].'<span>'.$user['role'].'</span></p>
+											<p>' . $user['name'] . '<span>' . $user['role'] . '</span></p>
 										 </div>
 										 <i class="lnr lnr-chevron-down"></i>
 										 <i class="lnr lnr-chevron-up"></i>
@@ -334,7 +240,7 @@ class View
         echo '
         </div>
         <footer style="background: rgba(0,0,0,0.1);">
-           <p style="height: 30px;line-height: 30px;">© '.date("Y").' <b>ESIMAT</b>  Club <b>d\'Echecs</b> .</p> 
+           <p style="height: 30px;line-height: 30px;">© ' . date("Y") . ' <b>ESIMAT</b>  Club <b>d\'Echecs</b> .</p> 
         </footer>
         <script src="' . $StaticFilesDirLink . 'js/wow.min.js"></script>
         <script src="' . $StaticFilesDirLink . 'js/jquery-2.1.4.min.js"></script>

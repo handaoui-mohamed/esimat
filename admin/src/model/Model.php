@@ -28,7 +28,7 @@ class Model extends ModelUser
     {
         $reqGetmessages = self::$connection->prepare('SELECT * FROM message where view=0');
         $reqGetmessages->execute(array());
-        $messages = $reqGetmessages->fetch(\PDO::FETCH_ASSOC);
+        $messages = $reqGetmessages->fetchAll(\PDO::FETCH_ASSOC);
         $reqGetmessages->closeCursor();
         return $messages;
 

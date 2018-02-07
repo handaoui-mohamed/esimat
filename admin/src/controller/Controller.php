@@ -19,7 +19,6 @@ class Controller
         Model::init();
         if (Model::$can_connect) {
             //action
-
             view\View::startPage(0,'home',[],$_SESSION,Model::getNotViewMessages());
             view\Home::showHome();
             view\View::endPage();
