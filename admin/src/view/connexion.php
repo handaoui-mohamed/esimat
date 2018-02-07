@@ -12,7 +12,7 @@ use app\Glob;
 
 class Connexion
 {
-    public static function showConnexion($key)
+    public static function showConnexion($key, $error = '')
     {
         echo "
             <!DOCTYPE HTML>
@@ -49,6 +49,7 @@ class Connexion
                                             <div class='clearfix'> </div>
                                         </div>
                                         <input style='margin: auto;' type='submit' value='Se connecter'>
+                                        <span style='color: red; margin:auto'>".$error."</span>
                                     </form>	 
                                 </div>
                             </div>
