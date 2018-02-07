@@ -24,7 +24,7 @@ class View
         echo "@admin <hr><h1>Vous etes dans le home : </h1>";
     }
 
-    public static function startPage($pageType = 0, $title='Home', $arrayCSS = [], $messages=[], $state = 200)
+    public static function startPage($pageType = 0, $title='Home', $arrayCSS = [],$user, $messages=[], $state = 200)
     {
         $StaticFilesDirLink = Glob::DOMAIN . self::$staticFilesDir;
 
@@ -41,6 +41,7 @@ class View
             <html lang="en">
             <head>
                 <title>'.$title.'</title>
+                <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link href="' . $StaticFilesDirLink . 'css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
                 <link href="' . $StaticFilesDirLink . 'css/our-style.css" rel="stylesheet" type="text/css" media="all" />
@@ -53,7 +54,7 @@ class View
             </head>
             <body  class="sticky-header left-side-collapsed">
             '.self::getSideBar($pageType)
-            .self::header($messages);
+            .self::header($messages,$user);
     }
 
     private static function setActive($pageType, $hisType)
@@ -124,7 +125,7 @@ class View
 		</div>';
     }
 
-    private static function header($messages){
+    private static function header($messages,$user){
         return '
         <!-- main content start-->
 		<div class="main-content">
@@ -292,7 +293,7 @@ class View
 									<div class="profile_img">	
 										<span style="background:url('.Glob::DOMAIN.'static/images/1.jpg) no-repeat center"> </span> 
 										 <div class="user-name">
-											<p>Michael<span>Administrator</span></p>
+											<p>'.$user['name'].'<span>'.$user['role'].'</span></p>
 										 </div>
 										 <i class="lnr lnr-chevron-down"></i>
 										 <i class="lnr lnr-chevron-up"></i>
@@ -300,26 +301,15 @@ class View
 									</div>	
 								</a>
 								<ul class="dropdown-menu drp-mnu">
-									<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
+									<li> <a href="#"><i class="fa fa-cog"></i>Paramètres</a> </li> 
 									<li> <a href="#"><i class="fa fa-user"></i>Profile</a> </li> 
-									<li> <a href="sign-up.html"><i class="fa fa-sign-out"></i> Logout</a> </li>
+									<li> <a href="logout"><i class="fa fa-sign-out"></i>Déconnexion</a> </li>
 								</ul>
 							</li>
 							<div class="clearfix"> </div>
 						</ul>
 					</div>		
-					<div class="social_icons">
-						<div class="col-md-4 social_icons-left">
-							<a href="#" class="yui"><i class="fa fa-facebook i1"></i><span>300<sup>+</sup> Likes</span></a>
-						</div>
-						<div class="col-md-4 social_icons-left pinterest">
-							<a href="#"><i class="fa fa-google-plus i1"></i><span>500<sup>+</sup> Shares</span></a>
-						</div>
-						<div class="col-md-4 social_icons-left twi">
-							<a href="#"><i class="fa fa-twitter i1"></i><span>500<sup>+</sup> Tweets</span></a>
-						</div>
-						<div class="clearfix"> </div>
-					</div>            	
+          	
 					<div class="clearfix"></div>
 				</div>
 			  </div>
@@ -343,8 +333,8 @@ class View
 
         echo '
         </div>
-        <footer>
-           <br>© '.date("Y").' <b>ESIMAT</b>  Club <b>d\'Echecs</b> .</p> 
+        <footer style="background: rgba(0,0,0,0.1);">
+           <p style="height: 30px;line-height: 30px;">© '.date("Y").' <b>ESIMAT</b>  Club <b>d\'Echecs</b> .</p> 
         </footer>
         <script src="' . $StaticFilesDirLink . 'js/wow.min.js"></script>
         <script src="' . $StaticFilesDirLink . 'js/jquery-2.1.4.min.js"></script>

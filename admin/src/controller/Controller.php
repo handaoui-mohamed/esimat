@@ -19,7 +19,7 @@ class Controller
         Model::init();
         if (Model::$can_connect) {
             //action
-            view\View::startPage();
+            view\View::startPage(0,'home',[],$_SESSION);
             view\Home::showHome();
             view\View::endPage();
         }
@@ -79,4 +79,5 @@ class Controller
             //action
         }
     }
+
 }

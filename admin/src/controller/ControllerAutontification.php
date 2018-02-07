@@ -23,7 +23,7 @@ class ControllerAutontification
                !empty($_SESSION['role']);
     }
 
-    private static function killAll()
+    public static function killAll()
     {
         $_SESSION=array();
     }

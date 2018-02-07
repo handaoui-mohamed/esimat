@@ -14,11 +14,13 @@ $middleware= [["fn"=>"admin\\src\\controller\\ControllerAutontification::ditecte
 
 Router::init($middleware); //midelware de session et d'autorisation
 /*******Conenxion *******/
-Router::get("login/","admin\\src\\controller\\connexion::login" );
-Router::post("login/","admin\\src\\controller\\connexion::postLogin" );
+Router::get("login","admin\\src\\controller\\connexion::login" );
+Router::post("login","admin\\src\\controller\\connexion::postLogin");
+Router::get("logout","admin\\src\\controller\\connexion::logout");
 
 /*******Admin*******/
-Router::get("home/","admin\\src\\controller\\bindRouter::Home");
+Router::get("home","admin\\src\\controller\\bindRouter::Home");
+
 
 
 Router::when(404,'../errors/404.html');
