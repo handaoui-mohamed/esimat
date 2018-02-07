@@ -12,7 +12,7 @@ use KikimR\router\Router;
 
 $middleware= [["fn"=>"admin\\src\\controller\\ControllerAutontification::ditecteAutorisation", "params"=>[]]];
 
-Router::init($middleware); //midelware de session et d' autorisation
+Router::init($middleware); //midelware de session et d'autorisation
 
 Router::get("login/","admin\\src\\controller\\connexion::login" );
 Router::post("login/","admin\\src\\controller\\connexion::postLogin" );

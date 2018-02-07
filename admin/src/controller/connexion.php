@@ -46,7 +46,7 @@ class Connexion
              Model::Init();
              if (Model::$can_connect)
              {
-                 $user=Model::getAdmin($_POST['email'],$_POST['pw']);
+                 $user=Model::getAdmin($_POST['email'],sha1($_POST['pw']));
                  if  (!empty($user['id']))
                  {
                       $_SESSION['time_connection']=time();
