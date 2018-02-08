@@ -20,7 +20,7 @@ class Controller
         if (Model::$can_connect) {
             //action
             view\View::startPage(0,'home',[],$_SESSION,Model::getNotViewMessages());
-            view\Home::showHome();
+            view\Home::showHome(Model::getHomeState());
             view\View::endPage();
         }
 

@@ -85,4 +85,11 @@ class Model
     {
         return self::getNbPages(0);
     }
+
+    public static function incVisite()
+    {
+        $Req=self::$connection->prepare('UPDATE visite set visite.nb_visite=visite.nb_visite+1 WHERE id=1');
+        $Req->execute(array());
+        $Req->closeCursor();
+    }
 }

@@ -34,9 +34,12 @@ class Model extends ModelUser
 
     }
 
+
     public static function setMessageView($id)
     {
-
+        $reqmessages = self::$connection->prepare('UPDATE message set message.view=1 WHERE id=:id');
+        $reqmessages->execute(array('id' => $id));
+        $reqmessages->closeCursor();
     }
 
     public static function getMessages()
@@ -44,9 +47,70 @@ class Model extends ModelUser
 
     }
 
-    public static function deleteMessages()
+    public static function deleteMessage($id)
     {
 
+    }
+
+
+    /************************* STATES ***********************/
+    public static function getNbVisite()
+    {
+        $reqGetAdmin = self::$connection->prepare('SELECT nb_visite FROM visite WHERE id=1');
+        $reqGetAdmin->execute(array());
+        $result = $reqGetAdmin->fetch();
+        $reqGetAdmin->closeCursor();
+        return $result['nb_visite'];
+
+    }
+
+    public static function getNbArticlesByType()
+    {
+        $reqGetAdmin = self::$connection->prepare('SELECT COUNT(*) as nb,type FROM article GROUP BY type');
+        $reqGetAdmin->execute(array());
+        $result = $reqGetAdmin->fetch();
+        $reqGetAdmin->closeCursor();
+        return $result;
+    }
+
+    private static function getNb($tableName)
+    {
+        $reqGetmessages = self::$connection->prepare('SELECT count(*) as nb FROM ' . $tableName);
+        $reqGetmessages->execute(array());
+        $result = $reqGetmessages->fetch();
+        $reqGetmessages->closeCursor();
+        return $result['nb'];
+    }
+
+    public static function getNbAlbum()
+    {
+        return self::getNb('album');
+
+    }
+
+    public static function getNbAbonnes()
+    {
+        return self::getNb('subscription');
+    }
+
+    public static function getNbMessages()
+    {
+        return self::getNb('message');
+    }
+    public static function getNbDownloads()
+    {
+        return self::getNb('download');
+    }
+
+    public static function getHomeState()
+    {
+        return array("article"=>self::getNbArticlesByType(),
+                      "album"=>self::getNbAlbum(),
+                      "sub"=>self::getNbAbonnes(),
+                       "message"=>self::getNbMessages(),
+                        "visite"=>self::getNbVisite(),
+                        "download"=>self::getNbDownloads()
+            );
     }
 
 
