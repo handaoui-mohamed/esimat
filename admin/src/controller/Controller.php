@@ -31,7 +31,8 @@ class Controller
         Model::init();
         if (Model::$can_connect) {
             view\View::startPage(0,'Publier un article',[],$_SESSION,Model::getNotViewMessages());
-            view\View::endPage();
+            view\Topic::showTopicForm();
+            view\View::endPage(['api.js','topic.js']);
         }
     }
 

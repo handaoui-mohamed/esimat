@@ -46,10 +46,12 @@ class View
                 <link href="' . $StaticFilesDirLink . 'css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
                 <link href="' . $StaticFilesDirLink . 'css/our-style.css" rel="stylesheet" type="text/css" media="all" />
                 <link rel="stylesheet" href="' . $StaticFilesDirLink . 'css/font-awesome.min.css" />
-                <link rel="stylesheet" href="' . $StaticFilesDirLink . 'css/icon-font.min.css" />
                 <link rel="stylesheet" href="' . $StaticFilesDirLink . 'css/animate.css" />
+                <link rel="stylesheet" href="' . $StaticFilesDirLink . 'css/icon-font.min.css" />
+                <!--
                 <link href="//fonts.googleapis.com/css?family=Varela+Round&subset=hebrew" rel="stylesheet">
                 <link href=\'//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic\' rel=\'stylesheet\' type=\'text/css\'>
+                -->
                 ' . $css . '
             </head>
             <body  class="sticky-header left-side-collapsed">
@@ -239,7 +241,7 @@ class View
 
         echo '
         </div>
-        <footer style="background: rgba(0,0,0,0.1);">
+        <footer style="background: #eee;">
            <p style="height: 30px;line-height: 30px;">© ' . date("Y") . ' <b>ESIMAT</b>  Club <b>d\'Echecs</b> .</p> 
         </footer>
         <script src="' . $StaticFilesDirLink . 'js/wow.min.js"></script>
