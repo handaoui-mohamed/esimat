@@ -68,7 +68,7 @@ class Model extends ModelUser
     {
         $reqGetAdmin = self::$connection->prepare('SELECT COUNT(*) as nb,type FROM article GROUP BY type');
         $reqGetAdmin->execute(array());
-        $result = $reqGetAdmin->fetch();
+        $result = $reqGetAdmin->fetchAll(\PDO::FETCH_ASSOC);
         $reqGetAdmin->closeCursor();
         return $result;
     }

@@ -14,7 +14,7 @@ class Home
     public static function showHome($states=[])
     {
         echo
-            self::showStat()
+            self::showStat($states)
             .self::showShortcuts();
     }
 
@@ -51,8 +51,20 @@ class Home
         ';
     }
 
-    private static function showStat($stat = [])
+    private static function showStat($states)
     {
+        $articleTypes = array('Scientifique','Echequienne');
+
+        $article = array( 0,0 );
+
+        if(!empty($states['article'][0])){
+            $article[$states['article'][0]['type']] = $states['article'][0]['nb'];
+
+            if(!empty($states['article'][1])){
+                $article[$states['article'][1]['type']] = $states['article'][1]['nb'];
+            }
+        }
+
         return '
             <div id="page-wrapper">
 				<div class="graphs">
@@ -62,7 +74,8 @@ class Home
 							<div class="r3_counter_box">
 								<i  style="color: #2ecc71"  class="fa fa-file-text"></i>
 								<div class="stats">
-								  <h5>70 <span>%</span></h5>
+								  <h5 title="Vous avez '.$article[0].' article(s) Scientifique(s) 
+Et '.$article[1].' article(s) Echequienne(s)">'.($article[0]+$article[1]).'</h5>
 								  <div style="background-color: #2ecc71" class="grow grow3">
 									<p>Nombre d\'article</p>
 								  </div>
@@ -73,7 +86,7 @@ class Home
 							<div class="r3_counter_box">
 								<i class="fa fa-users"></i>
 								<div class="stats">
-								  <h5>50 <span>%</span></h5>
+								  <h5>'.$states['sub'].'</h5>
 								  <div class="grow grow1">
 									<p>Nombre d\'abonnées</p>
 								  </div>
@@ -84,7 +97,7 @@ class Home
 							<div class="r3_counter_box">
 								<i style="color: #e74c3c;" class="fa fa-picture-o"></i>
 								<div class="stats">
-								  <h5>70 <span>%</span></h5>
+								  <h5>'.$states['album'].'</h5>
 								  <div style="background-color: #e74c3c" class="grow grow3">
 									<p>Nombre d\'albums</p>
 								  </div>
@@ -96,7 +109,7 @@ class Home
 							<div class="r3_counter_box">
 								<i style="color: #e67e22;" class="fa fa-cloud-download"></i>
 								<div class="stats">
-								  <h5>70 <span>%</span></h5>
+								  <h5>'.$states['download'].'</h5>
 								  <div style="background-color: #e67e22" class="grow grow3">
 									<p>article a télécharger</p>
 								  </div>
@@ -109,7 +122,7 @@ class Home
 							<div class="r3_counter_box">
 								<i style="color: #34495e" class="fa fa-envelope"></i>
 								<div class="stats">
-								  <h5>70 <span>%</span></h5>
+								  <h5>'.$states['message'].'</h5>
 								  <div style="background-color: #34495e" class="grow grow3">
 									<p>Nombre de Messages</p>
 								  </div>
@@ -121,7 +134,7 @@ class Home
 							<div class="r3_counter_box">
 								<i style="color: #7f8c8d" class="fa fa-bar-chart"></i>
 								<div class="stats">
-								  <h5>45 <span>%</span></h5>
+								  <h5>'.$states['visite'].'</h5>
 								  <div style="background-color: #7f8c8d;" class="grow">
 									<p>Nombre de visite</p>
 								  </div>
