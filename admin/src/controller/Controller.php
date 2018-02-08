@@ -34,13 +34,46 @@ class Controller
             view\View::endPage();
         }
     }
+
+
+    public static function formPostAlbum()
+    {
+
+    }
+    public static function formPostFile()
+    {
+
+    }
+
+    /****post*****/
     public static function postTopic()
     {
-        Model::init();
-        if (Model::$can_connect) {
 
-        }
     }
+    public static function postAlbum()
+    {
+
+    }
+    public static function postFile()
+    {
+
+    }
+
+    /****list*****/
+
+    public static function listTopics()
+    {
+
+    }
+    public static function listAlbums()
+    {
+
+    }
+    public static function listFiles()
+    {
+
+    }
+
 
 
 }
