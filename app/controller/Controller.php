@@ -23,6 +23,7 @@ class Controller
         Model::Init();
         if (Model::$can_connect)
         {
+            Model::incVisite();
             // TRAITEMENT ... REQUETE BDD ...
             view\View::startPage(0,"ESIMAT | HOME",self::getUrlUser(),"noImage",['home.css','flexslider.css']);
             view\View::header();
@@ -52,9 +53,8 @@ class Controller
         Model::Init();
         if (Model::$can_connect)
         {
-            // TRAITEMENT ... REQUETE BDD ...
 
-
+            Model::incVisite();
             view\View::startPage($pageType,self::getTitleByPageType($pageType),self::getUrlUser(),"noImage");
             view\View::header($pageType);
             // VUE SPECIFIQUE ...
@@ -78,6 +78,7 @@ class Controller
 
     public static function echiquienneTopics($page=1)
     {
+
         self::topics($page, 10);
     }
 
@@ -90,6 +91,7 @@ class Controller
     {
         Model::Init();
         if (Model::$can_connect) {
+            Model::incVisite();
             $data = array(
                 "id" => 1,
                 "title" => "Article 1",
@@ -129,7 +131,7 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
         if (Model::$can_connect)
         {
             // TRAITEMENT ... REQUETE BDD ...
-
+            Model::incVisite();
             view\View::startPage($pageType,self::getTitleByPageType($pageType),self::getUrlUser(),"noImage");
             view\View::header($pageType);
             // VUE SPECIFIQUE ...
@@ -179,7 +181,7 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
     {
         Model::Init();
         if (Model::$can_connect) {
-
+            Model::incVisite();
             view\View::startPage(30, "ESIMAT | Album", self::getUrlUser(), "noImage");
             view\View::header(30);
 
@@ -202,7 +204,7 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
     {
         Model::Init();
         if (Model::$can_connect) {
-
+            Model::incVisite();
             view\View::startPage(31, "ESIMAT | Album", self::getUrlUser(), "noImage",['lightcase.css']);
             view\View::header(31);
 
