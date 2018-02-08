@@ -8,7 +8,7 @@
 
 namespace admin\src\view;
 
-
+use app\Glob;
 class Home
 {
     public static function showHome($states=[])
@@ -26,8 +26,8 @@ class Home
 						<div class="col-md-4 page-shortcuts">
 						    <h3>Gestion des articles</h3>
 						    <ul>
-						        <li><a href="">Liste des articles</a></li>
-						        <li><a href="">Ajouter un nouveau article</a></li>
+						        <li><a href="'.Glob::DOMAIN_ADMIN.'list/topics">Liste des articles</a></li>
+						        <li><a href="'.Glob::DOMAIN_ADMIN.'post/topic">Ajouter un nouveau article</a></li>
                             </ul>
 						</div>
 						<div class="col-md-4 page-shortcuts">

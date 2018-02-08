@@ -26,58 +26,21 @@ class Controller
 
     }
 
-    public static function science()
+    public static function formPostTopic()
     {
         Model::init();
         if (Model::$can_connect) {
-            //action
-            view\View::startPage();
+            view\View::startPage(0,'Publier un article',[],$_SESSION,Model::getNotViewMessages());
             view\View::endPage();
         }
     }
-
-    public static function album()
+    public static function postTopic()
     {
         Model::init();
         if (Model::$can_connect) {
-            //action
-            view\View::startPage();
-            view\View::endPage();
-        }
 
-    }
-
-    public static function echec()
-    {
-        Model::init();
-        if (Model::$can_connect) {
-            //action
         }
     }
 
-    public static function postScience()
-    {
-        Model::init();
-        if (Model::$can_connect) {
-            //action
-        }
-    }
-
-    public static function postEchec()
-    {
-        Model::init();
-        if (Model::$can_connect) {
-            //action
-        }
-    }
-
-
-    public static function postAlbum()
-    {
-        Model::init();
-        if (Model::$can_connect) {
-            //action
-        }
-    }
 
 }

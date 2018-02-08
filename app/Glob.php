@@ -1,26 +1,31 @@
 <?php
+
 namespace app;
 class Glob
 {
 
- const DOMAIN="http://localhost/ESIMAT/"; // nom de domaine
+    const DOMAIN = "http://localhost/ESIMAT/"; // nom de domaine
 
- /** information sur la base de données **/
+    const DOMAIN_ADMIN = "http://localhost/ESIMAT/admin/";
 
- const DB_HOST="localhost"; // nom de domaine bdd
+    /** information sur la base de données **/
 
- const DB_NAME="esimat";   //
+    const DB_HOST = "localhost"; // nom de domaine bdd
 
- const DB_UM="root";  // nom utilisateur
+    const DB_NAME = "esimat";   //
 
- const DB_PW=""; // mot de passe
+    const DB_UM = "root";  // nom utilisateur
 
-  public static function getDate($str)
-  {
-      $moiS = array("janvier", "février","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","decembre");
-      $time=strtotime($str);
-      return preg_replace('#\##',$moiS[(int)date(' m',$time)-1],date('\L\e d # Y',$time)) ;
-  }
+    const DB_PW = ""; // mot de passe
+
+
+    public static function getDate($str)
+    {
+        $moiS = array("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre");
+        $time = strtotime($str);
+        return preg_replace('#\##', $moiS[(int)date(' m', $time) - 1], date('\L\e d # Y', $time));
+    }
 
 }
+
 ?>

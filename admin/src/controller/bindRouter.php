@@ -47,28 +47,14 @@ class bindRouter
         self::templateController("admin\src\controller\controller::home");
     }
 
-    public static function album()
+    public static function formPostTopic()
     {
-        self::templateController("controller::album");
+        self::templateController("admin\src\controller\controller::formPostTopic");
     }
 
-    public static function echiq()
+    public static function postTopic()
     {
-        self::templateController("controller::echiq");
-    }
-
-    public static function postEchiq()
-    {
-        self::templateController("controller::postEchiq");
-    }
-    public static function postScience()
-    {
-        self::templateController("controller::postScience");
-    }
-
-    public static function postDownload()
-    {
-        self::templateController("controller::postDownload");
+        self::templateController("admin\src\controller\controller::postTopic");
     }
 
 

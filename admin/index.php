@@ -21,6 +21,12 @@ Router::get("logout","admin\\src\\controller\\connexion::logout");
 /*******Admin*******/
 Router::get("home","admin\\src\\controller\\bindRouter::Home");
 
+Router::get("topic","admin\\src\\controller\\bindRouter::formPostTopic","post");
+Router::post("topics","admin\\src\\controller\\bindRouter::postTopic","list");
+
+
+
+
 
 
 Router::when(404,'../errors/404.html');
