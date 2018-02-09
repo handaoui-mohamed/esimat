@@ -43,13 +43,18 @@ class Topic
                         </div>
                         <div class="form-group">
                             <label for="body" class="col-sm-2 control-label">Images</label>
-                            <div class="col-sm-8">
-                                <label for="im_0">Image 1 (Principale)</label>
+                            <div class="col-sm-4">
+                                <label for="im_0">Image (Principale)</label>
                                 <input accept="image/*" type="file" id="im_0" name="im_0">
-                                <br>
-                                <a style="color:#8BC34A;cursor: pointer" id="add-image-input">
-                                    <i class="fa fa-plus"></i> Ajouter une autre image
-                                </a>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="ims">Images (Secondaires)</label>
+                                <input accept="image/*" type="file" id="ims" name="ims" multiple>
+                            </div>
+                            <br>
+                            <div class="col-sm-8 col-sm-offset-2" id="image-preview">
+                                <div class="col-sm-4"></div>
+                                <div></div>
                             </div>
                         </div>
                         <div class="form-group">

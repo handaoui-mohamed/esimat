@@ -46,6 +46,7 @@ h1, h2, h3, h4, h5 {
     font-family: 'Cabin', sans-serif;
 }
 
+/*custom*/
 .page-shortcuts:not(:first-child){
     height: 200px;
 }
@@ -69,6 +70,19 @@ h1, h2, h3, h4, h5 {
 .page-shortcuts ul a:hover{
     color: #000;
 }
+#image-preview{
+    margin-top:20px;
+}
+
+#image-preview div[class^="col-sm"]{
+    padding: 0 5px 5px 0;
+    margin:0;
+}
+
+#image-preview img{
+    margin:0;
+}
+/*end custom*/
 
 .icons {
     margin: 2em 2em;
@@ -2127,7 +2141,7 @@ ul.dropdown-menu.drp-mnu li a i {
 .main-content {
     margin-left: 200px;
     background: #F8F8F8;
-    min-height: 1000px;
+    margin-bottom: 50px;
 }
 
 .main-content2 {
