@@ -88,6 +88,46 @@ h1, h2, h3, h4, h5 {
     max-width: 100%;
     padding: 5px 10px;
 }
+
+.action-icon{
+    font-size: 25px !important;
+    margin-left: 20px;
+    cursor: pointer;
+    text-align: right;
+}
+
+.delete-action{
+    color: #e74c3c!important;
+}
+
+.edit-action{
+    color: #27ae60 !important;
+}
+
+button[id^='cancel-delete']{
+    background-color: #e74c3c;
+    color: #fff;
+    border:unset;
+}
+
+button[id^='confirm-delete']{
+    background-color: #3498db;
+    color: #fff;
+    margin-right: 15px;
+    border: unset;
+    height: 25px;
+}
+
+tr[id^='topic-'] td{
+    position: relative;
+}
+
+.confirmation-buttons{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    display: inline-flex;
+}
 /*end custom*/
 
 .icons {

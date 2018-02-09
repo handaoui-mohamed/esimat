@@ -63,8 +63,6 @@ class Controller
     public static function postTopic()
     {
            $topic=UploadData::uploadTopic();
-           print_r($_POST);
-           print_r($_FILES);
            if ($topic['addIt'])
            {
                Model::init();
@@ -91,7 +89,36 @@ class Controller
 
     public static function listTopics()
     {
+        Model::init();
+        if (Model::$can_connect) {
+            view\View::startPage(0,'Liste des articles',[],$_SESSION,Model::getNotViewMessages());
+            $topics = array(
+                array(
+                    "id" => 1,
+                    "title" => "topic 1",
+                    "type" => 1,
+                    "body" => "Bacon ipsum dolor amet alcatra doner cupim beef ribs meatloaf ham hock, pastrami sirloin pancetta andouille venison. Tri-tip prosciutto ham hock brisket frankfurter. Ground round boudin flank biltong landjaeger tongue tenderloin prosciutto. Tenderloin short ribs ground round meatloaf landjaeger ham. Turducken picanha shoulder, frankfurter jerky prosciutto bacon cupim sirloin biltong ball tip strip steak alcatra landjaeger.",
+                    "date_post" => "12/12/2012"
+                ),
+                array(
+                    "id" => 2,
+                    "title" => "topic 2",
+                    "type" => 1,
+                    "body" => "Bacon ipsum dolor amet alcatra doner cupim beef ribs meatloaf ham hock, pastrami sirloin pancetta andouille venison. Tri-tip prosciutto ham hock brisket frankfurter. Ground round boudin flank biltong landjaeger tongue tenderloin prosciutto. Tenderloin short ribs ground round meatloaf landjaeger ham. Turducken picanha shoulder, frankfurter jerky prosciutto bacon cupim sirloin biltong ball tip strip steak alcatra landjaeger.",
+                    "date_post" => "12/12/2012"
+                ),
+                array(
+                    "id" => 3,
+                    "title" => "topic 3",
+                    "type" => 1,
+                    "body" => "Bacon ipsum dolor amet alcatra doner cupim beef ribs meatloaf ham hock, pastrami sirloin pancetta andouille venison. Tri-tip prosciutto ham hock brisket frankfurter. Ground round boudin flank biltong landjaeger tongue tenderloin prosciutto. Tenderloin short ribs ground round meatloaf landjaeger ham. Turducken picanha shoulder, frankfurter jerky prosciutto bacon cupim sirloin biltong ball tip strip steak alcatra landjaeger.",
+                    "date_post" => "12/12/2012"
+                )
+            );
 
+            view\Topic::showTopics($topics);
+            view\View::endPage(['api.js','topic.js']);
+        }
     }
     public static function listAlbums()
     {
