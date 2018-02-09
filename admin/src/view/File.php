@@ -17,7 +17,7 @@ class File
             <h3 class="blank1">Ajouter un nouveau fichier</h3>
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
-                    <form class="form-horizontal" id="new-file-form" onsubmit="return false">
+                    <form class="form-horizontal" enctype="multipart/form-data" id="new-file-form" onsubmit="return false">
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">Titre</label>
                             <div class="col-sm-8">

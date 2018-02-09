@@ -166,4 +166,16 @@ class Model extends ModelUser
         return $idAlbum;
 
     }
+
+    public static function creatFile($file)
+    {
+        $reqGetAdmin = self::$connection->prepare('INSERT INTO download (title,type,source,image,date_post) VALUES(:title,:type,:src,:img,NOW())');
+        $reqGetAdmin->execute(array(
+            'type'=>$file['type'],
+            'title'=>$file['title'],
+            'src'=>$file['file'],
+            'img'=>$file['img']['img']
+        ));
+        return self::$connection->lastInsertId();
+    }
 }

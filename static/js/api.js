@@ -3,6 +3,7 @@ var api = {
         $.ajax({
             url: url,
             type: "POST",
+            cache: false,
             processData: false,
             contentType: false,
             data: new FormData($(formSelector).get()[0]),

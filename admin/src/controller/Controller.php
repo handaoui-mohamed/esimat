@@ -94,7 +94,20 @@ class Controller
     }
     public static function postFile()
     {
-
+        Model::init();
+        if (Model::$can_connect) {
+            $file=UploadData::uploadFile();
+            print_r($file);
+            if (!empty($file['add']))
+            {
+                $id=Model::creatFile($file['data']);
+                echo json_encode(array("upload"=>true,"id"=>$id));
+            }
+            else
+            {
+                echo json_encode(array("upload"=>false,"messages"=>($file['data'])));
+            }
+        }
     }
 
     /****list*****/
