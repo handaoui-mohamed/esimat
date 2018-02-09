@@ -6,15 +6,8 @@ function addNewAlbum(event){
     });
 }
 
-function showMainImgPreview(){
-    var container = $('#image-preview>div:first-child');
-    var content = '<img id="image-preview"  style="height:100px; width:100%;"  src="'+window.URL.createObjectURL(this.files[0])+'" >';
-    content += '<input class="image-preview-title" name="title_0" type="text" placeholder="Titre"/>';
-    container.html(content);
-}
-
 function showImgPreview(){
-    var container = $('#image-preview>div:nth-child(2)');
+    var container = $('#image-preview>div');
     container.html('');
     var content;
     if(this.files){
@@ -30,10 +23,8 @@ function showImgPreview(){
 $(document).ready(function(){
     $("#new-album-form").submit(addNewAlbum);
 
-    $("#im_0").change(showMainImgPreview);
     $("#ims").change(showImgPreview);
     $("#form-reset").click(function(){
-        $('#image-preview>div:first-child').html('');
-        $('#image-preview>div:nth-child(2)').html('');
+        $('#image-preview>div').html('');
     })
 });

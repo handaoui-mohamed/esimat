@@ -33,16 +33,10 @@ class Album
                         <div class="form-group">
                             <label for="body" class="col-sm-2 control-label">Images</label>
                             <div class="col-sm-4">
-                                <label for="im_0">Image (Principale)</label>
-                                <input accept="image/*" type="file" id="im_0" name="im_0">
-                            </div>
-                            <div class="col-sm-4">
-                                <label for="ims">Images (Secondaires)</label>
                                 <input accept="image/*" type="file" id="ims" name="ims[]" multiple>
                             </div>
                             <br>
                             <div class="col-sm-8 col-sm-offset-2" id="image-preview">
-                                <div class="col-sm-2"></div>
                                 <div></div>
                             </div>
                         </div>
