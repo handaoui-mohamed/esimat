@@ -82,6 +82,12 @@ h1, h2, h3, h4, h5 {
 #image-preview img{
     margin:0;
 }
+
+.image-preview-title{
+    width: 100%;
+    max-width: 100%;
+    padding: 5px 10px;
+}
 /*end custom*/
 
 .icons {

@@ -2,41 +2,30 @@
 /**
  * Created by PhpStorm.
  * User: handaoui
- * Date: 08/02/2018
- * Time: 18:27
+ * Date: 09/02/2018
+ * Time: 14:23
  */
 
 namespace admin\src\view;
 
 
-class Topic
+class Album
 {
-    public static function showTopicForm(){
+    public static function showAlbumForm(){
         echo '
         <div style="padding:20px">
-            <h3 class="blank1">Ajouter un nouveau article</h3>
+            <h3 class="blank1">Ajouter un nouveau album</h3>
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
-                    <form class="form-horizontal" id="new-topic-form" onsubmit="return false">
+                    <form class="form-horizontal" id="new-album-form" onsubmit="return false">
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">Titre</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control1" name="title" id="title" placeholder="Titre d\'article">
+                                <input type="text" class="form-control1" name="title" id="title" placeholder="Titre d\'album">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="radio" class="col-sm-2 control-label">Catégorie</label>
-                            <div class="col-sm-8">
-                                <div class="radio-inline">
-                                    <label><input type="radio" value="0" name="type" checked> Scientifique</label>
-                                </div>
-                                <div class="radio-inline">
-                                        <label><input type="radio" value="1" name="type"> Echequienne</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="body" class="col-sm-2 control-label">Contenu</label>
+                            <label for="body" class="col-sm-2 control-label">Description</label>
                             <div class="col-sm-8">
                                 <textarea name="body" id="body" cols="50" rows="10" style="height: inherit;" class="form-control1"></textarea>
                             </div>
@@ -53,19 +42,8 @@ class Topic
                             </div>
                             <br>
                             <div class="col-sm-8 col-sm-offset-2" id="image-preview">
-                                <div class="col-sm-6"></div>
+                                <div class="col-sm-2"></div>
                                 <div></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="body" class="col-sm-2 control-label">Videos</label>
-                            <div class="col-sm-8">
-                                <label for="vid_0">Video 1</label>
-                                <input accept="video/*" type="file" id="vid_0" name="vid_0">
-                                <br>
-                                <a style="color:#8BC34A;cursor: pointer" id="add-video-input">
-                                    <i class="fa fa-plus"></i> Ajouter une autre video
-                                </a>
                             </div>
                         </div>
                         <div class="row">

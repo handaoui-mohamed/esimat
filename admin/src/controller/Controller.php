@@ -40,7 +40,12 @@ class Controller
 
     public static function formPostAlbum()
     {
-
+        Model::init();
+        if (Model::$can_connect) {
+            view\View::startPage(0,'Publier un album',[],$_SESSION,Model::getNotViewMessages());
+            view\Album::showAlbumForm();
+            view\View::endPage(['api.js','album.js']);
+        }
     }
     public static function formPostFile()
     {

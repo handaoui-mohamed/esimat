@@ -33,15 +33,15 @@ class Home
 						<div class="col-md-4 page-shortcuts">
 						    <h3>Gestion des albums</h3>
 						    <ul>
-						        <li><a href="">Liste des albums</a></li>
-						        <li><a href="">Ajouter un nouveau album</a></li>
+						        <li><a href="'.Glob::DOMAIN_ADMIN.'list/albums">Liste des albums</a></li>
+						        <li><a href="'.Glob::DOMAIN_ADMIN.'post/album">Ajouter un nouveau album</a></li>
                             </ul>
 						</div>
 						<div class="col-md-4 page-shortcuts">
 						    <h3>Gestion des fichiers</h3>
 						    <ul>
-						        <li><a href="">Liste des fichiers</a></li>
-						        <li><a href="">Ajouter un nouveau fichier</a></li>
+						        <li><a href="'.Glob::DOMAIN_ADMIN.'list/files">Liste des fichiers</a></li>
+						        <li><a href="'.Glob::DOMAIN_ADMIN.'post/file">Ajouter un nouveau fichier</a></li>
                             </ul>
 						 </div>
 						<div class="clearfix"> </div>
