@@ -33,7 +33,7 @@ class Controller
         if (Model::$can_connect) {
             view\View::startPage(0,'Publier un article',[],$_SESSION,Model::getNotViewMessages());
             view\Topic::showTopicForm();
-            view\View::endPage(['api.js','topic.js']);
+            view\View::endPage(['kikim_progress.js','api.js','topic.js']);
         }
     }
 
@@ -44,7 +44,7 @@ class Controller
         if (Model::$can_connect) {
             view\View::startPage(0,'Publier un album',[],$_SESSION,Model::getNotViewMessages());
             view\Album::showAlbumForm();
-            view\View::endPage(['api.js','album.js']);
+            view\View::endPage(['kikim_progress.js','api.js','album.js']);
         }
     }
     public static function formPostFile()
@@ -53,7 +53,7 @@ class Controller
         if (Model::$can_connect) {
             view\View::startPage(0,'Publier un fichier',[],$_SESSION,Model::getNotViewMessages());
             view\File::showFileForm();
-            view\View::endPage(['api.js','file.js']);
+            view\View::endPage(['kikim_progress.js','api.js','file.js']);
         }
     }
 
@@ -129,7 +129,7 @@ class Controller
             );
 
             view\Topic::showTopics($topics);
-            view\View::endPage(['api.js','topic.js']);
+            view\View::endPage(['kikim_progress.js','api.js','topic.js']);
         }
     }
     public static function listAlbums()
