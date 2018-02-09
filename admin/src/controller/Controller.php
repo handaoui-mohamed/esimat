@@ -49,7 +49,12 @@ class Controller
     }
     public static function formPostFile()
     {
-
+        Model::init();
+        if (Model::$can_connect) {
+            view\View::startPage(0,'Publier un fichier',[],$_SESSION,Model::getNotViewMessages());
+            view\File::showFileForm();
+            view\View::endPage(['api.js','file.js']);
+        }
     }
 
     /****post*****/
