@@ -71,7 +71,7 @@ class Topic
                         <div class="row">
                             <div class="col-sm-8 col-sm-offset-2">
                                 <button class="btn-success btn" type="submit">Confirmer</button>
-                                <button class="btn-inverse btn" type="reset">Réinitialiser</button>
+                                <button class="btn-inverse btn" type="reset" id="form-reset">Réinitialiser</button>
                             </div>
                         </div>
                         

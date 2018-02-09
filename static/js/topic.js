@@ -52,4 +52,8 @@ $(document).ready(function(){
 
     $("#im_0").change(showMainImgPreview);
     $("#ims").change(showImgPreview);
+    $("#form-reset").click(function(){
+        $('#image-preview>div:first-child').html('');
+        $('#image-preview>div:nth-child(2)').html('');
+    })
 });
