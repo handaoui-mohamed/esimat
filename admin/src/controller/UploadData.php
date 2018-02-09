@@ -12,6 +12,7 @@ namespace admin\src\controller;
 class UploadData
 {
     const MAX_SIZE_VIDEO=62914560;
+    const MAX_SIZE_FILE=20971520;
 
     public static $errorsPost = array("Titre non valide",
         "Catégorie d'article non valide",
@@ -20,7 +21,8 @@ class UploadData
         "Contenu d'article non valide",
         'On accepte que les image de type "mp4", "mov", "avi", "flv","mpg", "wmv", "3gp", "rm"',
         "Le fichier doit etre en format zip ou rar",
-        "Taille max de tous les vidéos est de 60 Mo"
+        "Taille max de tous les vidéos est de 60 Mo",
+        "Taille max du fichier est de 20 Mo"
     );
 
     // j'ai pas limité la taille pour les images et les vidéos !
@@ -30,7 +32,7 @@ class UploadData
         print_r($file['name']);
 
         $allowedExts = array("mp4", "mov", "avi", "flv", "mpg", "wmv", "3gp", "rm");
-        echo $file['size'];
+
         $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         if (($file["type"] == "video/mp4") || ($file["type"] == "video/mov") || ($file["type"] == "video/avi") || ($file["type"] == "video/flv") || ($file["type"] == "video/mpg") || ($file["type"] == "video/wmv") || ($file["type"] == "video/3gp") || ($file["type"] == "video/rm")) {
             if (in_array($extension, $allowedExts)) {
@@ -88,7 +90,7 @@ class UploadData
 
             $nbVideo++;
         }
-        echo $size;
+
 
 
         if ($codeError==-1) {
@@ -311,46 +313,56 @@ class UploadData
                 $result['type'] = $_POST['type'];
                 if (!empty($_FILES['file']))
                 {
+                    if ($_FILES['file']['size']<self::MAX_SIZE_FILE)
+                    {
 
-                    if ($_FILES["file"]['error'] === 0 && is_uploaded_file($_FILES["file"]['tmp_name'])) {
-                        $allowedExts = array("rar", "zip");
-                        $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+                        if ($_FILES["file"]['error'] === 0 && is_uploaded_file($_FILES["file"]['tmp_name'])) {
+                            $allowedExts = array("rar", "zip");
+                            $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
-                        $typeOk = array('zip' => array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/force-download', 'application/octet-stream'),
-                            'rar' => array('application/x-rar', 'application/rar', 'application/x-rar-compressed', 'application/force-download', 'application/octet-stream'));
-                        if (in_array($extension, $allowedExts)) {
+                            $typeOk = array('zip' => array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/force-download', 'application/octet-stream'),
+                                'rar' => array('application/x-rar', 'application/rar', 'application/x-rar-compressed', 'application/force-download', 'application/octet-stream'));
+                            if (in_array($extension, $allowedExts)) {
 
-                            if (in_array($_FILES['file']['type'], $typeOk[$extension])) {
-                                $result['file'] = sha1(time() . "_@!bjs;#" . rand(200, 15555555)) . (string)rand(1000000, 90000000) . '.' . $extension;
-                                move_uploaded_file($_FILES['file']["tmp_name"], "../downloads/" . $result['file']);
+                                if (in_array($_FILES['file']['type'], $typeOk[$extension])) {
+                                    $result['file'] = sha1(time() . "_@!bjs;#" . rand(200, 15555555)) . (string)rand(1000000, 90000000) . '.' . $extension;
+                                    move_uploaded_file($_FILES['file']["tmp_name"], "../downloads/" . $result['file']);
 
-                                if (!empty($_FILES['im'])) {
-                                    echo"1 ";
-                                    if ($_FILES["im"]['error'] !== 4) {
-                                        echo"1 ";
-                                        if ($_FILES["im"]['error'] === 0 && is_uploaded_file($_FILES["im"]['tmp_name']))
-                                        {
-                                            Image::setpath('../downloads/images/');
-                                            $result['img'] = self::saveImageIfpossible($_FILES["im"]);
-                                            if ($result['img'] == 3) {
-                                                $codeerrors = 3;
+                                    if (!empty($_FILES['im'])) {
+
+                                        if ($_FILES["im"]['error'] !== 4) {
+
+                                            if ($_FILES["im"]['error'] === 0 && is_uploaded_file($_FILES["im"]['tmp_name']))
+                                            {
+                                                Image::setpath('../downloads/images/');
+                                                $result['img'] = self::saveImageIfpossible($_FILES["im"]);
+                                                if ($result['img'] == 3) {
+                                                    $codeerrors = 3;
+                                                }
+                                                else
+                                                {
+                                                    $result['img']=$result['img']['img'];
+                                                }
+
+                                            } else {
+                                                $codeerrors = 2;
                                             }
-
-                                        } else {
-                                            $codeerrors = 2;
                                         }
-                                    }
 
+                                    }
+                                } else {
+                                    $codeerrors = 6;
                                 }
                             } else {
                                 $codeerrors = 6;
                             }
                         } else {
-                            $codeerrors = 6;
-                        }
-                    } else {
-                        $codeerrors = 2;
+                            $codeerrors = 2;
 
+                        }
+                    }else
+                    {
+                        $codeerrors = 7;
                     }
                 } else {
                     $codeerrors = 2;
@@ -365,9 +377,9 @@ class UploadData
             $codeerrors = 0;
         }
 
-                if (!empty($codeerrors == -1)) return array('add' => true, 'data' =>$result);
-                else return array('add' => false, 'data' => self::$errorsPost[$codeerrors]);
-            }
+        if (!empty($codeerrors == -1)) return array('add' => true, 'data' =>$result);
+        else return array('add' => false, 'data' => self::$errorsPost[$codeerrors]);
+    }
 
 
-        }
+}

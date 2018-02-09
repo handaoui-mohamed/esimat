@@ -105,12 +105,12 @@ class Model extends ModelUser
     public static function getHomeState()
     {
         return array("article"=>self::getNbArticlesByType(),
-                      "album"=>self::getNbAlbum(),
-                      "sub"=>self::getNbAbonnes(),
-                       "message"=>self::getNbMessages(),
-                        "visite"=>self::getNbVisite(),
-                        "download"=>self::getNbDownloads()
-            );
+            "album"=>self::getNbAlbum(),
+            "sub"=>self::getNbAbonnes(),
+            "message"=>self::getNbMessages(),
+            "visite"=>self::getNbVisite(),
+            "download"=>self::getNbDownloads()
+        );
     }
 
 
@@ -149,14 +149,14 @@ class Model extends ModelUser
         $nb = count ($album['img']);
         if ($nb>0)
         {    $requete=array();
-             $execArray=array();
+            $execArray=array();
             for ($i=0;$i<$nb;$i++)
             {
                 $requete[]=' (:image'.$i.',:imagemin'.$i.',:title'.$i.','.$idAlbum.')';
                 $execArray['image'.$i]=$album['img'][$i];
                 $execArray['imagemin'.$i]=$album['imgmin'][$i];
                 $execArray['title'.$i]=$album['titles'][$i];
-              ;
+                ;
             }
             $requete=implode(',',$requete);
             $reqGetAdmin = self::$connection->prepare('INSERT INTO album_image  (image,imagemin,title,album_id) VALUES '.$requete);
@@ -174,7 +174,7 @@ class Model extends ModelUser
             'type'=>$file['type'],
             'title'=>$file['title'],
             'src'=>$file['file'],
-            'img'=>$file['img']['img']
+            'img'=>$file['img']
         ));
         return self::$connection->lastInsertId();
     }

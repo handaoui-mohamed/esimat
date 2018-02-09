@@ -62,35 +62,35 @@ class Controller
 
     public static function postTopic()
     {
-           $topic=UploadData::uploadTopic();
-           if ($topic['addIt'])
-           {
-               Model::init();
-               if (Model::$can_connect) {
-                   $id=Model::addTopic($topic['data']);
-                   echo json_encode(array("upload"=>true,"id"=>$id));
-               }
-           }
-           else
-           {
-                echo json_encode(array("upload"=>false,"messages"=>($topic['data'])));
-           }
+        $topic=UploadData::uploadTopic();
+        if ($topic['addIt'])
+        {
+            Model::init();
+            if (Model::$can_connect) {
+                $id=Model::addTopic($topic['data']);
+                echo json_encode(array("upload"=>true,"id"=>$id));
+            }
+        }
+        else
+        {
+            echo json_encode(array("upload"=>false,"messages"=>($topic['data'])));
+        }
     }
     public static function postAlbum()
     {
         Model::init();
         if (Model::$can_connect) {
-        $album=UploadData::uploadAlbum();
-        if (!empty($album['add']))
-        {
-            $id=Model::creatAlbum($album['data']);
-            echo json_encode(array("upload"=>true,"id"=>$id));
+            $album=UploadData::uploadAlbum();
+            if (!empty($album['add']))
+            {
+                $id=Model::creatAlbum($album['data']);
+                echo json_encode(array("upload"=>true,"id"=>$id));
+            }
+            else
+            {
+                echo json_encode(array("upload"=>false,"messages"=>($album['data'])));
+            }
         }
-        else
-        {
-            echo json_encode(array("upload"=>false,"messages"=>($album['data'])));
-        }
-    }
     }
     public static function postFile()
     {
