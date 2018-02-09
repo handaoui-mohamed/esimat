@@ -12,6 +12,7 @@ use admin\src\view;
 use admin\src\model\Model;
 
 
+
 class Controller
 {
     public static function home()
@@ -47,9 +48,25 @@ class Controller
     }
 
     /****post*****/
+
+
     public static function postTopic()
     {
-
+           $topic=UploadData::uploadTopic();
+           print_r($_POST);
+           print_r($_FILES);
+           if ($topic['addIt'])
+           {
+               Model::init();
+               if (Model::$can_connect) {
+                   $id=Model::addTopic($topic['data']);
+                   echo json_encode(array("upload"=>true,"id"=>$id));
+               }
+           }
+           else
+           {
+                echo json_encode(array("upload"=>false,"messages"=>($topic['data'])));
+           }
     }
     public static function postAlbum()
     {

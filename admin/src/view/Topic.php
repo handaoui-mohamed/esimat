@@ -49,7 +49,7 @@ class Topic
                             </div>
                             <div class="col-sm-4">
                                 <label for="ims">Images (Secondaires)</label>
-                                <input accept="image/*" type="file" id="ims" name="ims" multiple>
+                                <input accept="image/*" type="file" id="ims" name="ims[]" multiple>
                             </div>
                             <br>
                             <div class="col-sm-8 col-sm-offset-2" id="image-preview">

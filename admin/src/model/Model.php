@@ -114,4 +114,26 @@ class Model extends ModelUser
     }
 
 
+
+    /*************************************/
+
+    public static function addTopic($topic)
+    {
+        $reqGetAdmin = self::$connection->prepare('INSERT INTO 
+        article (title,body,type,date_post,images,imagesmin,videos)VALUES 
+        (:title,:body,:type,NOW(),:images,:imagesmin,:videos)
+        ');
+        $reqGetAdmin->execute(array(
+            'title'=>$topic['title'],
+            'body'=>$topic['body'],
+            'type'=>$topic['type'],
+            'images'=>$topic['img'],
+            'imagesmin'=>$topic['imgmin'],
+            'videos'=>$topic['videos']
+        ));
+
+        $reqGetAdmin->closeCursor();
+        return self::$connection->lastInsertId();
+
+    }
 }
