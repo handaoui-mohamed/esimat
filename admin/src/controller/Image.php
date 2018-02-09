@@ -17,9 +17,13 @@ class Image
     public $height_resize;
     public $resizeMinQuality;
     public $type;
-    private $path="../images/articles/";
+    public static $path="../images/articles/";
 
 
+    public  static function setpath($path)
+    {
+        self::$path=$path;
+    }
     function __construct()
     {
         $this->width_resize=200;
@@ -228,32 +232,32 @@ class Image
                     if ($width>800 || $height>600)
                     {
                         // resize avec compression de 90
-                        $this->resize_image($src,$this->path.$image_name,800,600,$qualityCompression,true);
+                        $this->resize_image($src,self::$path.$image_name,800,600,$qualityCompression,true);
                     }
                     else
                     {
                         // compresion de 90 seulement
-                        $this->compress_image($src,$this->path.$image_name,$qualityCompression);
+                        $this->compress_image($src,self::$path.$image_name,$qualityCompression);
                     }
                     // unlink($src);
-                    $link=$this->path.$image_name.".jpg";
+                    $link=self::$path.$image_name.".jpg";
                 }
                 else
                 {
                     $link=$src;
                 }
 
-                $this->writeText($link,$this->path.$image_name,"esi-mat.com");
-                $this->resize_image($this->path.$image_name.".jpg",$this->path."min/min_".$image_min_name,$this->width_resize,$this->height_resize,$this->resizeMinQuality,$this->type=="J");
+                $this->writeText($link,self::$path.$image_name,"esi-mat.com");
+                $this->resize_image(self::$path.$image_name.".jpg",self::$path."min/min_".$image_min_name,$this->width_resize,$this->height_resize,$this->resizeMinQuality,$this->type=="J");
                 $finalExt="jpg";
             }
             else
             {
-                move_uploaded_file($src,$this->path.$image_name.".gif");
-                $this->compress_image($this->path.$image_name.".gif",$this->path.$image_name,$qualityCompression);
-                $this->writeText($this->path.$image_name.".jpg",$this->path.$image_name,"fb.com/DevWebAndProg");
-                $this->resize_image($this->path.$image_name.".jpg",$this->path."min/min_".$image_min_name,$this->width_resize,$this->height_resize,$this->resizeMinQuality,$this->type=="J");
-                unlink($this->path.$image_name.".jpg");
+                move_uploaded_file($src,self::$path.$image_name.".gif");
+                $this->compress_image(self::$path.$image_name.".gif",self::$path.$image_name,$qualityCompression);
+                $this->writeText(self::$path.$image_name.".jpg",self::$path.$image_name,"fb.com/DevWebAndProg");
+                $this->resize_image(self::$path.$image_name.".jpg",self::$path."min/min_".$image_min_name,$this->width_resize,$this->height_resize,$this->resizeMinQuality,$this->type=="J");
+                unlink(self::$path.$image_name.".jpg");
                 $finalExt="gif";
             }
 

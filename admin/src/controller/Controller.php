@@ -78,7 +78,19 @@ class Controller
     }
     public static function postAlbum()
     {
-
+        Model::init();
+        if (Model::$can_connect) {
+        $album=UploadData::uploadAlbum();
+        if (!empty($album['add']))
+        {
+            $id=Model::creatAlbum($album['data']);
+            echo json_encode(array("upload"=>true,"id"=>$id));
+        }
+        else
+        {
+            echo json_encode(array("upload"=>false,"messages"=>($album['data'])));
+        }
+    }
     }
     public static function postFile()
     {

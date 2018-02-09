@@ -136,4 +136,34 @@ class Model extends ModelUser
         return self::$connection->lastInsertId();
 
     }
+
+    public static function creatAlbum($album)
+    {
+        $reqGetAdmin = self::$connection->prepare('INSERT INTO 
+        album (title,description,date_post)VALUES (:title,:description,NOW())');
+        $reqGetAdmin->execute(array(
+            'title'=>$album['title'],
+            'description'=>$album['description']
+        ));
+        $idAlbum=self::$connection->lastInsertId();
+        $nb = count ($album['img']);
+        if ($nb>0)
+        {    $requete=array();
+             $execArray=array();
+            for ($i=0;$i<$nb;$i++)
+            {
+                $requete[]=' (:image'.$i.',:imagemin'.$i.',:title'.$i.','.$idAlbum.')';
+                $execArray['image'.$i]=$album['img'][$i];
+                $execArray['imagemin'.$i]=$album['imgmin'][$i];
+                $execArray['title'.$i]=$album['titles'][$i];
+              ;
+            }
+            $requete=implode(',',$requete);
+            $reqGetAdmin = self::$connection->prepare('INSERT INTO album_image  (image,imagemin,title,album_id) VALUES '.$requete);
+            $reqGetAdmin->execute($execArray);
+        }
+
+        return $idAlbum;
+
+    }
 }
