@@ -9,7 +9,7 @@ var api = {
             data: new FormData($(formSelector).get()[0]),
             progress: function (prog) {
                 if (prog.lengthComputable) {
-                    var percentage = ((prog.loaded / prog.total) * 100) + "%";
+                    var percentage = ((prog.loaded / prog.total) * 100).toFixed(2) + "%";
                     $(progressSelector).css("width", percentage);
                     $(progressSelector).text(percentage);
                 }
