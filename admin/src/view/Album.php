@@ -11,7 +11,27 @@ namespace admin\src\view;
 
 class Album
 {
-    public static function showAlbumForm(){
+    private static function getImagesPreview($images)
+    {
+        $content = '';
+        $nbImages = count($images);
+        for ($i = 0; $i < $nbImages; $i++) {
+            $image = $images[$i];
+            $content .= '<div class="col-sm-2"><img id="image-preview"  style="height:100px; width:100%;"  src="' . $image['src'] . '" >';
+            $content .= '<input value="' . $image['title'] . '" class="image-preview-title" name="title_' . $i . '" type="text" placeholder="Titre"/></div>';
+        }
+        return $content;
+    }
+
+    public static function showAlbumForm($album = array())
+    {
+        if (empty($album)) {
+            $album = array(
+                'title' => '',
+                'body' => '',
+                'images' => [],
+            );
+        }
         echo '
         <div style="padding:20px">
             <h3 class="blank1">Ajouter un nouveau album</h3>
@@ -21,13 +41,13 @@ class Album
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">Titre</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control1" name="title" id="title" placeholder="Titre d\'album">
+                                <input value="' . $album['title'] . '" type="text" class="form-control1" name="title" id="title" placeholder="Titre d\'album">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="body" class="col-sm-2 control-label">Description</label>
                             <div class="col-sm-8">
-                                <textarea name="body" id="body" cols="50" rows="10" style="height: inherit;" class="form-control1"></textarea>
+                                <textarea value="' . $album['body'] . '" name="body" id="body" cols="50" rows="10" style="height: inherit;" class="form-control1"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -37,7 +57,7 @@ class Album
                             </div>
                             <br>
                             <div class="col-sm-8" id="image-preview">
-                                <div></div>
+                                <div>' . self::getImagesPreview($album['images']) . '</div>
                             </div>
                         </div>
                         <div class="row">

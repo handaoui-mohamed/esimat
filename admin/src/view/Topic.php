@@ -12,7 +12,8 @@ use app\Glob;
 
 class Topic
 {
-    public static function showTopicForm(){
+    public static function showTopicForm()
+    {
         echo '
         <div style="padding:20px">
             <h3 class="blank1">Ajouter un nouveau article</h3>
@@ -94,7 +95,8 @@ class Topic
         ';
     }
 
-    public static function showTopics($topics=[]){
+    public static function showTopics($topics = [])
+    {
         echo '
         <div style="padding:20px">
             <h3 class="blank1">Liste des articles</h3>
@@ -111,33 +113,36 @@ class Topic
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>'.self::getTopicsRows($topics).'</tbody>
+                        <tbody>' . self::getTopicsRows($topics) . '</tbody>
                     </table>
                 </div>
             </div>
         ';
     }
 
-    private static function getTopicsRows($topics){
+    private static function getTopicsRows($topics)
+    {
         $content = '';
-        $type = array('0'=>'Scientifique', '1'=>'Echequienne');
-        for($i=0;$i<count($topics);$i++){
+        $type = array('0' => 'Scientifique', '1' => 'Echequienne');
+        $nbTopics = count($topics);
+
+        for ($i = 0; $i < $nbTopics; $i++) {
             $topic = $topics[$i];
             $topicBodyPreview = substr($topic['body'], 0, 70);
             $topicBodyPreview .= strlen($topic['body']) > 70 ? " ..." : ".";
             $content .= '
-            <tr class="'.($i%2==0 ? 'active':'').'" id="topic-'.$topic['id'].'">
-                <th scope="row">'.$topic['id'].'</th>
-                <td>'.$topic['date_post'].'</td>
-                <td>'.$topic['title'].'</td>
-                <td>'.$type[$topic['type']].'</td>
-                <td>'.$topicBodyPreview.'</td>
+            <tr class="' . ($i % 2 == 0 ? 'active' : '') . '" id="topic-' . $topic['id'] . '">
+                <th scope="row">' . $topic['id'] . '</th>
+                <td>' . $topic['date_post'] . '</td>
+                <td>' . $topic['title'] . '</td>
+                <td>' . $type[$topic['type']] . '</td>
+                <td>' . $topicBodyPreview . '</td>
                 <td>
-                    <a href="'.Glob::DOMAIN_ADMIN.'update/topic/'.$topic['id'].'">
+                    <a href="' . Glob::DOMAIN_ADMIN . 'update/topic/' . $topic['id'] . '">
                         <i class="fa fa-pencil action-icon edit-action" ></i>
                     </a>
-                    <a id="delete-'.$topic['id'].'">
-                        <i class="fa fa-trash action-icon delete-action"  onclick="showDeleteConfirm('.$topic['id'].')"></i>
+                    <a id="delete-' . $topic['id'] . '">
+                        <i class="fa fa-trash action-icon delete-action"  onclick="showDeleteConfirm(' . $topic['id'] . ')"></i>
                     </a>
                     <div class="confirmation-buttons"></div>
                 </td>

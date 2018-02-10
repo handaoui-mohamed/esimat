@@ -11,7 +11,14 @@ namespace admin\src\view;
 
 class File
 {
-    public static function showFileForm(){
+    public static function showFileForm($file = array())
+    {
+        if (empty($file)) {
+            $file = array(
+                'title' => '',
+                'type' => 0
+            );
+        }
         echo '
         <div style="padding:20px">
             <h3 class="blank1">Ajouter un nouveau fichier</h3>
@@ -21,17 +28,17 @@ class File
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">Titre</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control1" name="title" id="title" placeholder="Titre du fichier">
+                                <input value="' . $file['title'] . '" type="text" class="form-control1" name="title" id="title" placeholder="Titre du fichier">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="radio" class="col-sm-2 control-label">Catégorie</label>
                             <div class="col-sm-8">
                                 <div class="radio-inline">
-                                    <label><input type="radio" value="0" name="type" checked> Scientifique</label>
+                                    <label><input type="radio" value="0" name="type" ' . ($file['type'] ? '' : 'checked') . '> Scientifique</label>
                                 </div>
                                 <div class="radio-inline">
-                                        <label><input type="radio" value="1" name="type"> Echequienne</label>
+                                        <label><input type="radio" value="1" name="type" ' . ($file['type'] ? 'checked' : '') . '> Echequienne</label>
                                 </div>
                             </div>
                         </div>
