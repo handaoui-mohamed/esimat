@@ -11,27 +11,35 @@ namespace admin\src\view;
 
 class File
 {
-    public static function showFileForm(){
+    public static function showFileForm($file = array())
+    {
+        $isNew = empty($file);
+        if ($isNew) {
+            $file = array(
+                'title' => '',
+                'type' => 0
+            );
+        }
         echo '
         <div style="padding:20px">
-            <h3 class="blank1">Ajouter un nouveau fichier</h3>
+            <h3 class="blank1">'.($isNew ? 'Ajouter un nouveau fichier' : 'Modifier le fichier').'</h3>
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
                     <form class="form-horizontal" enctype="multipart/form-data" id="new-file-form" onsubmit="return false">
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">Titre</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control1" name="title" id="title" placeholder="Titre du fichier">
+                                <input value="' . $file['title'] . '" type="text" class="form-control1" name="title" id="title" placeholder="Titre du fichier">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="radio" class="col-sm-2 control-label">Catégorie</label>
                             <div class="col-sm-8">
                                 <div class="radio-inline">
-                                    <label><input type="radio" value="0" name="type" checked> Scientifique</label>
+                                    <label><input type="radio" value="0" name="type" ' . ($file['type'] ? '' : 'checked') . '> Scientifique</label>
                                 </div>
                                 <div class="radio-inline">
-                                        <label><input type="radio" value="1" name="type"> Echequienne</label>
+                                        <label><input type="radio" value="1" name="type" ' . ($file['type'] ? 'checked' : '') . '> Echequienne</label>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +53,7 @@ class File
                         <div class="form-group">
                             <label for="file" class="col-sm-2 control-label">Fichier</label>
                             <div class="col-sm-4">
-                                <input type="file" id="file" name="file">
+                                <input accept="application/zip" type="file" id="file" name="file">
                             </div>
                         </div>
                         <br>
@@ -63,10 +71,69 @@ class File
                               </div>
                             </div>
                         </div>
+                        
+                        <div class="row">
+                             <div class="col-sm-8 col-sm-offset-2 alert" role="alert" id="alert-message"></div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
         ';
+    }
+
+    public static function showFiles($files = [])
+    {
+        echo '
+        <div style="padding:20px">
+            <h3 class="blank1">Liste des articles</h3>
+            <div class="xs tabls">
+                <div class="bs-example4" data-example-id="contextual-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Date</th>
+                                <th>Titre</th>
+                                <th>Catégorie</th>
+                                <th>Fichier</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>' . self::getFilesRows($files) . '</tbody>
+                    </table>
+                </div>
+            </div>
+        ';
+    }
+
+    private static function getFilesRows($files)
+    {
+        $content = '';
+        $type = array('0' => 'Scientifique', '1' => 'Echequienne');
+        $nbFiles = count($files);
+
+        for ($i = 0; $i < $nbFiles; $i++) {
+            $file = $files[$i];
+            $content .= '
+            <tr class="' . ($i % 2 == 0 ? 'active' : '') . '" id="file-' . $file['id'] . '">
+                <th scope="row">' . $file['id'] . '</th>
+                <td>' . $file['date_post'] . '</td>
+                <td>' . $file['title'] . '</td>
+                <td>' . $type[$file['type']] . '</td>
+                <td>' . $file['source'] . '</td>
+                <td>
+                    <a href="' . Glob::DOMAIN_ADMIN . 'update/file/' . $file['id'] . '">
+                        <i class="fa fa-pencil action-icon edit-action" ></i>
+                    </a>
+                    <a id="delete-' . $file['id'] . '">
+                        <i class="fa fa-trash action-icon delete-action"  onclick="showDeleteConfirm(' . $file['id'] . ')"></i>
+                    </a>
+                    <div class="confirmation-buttons"></div>
+                </td>
+            </tr>
+            ';
+        }
+        return $content;
     }
 }

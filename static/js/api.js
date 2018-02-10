@@ -1,5 +1,5 @@
 var api = {
-    sendForm: function (url, formSelector, progressSelector, success) {
+    sendForm: function (url, formSelector, progressSelector, msgSelector, success) {
         $.ajax({
             url: url,
             type: "POST",
@@ -18,7 +18,18 @@ var api = {
                 }
             },
             success: function (data) {
+                data = JSON.parse(data);
                 success(data);
+                $(msgSelector).show(0);
+                if(data && data.upload){
+                    $(msgSelector).removeClass('alert-danger');
+                    $(msgSelector).addClass("alert-success");
+                    $(msgSelector).text("Les données ont été sauvegardées avec succès");
+                }else{
+                    $(msgSelector).addClass('alert-danger');
+                    $(msgSelector).removeClass("alert-success");
+                    $(msgSelector).text(data.messages);
+                }
             }
         });
     }

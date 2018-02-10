@@ -12,9 +12,7 @@ function addVideoInput() {
 function addNewTopic(event) {
     event.preventDefault();
     $("#progress-container").show(0);
-    api.sendForm("", "#new-topic-form", "#topic-progress-bar", function (data) {
-        $("#progress-container").hide(0);
-    });
+    api.sendForm("", "#new-topic-form", "#topic-progress-bar", "#alert-message", function (data) {});
 }
 
 function showMainImgPreview() {
@@ -42,7 +40,6 @@ function showDeleteConfirm(id) {
 
 function hideDeleteConfirm(id) {
     $('#topic-' + id + ' .confirmation-buttons').html('');
-    // $('#delete-' + id).html('<i class="fa fa-trash action-icon delete-action"  onclick="showDeleteConfirm(' + id + ')"></i>');
 }
 
 function deleteTopic(id) {
