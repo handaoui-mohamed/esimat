@@ -218,7 +218,8 @@ class View
 								<ul class="dropdown-menu drp-mnu">
 									<li> <a href="#"><i class="fa fa-cog"></i>Paramètres</a> </li> 
 									<li> <a href="#"><i class="fa fa-user"></i>Profile</a> </li> 
-									<li> <a href="logout"><i class="fa fa-sign-out"></i>Déconnexion</a> </li>
+									<li> <a href="'.Glob::DOMAIN_ADMIN.'logout"><i class="fa fa-sign-out"></i>Déconnexion</a> </li>
+									<li> <a href="'.Glob::DOMAIN_ADMIN.'root/admins"><i class="fa">@</i>Administrateurs</a> </li>
 								</ul>
 							</li>
 							<div class="clearfix"> </div>

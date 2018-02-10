@@ -7,6 +7,7 @@
  */
 
 namespace admin\src\view;
+use app\Glob;
 
 
 class Admin
@@ -113,7 +114,6 @@ class Admin
             <tr id="admin-' . $admin['id'] . '">
                 <th scope="row">' . $admin['id'] . '</th>
                 <td>' . $admin['name'] . '</td>
-                <td>' . $admin['email'] . '</td>
                 <td>' . $admin['email'] . '</td>
                 <td>' . $role[$admin['role']] . '</td>
                 <td>

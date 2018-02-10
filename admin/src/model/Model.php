@@ -23,6 +23,15 @@ class Model extends ModelUser
         return $user;
 
     }
+    public static function getAdmins()
+    {
+        $req = self::$connection->prepare('select * from users WHERE role!="root" ');
+        $req->execute(array());
+        $admins = $req->fetchAll(\PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $admins;
+
+    }
 
     public static function getNotViewMessages()
     {
@@ -237,4 +246,5 @@ class Model extends ModelUser
         $req->closeCursor();
         self::delete('album',$id);
     }
+
 }

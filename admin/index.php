@@ -27,6 +27,7 @@ Router::get("topic","admin\\src\\controller\\bindRouter::formPostTopic","post");
 Router::get("album","admin\\src\\controller\\bindRouter::formPostAlbum","post");
 Router::get("file","admin\\src\\controller\\bindRouter::formPostFile","post");
 
+
 /****post form ****/
 
 Router::post("topic","admin\\src\\controller\\bindRouter::postTopic","post");
@@ -50,7 +51,8 @@ Router::post("message","admin\\src\\controller\\bindRouter::deleteMessage","dele
 
 
 
-
+/**********root*************/
+Router::get("admins","admin\\src\\controller\\bindRouter::showAdmins","root");
 Router::when(404,'../errors/404.html');
 
 Router::run();

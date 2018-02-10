@@ -107,6 +107,13 @@ class bindRouter
     {
         self::templateController("admin\src\controller\controller::deleteMessage");
     }
+    public static function showAdmins()
+    {
+        if (!empty($_SESSION['role'])&&$_SESSION['role']=='Administrateur')
+        self::templateController("admin\src\controller\controller::showAdmins");
+        else
+            die("Non autorisée");
+    }
 
 
 

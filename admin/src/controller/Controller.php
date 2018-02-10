@@ -182,4 +182,15 @@ class Controller
         }
     }
 
+    public static function showAdmins()
+    {
+        Model::init();
+        if (Model::$can_connect) {
+        view\View::startPage(0,'Admins',[],$_SESSION);
+        view\Admin::showAdmins(Model::getAdmins());
+        view\View::endPage();
+
+        }
+    }
+
 }
