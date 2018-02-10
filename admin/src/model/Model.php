@@ -42,15 +42,6 @@ class Model extends ModelUser
         $reqmessages->closeCursor();
     }
 
-    public static function getMessages()
-    {
-
-    }
-
-    public static function deleteMessage($id)
-    {
-
-    }
 
 
     /************************* STATES ***********************/
@@ -206,5 +197,44 @@ class Model extends ModelUser
         $result = $reqGetAdmin->fetchAll(\PDO::FETCH_ASSOC);
         $reqGetAdmin->closeCursor();
         return $result;
+    }
+    public static function getMessages()
+    {
+        $reqGetAdmin = self::$connection->prepare('SELECT * FROM message ORDER BY id DESC ');
+        $reqGetAdmin->execute(array());
+        $result = $reqGetAdmin->fetchAll(\PDO::FETCH_ASSOC);
+        $reqGetAdmin->closeCursor();
+        return $result;
+    }
+
+    /**delete**/
+
+    private  static function delete ($table,$id)
+    {
+        $req = self::$connection->prepare('delete from '.$table.' WHERE id=:id');
+        $req->execute(array('id' => $id));
+        $req->closeCursor();
+    }
+
+    public static function deleteMessage($id)
+    {
+        self::delete('message',$id);
+    }
+
+    public static function deleteTopic($id)
+    {
+        self::delete('article',$id);
+    }
+
+    public static function deleteFile($id)
+    {
+        self::delete('download',$id);
+    }
+    public static function deleteAlbum($id)
+    {
+        $req = self::$connection->prepare('delete from album_image WHERE album_id=:id');
+        $req->execute(array('id' => $id));
+        $req->closeCursor();
+        self::delete('album',$id);
     }
 }
