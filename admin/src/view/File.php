@@ -53,7 +53,7 @@ class File
                         <div class="form-group">
                             <label for="file" class="col-sm-2 control-label">Fichier</label>
                             <div class="col-sm-4">
-                                <input accept="application/zip" type="file" id="file" name="file">
+                                <input  type="file" id="file" name="file">
                             </div>
                         </div>
                         <br>

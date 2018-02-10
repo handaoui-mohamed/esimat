@@ -28,7 +28,7 @@ var api = {
                 }else{
                     $(msgSelector).addClass('alert-danger');
                     $(msgSelector).removeClass("alert-success");
-                    $(msgSelector).text(data.messages);
+                    $(msgSelector).text(data.message);
                 }
             }
         });

@@ -58,7 +58,7 @@ class Controller
                 echo json_encode(array("upload" => true, "id" => $id));
             }
         } else {
-            echo json_encode(array("upload" => false, "messages" => ($topic['data'])));
+            echo json_encode(array("upload" => false, "message" => ($topic['data'])));
         }
     }
     public static function postAlbum()
@@ -70,7 +70,7 @@ class Controller
                 $id = Model::creatAlbum($album['data']);
                 echo json_encode(array("upload" => true, "id" => $id));
             } else {
-                echo json_encode(array("upload" => false, "messages" => ($album['data'])));
+                echo json_encode(array("upload" => false, "message" => ($album['data'])));
             }
         }
     }
@@ -79,12 +79,11 @@ class Controller
         Model::init();
         if (Model::$can_connect) {
             $file = UploadData::uploadFile();
-            //print_r($file);
             if (!empty($file['add'])) {
                 $id = Model::creatFile($file['data']);
                 echo json_encode(array("upload" => true, "id" => $id));
             } else {
-                echo json_encode(array("upload" => false, "messages" => ($file['data'])));
+                echo json_encode(array("upload" => false, "message" => ($file['data'])));
             }
         }
     }
