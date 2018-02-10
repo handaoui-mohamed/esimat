@@ -124,7 +124,7 @@ class Topic
     {
         echo '
         <div style="padding:20px">
-            <h3 class="blank1">Liste des articles</h3>
+            <h3 class="blank1">Liste des articles ('.count($topics).')</h3>
             <div class="xs tabls">
                 <div class="bs-example4" data-example-id="contextual-table">
                     <table class="table">
@@ -158,7 +158,7 @@ class Topic
             $content .= '
             <tr class="' . ($i % 2 == 0 ? 'active' : '') . '" id="topic-' . $topic['id'] . '">
                 <th scope="row">' . $topic['id'] . '</th>
-                <td>' . $topic['date_post'] . '</td>
+                <td>' .Glob::getDate($topic['date_post']). '</td>
                 <td>' . $topic['title'] . '</td>
                 <td>' . $type[$topic['type']] . '</td>
                 <td>' . $topicBodyPreview . '</td>

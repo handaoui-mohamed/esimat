@@ -93,29 +93,7 @@ class Controller
         Model::init();
         if (Model::$can_connect) {
             view\View::startPage(10, 'Liste des articles', [], $_SESSION, Model::getNotViewMessages());
-            $topics = array(
-                array(
-                    "id" => 1,
-                    "title" => "topic 1",
-                    "type" => 1,
-                    "body" => "Bacon ipsum dolor amet alcatra doner cupim beef ribs meatloaf ham hock, pastrami sirloin pancetta andouille venison. Tri-tip prosciutto ham hock brisket frankfurter. Ground round boudin flank biltong landjaeger tongue tenderloin prosciutto. Tenderloin short ribs ground round meatloaf landjaeger ham. Turducken picanha shoulder, frankfurter jerky prosciutto bacon cupim sirloin biltong ball tip strip steak alcatra landjaeger.",
-                    "date_post" => "12/12/2012"
-                ),
-                array(
-                    "id" => 2,
-                    "title" => "topic 2",
-                    "type" => 1,
-                    "body" => "Bacon ipsum dolor amet alcatra doner cupim beef ribs meatloaf ham hock, pastrami sirloin pancetta andouille venison. Tri-tip prosciutto ham hock brisket frankfurter. Ground round boudin flank biltong landjaeger tongue tenderloin prosciutto. Tenderloin short ribs ground round meatloaf landjaeger ham. Turducken picanha shoulder, frankfurter jerky prosciutto bacon cupim sirloin biltong ball tip strip steak alcatra landjaeger.",
-                    "date_post" => "12/12/2012"
-                ),
-                array(
-                    "id" => 3,
-                    "title" => "topic 3",
-                    "type" => 1,
-                    "body" => "Bacon ipsum dolor amet alcatra doner cupim beef ribs meatloaf ham hock, pastrami sirloin pancetta andouille venison. Tri-tip prosciutto ham hock brisket frankfurter. Ground round boudin flank biltong landjaeger tongue tenderloin prosciutto. Tenderloin short ribs ground round meatloaf landjaeger ham. Turducken picanha shoulder, frankfurter jerky prosciutto bacon cupim sirloin biltong ball tip strip steak alcatra landjaeger.",
-                    "date_post" => "12/12/2012"
-                )
-            );
+            $topics = Model::getAdminTopics();
             view\Topic::showTopics($topics);
             view\View::endPage(['kikim_progress.js', 'api.js', 'topic.js']);
         }

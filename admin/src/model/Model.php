@@ -115,7 +115,7 @@ class Model extends ModelUser
 
 
 
-    /*************************************/
+    /**********************create***************/
 
     public static function addTopic($topic)
     {
@@ -177,5 +177,25 @@ class Model extends ModelUser
             'img'=>$file['img']
         ));
         return self::$connection->lastInsertId();
+    }
+
+    /**********************getall***************/
+
+    public static function getAdminTopics($typeReqCondotion="true")
+    {
+        $reqGetAdmin = self::$connection->prepare('SELECT * FROM article WHERE '.$typeReqCondotion.' ORDER by id desc');
+        $reqGetAdmin->execute(array());
+        $result = $reqGetAdmin->fetchAll(\PDO::FETCH_ASSOC);
+        $reqGetAdmin->closeCursor();
+        return $result;
+    }
+
+    public static function getAdminEchiquienneTopics()
+    {
+        return self::getAdminTopics('type=1');
+    }
+    public static function getAdminScientifiqueTopics()
+    {
+        return self::getAdminTopics('type=0');
     }
 }
