@@ -977,7 +977,7 @@ ul.dropdown-menu.drp-mnu li {
 }
 
 .custom-nav .menu-list.active ul {
-    display: block;
+    /*display: block;*/
 }
 
 .nav > li > a {

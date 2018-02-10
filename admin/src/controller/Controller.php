@@ -31,7 +31,7 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            view\View::startPage(0,'Publier un article',[],$_SESSION,Model::getNotViewMessages());
+            view\View::startPage(10,'Publier un article',[],$_SESSION,Model::getNotViewMessages());
             view\Topic::showTopicForm();
             view\View::endPage(['kikim_progress.js','api.js','topic.js']);
         }
@@ -42,7 +42,7 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            view\View::startPage(0,'Publier un album',[],$_SESSION,Model::getNotViewMessages());
+            view\View::startPage(20,'Publier un album',[],$_SESSION,Model::getNotViewMessages());
             view\Album::showAlbumForm();
             view\View::endPage(['kikim_progress.js','api.js','album.js']);
         }
@@ -51,7 +51,7 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            view\View::startPage(0,'Publier un fichier',[],$_SESSION,Model::getNotViewMessages());
+            view\View::startPage(30,'Publier un fichier',[],$_SESSION,Model::getNotViewMessages());
             view\File::showFileForm();
             view\View::endPage(['kikim_progress.js','api.js','file.js']);
         }
@@ -116,7 +116,7 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            view\View::startPage(0,'Liste des articles',[],$_SESSION,Model::getNotViewMessages());
+            view\View::startPage(10,'Liste des articles',[],$_SESSION,Model::getNotViewMessages());
             $topics = array(
                 array(
                     "id" => 1,
