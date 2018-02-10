@@ -123,7 +123,7 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            if( !empty($_POST['id']&&(int)$_POST['id']==$_POST['id']))
+            if( !empty($_POST['id'])&&(int)$_POST['id']==$_POST['id'])
             {
                 Model::deleteTopic((int)$_POST['id']);
                 view\View::showJson(array("delete"=>true));
@@ -139,7 +139,7 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            if( !empty($_POST['id']&&(int)$_POST['id']==$_POST['id']))
+            if( !empty($_POST['id'])&&(int)$_POST['id']==$_POST['id'])
             {
                 Model::deleteAlbum((int)$_POST['id']);
                 view\View::showJson(array("delete"=>true));
@@ -155,7 +155,7 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            if( !empty($_POST['id']&&(int)$_POST['id']==$_POST['id']))
+            if( !empty($_POST['id'])&&(int)$_POST['id']==$_POST['id'])
             {
                 Model::deleteFile((int)$_POST['id']);
                 view\View::showJson(array("delete"=>true));
@@ -170,7 +170,7 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            if( !empty($_POST['id']&&(int)$_POST['id']==$_POST['id']))
+            if( !empty($_POST['id'])&&(int)$_POST['id']==$_POST['id'])
             {
                 Model::deleteMessage((int)$_POST['id']);
                 view\View::showJson(array("delete"=>true));

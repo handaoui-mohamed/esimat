@@ -33,6 +33,8 @@ class Model extends ModelUser
 
     }
 
+
+
     public static function getNotViewMessages()
     {
         $reqGetmessages = self::$connection->prepare('SELECT * FROM message where view=0');
@@ -215,6 +217,15 @@ class Model extends ModelUser
         $reqGetAdmin->closeCursor();
         return $result;
     }
+    public static function getAdminAlbums()
+    {
+        $req = self::$connection->prepare('select * from album WHERE');
+        $req->execute(array());
+        $admins = $req->fetchAll(\PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $admins;
+    }
+
 
     /**delete**/
 
