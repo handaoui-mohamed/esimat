@@ -95,7 +95,7 @@ class View
 							<a href="#"><i class="fa fa-file-text-o"></i>
                             <span>Articles</span></a>
                             <ul class="sub-menu-list">
-                                <li><a href="'.Glob::DOMAIN_ADMIN.'list/topics">Liste des article</a> </li>
+                                <li><a href="'.Glob::DOMAIN_ADMIN.'list/topics">Liste des articles</a> </li>
                                 <li><a href="'.Glob::DOMAIN_ADMIN.'post/topic">Ajouter un article</a></li>
                             </ul>
 						</li>
@@ -125,7 +125,7 @@ class View
                                 <li><a href="'.Glob::DOMAIN_ADMIN.'post/admin">Ajouter un admin</a></li>
                             </ul>
 						</li>
-                        <li class="'.self::setActive($pageType,70).'"><a href="'.Glob::DOMAIN_ADMIN.'list/messages"><i class="lnr lnr-cog"></i><span>Parametre</span></a></li>
+                        <li class="'.self::setActive($pageType,70).'"><a href="'.Glob::DOMAIN_ADMIN.'list/messages"><i class="lnr lnr-cog"></i><span>Paramètre</span></a></li>
 
 					</ul>
 				<!--sidebar nav end-->

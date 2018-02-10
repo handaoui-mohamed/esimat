@@ -50,8 +50,55 @@ class Message
         ';
     }
 
-    public static function showMessagesList($messages = [])
+    public static function showMessages($messages = [])
     {
+        echo '
+        <div style="padding:20px">
+            <h3 class="blank1">Liste des message</h3>
+            <div class="xs tabls">
+                <div class="bs-example4" data-example-id="contextual-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Email</th>
+                                <th>Nom Complet</th>
+                                <th>Numéro Téléphone</th>
+                                <th>Message</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>' . self::getMessagesRows($messages) . '</tbody>
+                    </table>
+                </div>
+            </div>
+        ';
+    }
 
+    private static function getMessagesRows($messages)
+    {
+        $content = '';
+        $nbMessages = count($messages);
+
+        foreach ($messages as $message) {
+            $messageBodyPreview = substr($message['body'], 0, 70);
+            $messageBodyPreview .= strlen($message['body']) > 70 ? " ..." : ".";
+            $content .= '
+            <tr class="' . ($message['view'] ? '' : 'active') . '" id="message-' . $message['id'] . '">
+                <th scope="row">' . $message['id'] . '</th>
+                <td>' . $message['email'] . '</td>
+                <td>' . $message['name'] . '</td>
+                <td>' . $message['phone'] . '</td>
+                <td>' . $messageBodyPreview . '</td>
+                <td>
+                    <a id="delete-' . $message['id'] . '">
+                        <i class="fa fa-trash action-icon delete-action"  onclick="showDeleteConfirm(' . $message['id'] . ')"></i>
+                    </a>
+                    <div class="confirmation-buttons"></div>
+                </td>
+            </tr>
+            ';
+        }
+        return $content;
     }
 }
