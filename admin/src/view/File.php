@@ -45,7 +45,7 @@ class File
                         <div class="form-group">
                             <label for="file" class="col-sm-2 control-label">Fichier</label>
                             <div class="col-sm-4">
-                                <input type="file" id="file" name="file">
+                                <input accept="application/zip" type="file" id="file" name="file">
                             </div>
                         </div>
                         <br>
@@ -62,6 +62,10 @@ class File
                                 
                               </div>
                             </div>
+                        </div>
+                        
+                        <div class="row">
+                             <div class="col-sm-8 col-sm-offset-2 alert" role="alert" id="alert-message"></div>
                         </div>
                     </form>
                 </div>

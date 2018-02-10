@@ -1,9 +1,7 @@
 function addNewAlbum(event){
     event.preventDefault();
     $("#progress-container").show(0);
-    api.sendForm("","#new-album-form","#topic-progress-bar", function(data){
-        $("#progress-container").hide(0);
-    });
+    api.sendForm("","#new-album-form","#topic-progress-bar", "#alert-message", function(data){});
 }
 
 function showImgPreview(){

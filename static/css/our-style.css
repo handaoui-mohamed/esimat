@@ -128,6 +128,10 @@ tr[id^='topic-'] td{
     top: 15px;
     display: inline-flex;
 }
+
+#alert-message{
+    display: none;
+}
 /*end custom*/
 
 .icons {

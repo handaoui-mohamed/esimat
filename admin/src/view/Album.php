@@ -54,6 +54,10 @@ class Album
                               </div>
                             </div>
                         </div>
+                        
+                        <div class="row">
+                             <div class="col-sm-8 col-sm-offset-2 alert" role="alert" id="alert-message"></div>
+                        </div>
                     </form>
                 </div>
             </div>
