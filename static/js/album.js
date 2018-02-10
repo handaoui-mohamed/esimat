@@ -18,6 +18,20 @@ function showImgPreview(){
     }
 }
 
+function showDeleteConfirm(id) {
+    content = '<button id="confirm-delete-' + id + '" onclick="deleteTopic(' + id + ')">Confirmer</button>' +
+        ' <button id="cancel-delete-' + id + '" onclick="hideDeleteConfirm(' + id + ')">Annuler</button>';
+    $('#album-' + id + ' .confirmation-buttons').html(content);
+}
+
+function hideDeleteConfirm(id) {
+    $('#album-' + id + ' .confirmation-buttons').html('');
+}
+
+function deleteTopic(id) {
+    $('#album-' + id).remove();
+}
+
 $(document).ready(function(){
     $("#new-album-form").submit(addNewAlbum);
 

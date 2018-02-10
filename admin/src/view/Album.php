@@ -85,4 +85,56 @@ class Album
         </div>
         ';
     }
+
+    public static function showAlbums($albums = [])
+    {
+        echo '
+        <div style="padding:20px">
+            <h3 class="blank1">Liste des articles</h3>
+            <div class="xs tabls">
+                <div class="bs-example4" data-example-id="contextual-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Date</th>
+                                <th>Titre</th>
+                                <th>Description</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>' . self::getAlbumsRows($albums) . '</tbody>
+                    </table>
+                </div>
+            </div>
+        ';
+    }
+
+    private static function getAlbumsRows($albums)
+    {
+        $content = '';
+        $nbAlbums = count($albums);
+
+        for ($i = 0; $i < $nbAlbums; $i++) {
+            $album = $albums[$i];
+            $content .= '
+            <tr class="' . ($i % 2 == 0 ? 'active' : '') . '" id="album-' . $album['id'] . '">
+                <th scope="row">' . $album['id'] . '</th>
+                <td>' . $album['date_post'] . '</td>
+                <td>' . $album['title'] . '</td>
+                <td>' . $album['description'] . '</td>
+                <td>
+                    <a href="' . Glob::DOMAIN_ADMIN . 'update/album/' . $album['id'] . '">
+                        <i class="fa fa-pencil action-icon edit-action" ></i>
+                    </a>
+                    <a id="delete-' . $album['id'] . '">
+                        <i class="fa fa-trash action-icon delete-action"  onclick="showDeleteConfirm(' . $album['id'] . ')"></i>
+                    </a>
+                    <div class="confirmation-buttons"></div>
+                </td>
+            </tr>
+            ';
+        }
+        return $content;
+    }
 }

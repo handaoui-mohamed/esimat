@@ -40,7 +40,6 @@ function showDeleteConfirm(id) {
 
 function hideDeleteConfirm(id) {
     $('#topic-' + id + ' .confirmation-buttons').html('');
-    // $('#delete-' + id).html('<i class="fa fa-trash action-icon delete-action"  onclick="showDeleteConfirm(' + id + ')"></i>');
 }
 
 function deleteTopic(id) {
