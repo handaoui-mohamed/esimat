@@ -198,4 +198,13 @@ class Model extends ModelUser
     {
         return self::getAdminTopics('type=0');
     }
+
+    public static function getAdminFiles()
+    {
+        $reqGetAdmin = self::$connection->prepare('SELECT * FROM download ORDER BY id DESC ');
+        $reqGetAdmin->execute(array());
+        $result = $reqGetAdmin->fetchAll(\PDO::FETCH_ASSOC);
+        $reqGetAdmin->closeCursor();
+        return $result;
+    }
 }
