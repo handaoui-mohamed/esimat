@@ -166,5 +166,20 @@ class Controller
             }
         }
     }
+    public static function deleteMessage()
+    {
+        Model::init();
+        if (Model::$can_connect) {
+            if( !empty($_POST['id']&&(int)$_POST['id']==$_POST['id']))
+            {
+                Model::deleteMessage((int)$_POST['id']);
+                view\View::showJson(array("delete"=>true));
+            }
+            else
+            {
+                view\View::showJson(array("delete"=>false,"message"=>"Paramètre non valide"));
+            }
+        }
+    }
 
 }
