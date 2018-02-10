@@ -262,4 +262,10 @@ class View
         </html>';
     }
 
+    public static  function showJson ($array)
+    {
+        echo json_encode($array);
+    }
+
+
 }

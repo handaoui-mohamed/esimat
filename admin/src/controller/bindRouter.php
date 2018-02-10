@@ -89,6 +89,20 @@ class bindRouter
     {
         self::templateController("admin\src\controller\controller::listFiles");
     }
+    public static function deleteTopic($id)
+    {
+        self::templateController("admin\src\controller\controller::deleteTopic");
+    }
+
+    public static function deleteAlbum($id)
+    {
+        self::templateController("admin\src\controller\controller::deleteAlbum");
+    }
+
+    public static function deleteFile($id)
+    {
+        self::templateController("admin\src\controller\controller::deleteFile");
+    }
 
 
 

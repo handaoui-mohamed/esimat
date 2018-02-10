@@ -150,7 +150,7 @@ class UploadData
 
                                 if ($_FILES["im_0"]['error'] === 4) {
                                 } else {
-                                    if (is_uploaded_file($_FILES["im_0"]['tmp_name']) && $_FILES["im_0"]['error'] === 0 && !empty($_FILES["im_0"]['tmp_name'])) {
+                                    if (is_uploaded_file($_FILES["im_0"]['tmp_name']) && $_FILES["im_0"]['error'] === 0) {
 
                                         $infoPrincipaleImage = self::saveImageIfpossible($_FILES["im_0"]);
                                         if ($infoPrincipaleImage != 3) {
@@ -232,7 +232,7 @@ class UploadData
                 $videos = "";
                 if ($codeError == -1) {
 
-                    if (!empty($_FILES['vid_0']) || $_FILES['vid_0']['error'] === 4) {
+                    if (!empty($_FILES['vid_0']) && $_FILES['vid_0']['error'] !== 4) {
                         if ($_FILES['vid_0']['error'] === 0) {
 
                             if (!empty($_FILES["vid_0"]['tmp_name']) && is_uploaded_file($_FILES["vid_0"]['tmp_name'])) {
@@ -258,7 +258,7 @@ class UploadData
                                 }
 
                             } else {
-                                $codeError = 3;
+                                $codeError = 2;
                             }
 
                         } else {

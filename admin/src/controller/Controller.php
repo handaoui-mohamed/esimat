@@ -55,10 +55,10 @@ class Controller
             Model::init();
             if (Model::$can_connect) {
                 $id = Model::addTopic($topic['data']);
-                echo json_encode(array("upload" => true, "id" => $id));
+                view\View::showJson(array("upload" => true, "id" => $id));
             }
         } else {
-            echo json_encode(array("upload" => false, "message" => ($topic['data'])));
+            view\View::showJson(array("upload" => false, "message" => ($topic['data'])));
         }
     }
     public static function postAlbum()
@@ -68,9 +68,9 @@ class Controller
             $album = UploadData::uploadAlbum();
             if (!empty($album['add'])) {
                 $id = Model::creatAlbum($album['data']);
-                echo json_encode(array("upload" => true, "id" => $id));
+                view\View::showJson(array("upload" => true, "id" => $id));
             } else {
-                echo json_encode(array("upload" => false, "message" => ($album['data'])));
+                view\View::showJson(array("upload" => false, "message" => ($album['data'])));
             }
         }
     }
@@ -81,9 +81,9 @@ class Controller
             $file = UploadData::uploadFile();
             if (!empty($file['add'])) {
                 $id = Model::creatFile($file['data']);
-                echo json_encode(array("upload" => true, "id" => $id));
+                view\View::showJson (array("upload" => true, "id" => $id));
             } else {
-                echo json_encode(array("upload" => false, "message" => ($file['data'])));
+                view\View::showJson(array("upload" => false, "message" => ($file['data'])));
             }
         }
     }
@@ -118,4 +118,53 @@ class Controller
             view\View::endPage(['kikim_progress.js', 'api.js', 'album.js']);
         }
     }
+
+    public static function deleteTopic()
+    {
+        Model::init();
+        if (Model::$can_connect) {
+            if( !empty($_POST['id']&&(int)$_POST['id']==$_POST['id']))
+            {
+                Model::deleteTopic((int)$_POST['id']);
+                view\View::showJson(array("delete"=>true));
+            }
+            else
+            {
+                view\View::showJson(array("delete"=>false,"message"=>"Paramètre non valide"));
+            }
+        }
+    }
+
+    public static function deleteAlbum()
+    {
+        Model::init();
+        if (Model::$can_connect) {
+            if( !empty($_POST['id']&&(int)$_POST['id']==$_POST['id']))
+            {
+                Model::deleteAlbum((int)$_POST['id']);
+                view\View::showJson(array("delete"=>true));
+            }
+            else
+            {
+                view\View::showJson(array("delete"=>false,"message"=>"Paramètre non valide"));
+            }
+        }
+    }
+
+    public static function deleteFile()
+    {
+        Model::init();
+        if (Model::$can_connect) {
+            if( !empty($_POST['id']&&(int)$_POST['id']==$_POST['id']))
+            {
+                Model::deleteFile((int)$_POST['id']);
+                view\View::showJson(array("delete"=>true));
+            }
+            else
+            {
+                view\View::showJson(array("delete"=>false,"message"=>"Paramètre non valide"));
+            }
+        }
+    }
+
 }

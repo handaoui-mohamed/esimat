@@ -41,6 +41,10 @@ Router::get("files","admin\\src\\controller\\bindRouter::listFiles","list");
 
 /******delete list******/
 
+Router::post("topic","admin\\src\\controller\\bindRouter::deleteTopic","delete");
+Router::post("album","admin\\src\\controller\\bindRouter::deleteAlbum","delete");
+Router::post("file","admin\\src\\controller\\bindRouter::deleteFile","delete");
+
 /******update list******/
 
 
