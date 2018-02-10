@@ -13,7 +13,8 @@ class File
 {
     public static function showFileForm($file = array())
     {
-        if (empty($file)) {
+        $isNew = empty($file);
+        if ($isNew) {
             $file = array(
                 'title' => '',
                 'type' => 0
@@ -21,7 +22,7 @@ class File
         }
         echo '
         <div style="padding:20px">
-            <h3 class="blank1">Ajouter un nouveau fichier</h3>
+            <h3 class="blank1">'.($isNew ? 'Ajouter un nouveau fichier' : 'Modifier le fichier').'</h3>
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
                     <form class="form-horizontal" enctype="multipart/form-data" id="new-file-form" onsubmit="return false">

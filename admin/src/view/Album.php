@@ -25,7 +25,8 @@ class Album
 
     public static function showAlbumForm($album = array())
     {
-        if (empty($album)) {
+        $isNew = empty($album);
+        if ($isNew) {
             $album = array(
                 'title' => '',
                 'body' => '',
@@ -34,7 +35,7 @@ class Album
         }
         echo '
         <div style="padding:20px">
-            <h3 class="blank1">Ajouter un nouveau album</h3>
+            <h3 class="blank1">'.($isNew ? 'Ajouter un nouveau album' : 'Modifier l\'album').'</h3>
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
                     <form class="form-horizontal" id="new-album-form" onsubmit="return false">
