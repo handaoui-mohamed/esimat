@@ -43,7 +43,14 @@ function hideDeleteConfirm(id) {
 }
 
 function deleteTopic(id) {
-    $('#topic-' + id).remove();
+    $.ajax({
+        url: baseURL + 'delete/topic',
+        type: "POST",
+        data: {id: id},
+        success: function (data) {
+            if(data.delete) $('#topic-' + id).remove();
+        }
+    });
 }
 
 $(document).ready(function () {

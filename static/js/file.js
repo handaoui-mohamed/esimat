@@ -15,7 +15,14 @@ function hideDeleteConfirm(id) {
 }
 
 function deleteTopic(id) {
-    $('#file-' + id).remove();
+    $.ajax({
+        url: baseURL + 'delete/file',
+        type: "POST",
+        data: {id: id},
+        success: function (data) {
+            if(data.delete) $('#file-' + id).remove();
+        }
+    });
 }
 
 $(document).ready(function(){

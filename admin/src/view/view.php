@@ -53,6 +53,7 @@ class View
                 <link href=\'//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic\' rel=\'stylesheet\' type=\'text/css\'>
                 -->
                 ' . $css . '
+                <script >var baseURL = "'.Glob::DOMAIN_ADMIN.'";</script>
             </head>
             <body  class="sticky-header left-side-collapsed">
             ' . self::getSideBar($pageType)

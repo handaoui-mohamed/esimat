@@ -1,18 +1,19 @@
-function addNewAlbum(event){
+function addNewAlbum(event) {
     event.preventDefault();
     $("#progress-container").show(0);
-    api.sendForm("","#new-album-form","#topic-progress-bar", "#alert-message", function(data){});
+    api.sendForm("", "#new-album-form", "#topic-progress-bar", "#alert-message", function (data) {
+    });
 }
 
-function showImgPreview(){
+function showImgPreview() {
     var container = $('#image-preview>div');
     container.html('');
     var content;
-    if(this.files){
-        for(var i=0; i<this.files.length; i++){
-            content = '<div class="col-sm-2"><img id="image-preview"  style="height:100px; width:100%;"  src="'+
-                window.URL.createObjectURL(this.files[i])+'" >';
-            content += '<input class="image-preview-title" name="title_'+i+'" type="text" placeholder="Titre"/></div>';
+    if (this.files) {
+        for (var i = 0; i < this.files.length; i++) {
+            content = '<div class="col-sm-2"><img id="image-preview"  style="height:100px; width:100%;"  src="' +
+                window.URL.createObjectURL(this.files[i]) + '" >';
+            content += '<input class="image-preview-title" name="title_' + i + '" type="text" placeholder="Titre"/></div>';
             container.append(content);
         }
     }
@@ -29,14 +30,21 @@ function hideDeleteConfirm(id) {
 }
 
 function deleteTopic(id) {
-    $('#album-' + id).remove();
+    $$.ajax({
+        url: baseURL + 'delete/album',
+        type: "POST",
+        data: {id: id},
+        success: function (data) {
+            if(data.delete) $('#album-' + id).remove();
+        }
+    });
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
     $("#new-album-form").submit(addNewAlbum);
 
     $("#ims").change(showImgPreview);
-    $("#form-reset").click(function(){
+    $("#form-reset").click(function () {
         $('#image-preview>div').html('');
     })
 });
