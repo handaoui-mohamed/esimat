@@ -32,15 +32,9 @@ class Message
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Numéro téléphone</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control1" value="' . $msg['phone'] . '" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="col-sm-2 control-label">Message</label>
                             <div class="col-sm-8">
-                                <textarea disabled value="' . $msg['body'] . '" cols="50" rows="10" style="height: inherit;" class="form-control1"></textarea>
+                                <textarea disabled cols="50" rows="10" style="height: inherit;" class="form-control1">' . $msg['body'] . '</textarea>
                             </div>
                         </div>
                     </form>
@@ -63,7 +57,6 @@ class Message
                                 <th>N°</th>
                                 <th>Email</th>
                                 <th>Nom Complet</th>
-                                <th>Numéro Téléphone</th>
                                 <th>Message</th>
                                 <th></th>
                             </tr>
@@ -84,11 +77,10 @@ class Message
             $messageBodyPreview = substr($message['body'], 0, 70);
             $messageBodyPreview .= strlen($message['body']) > 70 ? " ..." : ".";
             $content .= '
-            <tr class="' . ($message['view'] ? '' : 'active') . '" id="message-' . $message['id'] . '">
+            <tr class="' . ($message['view'] ? 'active' : '') . '" id="message-' . $message['id'] . '">
                 <th scope="row">' . $message['id'] . '</th>
                 <td>' . $message['email'] . '</td>
                 <td>' . $message['name'] . '</td>
-                <td>' . $message['phone'] . '</td>
                 <td>' . $messageBodyPreview . '</td>
                 <td>
                     <a id="delete-' . $message['id'] . '">

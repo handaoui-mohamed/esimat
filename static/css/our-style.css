@@ -118,7 +118,10 @@ button[id^='confirm-delete']{
     height: 25px;
 }
 
-tr[id^='topic-'] td{
+tr[id^='topic-'] td,
+tr[id^='album-'] td,
+tr[id^='message-'] td,
+tr[id^='admin-'] td{
     position: relative;
 }
 

@@ -5,9 +5,14 @@
  * Date: 15/12/2017
  * Time: 20:29
  */
+
 namespace admin\src\controller;
+
 use admin\src\view;
 use admin\src\model\Model;
+use app\view\View as ViewClient;
+use app\controller\Controller as ctrlClient;
+
 class Controller
 {
     public static function home()
@@ -20,6 +25,7 @@ class Controller
             view\View::endPage();
         }
     }
+
     public static function formPostTopic()
     {
         Model::init();
@@ -29,6 +35,7 @@ class Controller
             view\View::endPage(['kikim_progress.js', 'api.js', 'topic.js']);
         }
     }
+
     public static function formPostAlbum()
     {
         Model::init();
@@ -38,6 +45,7 @@ class Controller
             view\View::endPage(['kikim_progress.js', 'api.js', 'album.js']);
         }
     }
+
     public static function formPostFile()
     {
         Model::init();
@@ -47,6 +55,7 @@ class Controller
             view\View::endPage(['kikim_progress.js', 'api.js', 'file.js']);
         }
     }
+
     /****post*****/
     public static function postTopic()
     {
@@ -61,6 +70,7 @@ class Controller
             view\View::showJson(array("upload" => false, "message" => ($topic['data'])));
         }
     }
+
     public static function postAlbum()
     {
         Model::init();
@@ -74,6 +84,7 @@ class Controller
             }
         }
     }
+
     public static function postFile()
     {
         Model::init();
@@ -81,12 +92,13 @@ class Controller
             $file = UploadData::uploadFile();
             if (!empty($file['add'])) {
                 $id = Model::creatFile($file['data']);
-                view\View::showJson (array("upload" => true, "id" => $id));
+                view\View::showJson(array("upload" => true, "id" => $id));
             } else {
                 view\View::showJson(array("upload" => false, "message" => ($file['data'])));
             }
         }
     }
+
     /****list*****/
     public static function listTopics()
     {
@@ -98,6 +110,7 @@ class Controller
             view\View::endPage(['kikim_progress.js', 'api.js', 'topic.js']);
         }
     }
+
     public static function listAlbums()
     {
         Model::init();
@@ -108,6 +121,7 @@ class Controller
             view\View::endPage(['kikim_progress.js', 'api.js', 'album.js']);
         }
     }
+
     public static function listFiles()
     {
         Model::init();
@@ -123,14 +137,11 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            if( !empty($_POST['id'])&&(int)$_POST['id']==$_POST['id'])
-            {
+            if (!empty($_POST['id']) && (int)$_POST['id'] == $_POST['id']) {
                 Model::deleteTopic((int)$_POST['id']);
-                view\View::showJson(array("delete"=>true));
-            }
-            else
-            {
-                view\View::showJson(array("delete"=>false,"message"=>"Paramètre non valide"));
+                view\View::showJson(array("delete" => true));
+            } else {
+                view\View::showJson(array("delete" => false, "message" => "Paramètre non valide"));
             }
         }
     }
@@ -139,14 +150,11 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            if( !empty($_POST['id'])&&(int)$_POST['id']==$_POST['id'])
-            {
+            if (!empty($_POST['id']) && (int)$_POST['id'] == $_POST['id']) {
                 Model::deleteAlbum((int)$_POST['id']);
-                view\View::showJson(array("delete"=>true));
-            }
-            else
-            {
-                view\View::showJson(array("delete"=>false,"message"=>"Paramètre non valide"));
+                view\View::showJson(array("delete" => true));
+            } else {
+                view\View::showJson(array("delete" => false, "message" => "Paramètre non valide"));
             }
         }
     }
@@ -155,29 +163,24 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            if( !empty($_POST['id'])&&(int)$_POST['id']==$_POST['id'])
-            {
+            if (!empty($_POST['id']) && (int)$_POST['id'] == $_POST['id']) {
                 Model::deleteFile((int)$_POST['id']);
-                view\View::showJson(array("delete"=>true));
-            }
-            else
-            {
-                view\View::showJson(array("delete"=>false,"message"=>"Paramètre non valide"));
+                view\View::showJson(array("delete" => true));
+            } else {
+                view\View::showJson(array("delete" => false, "message" => "Paramètre non valide"));
             }
         }
     }
+
     public static function deleteMessage()
     {
         Model::init();
         if (Model::$can_connect) {
-            if( !empty($_POST['id'])&&(int)$_POST['id']==$_POST['id'])
-            {
+            if (!empty($_POST['id']) && (int)$_POST['id'] == $_POST['id']) {
                 Model::deleteMessage((int)$_POST['id']);
-                view\View::showJson(array("delete"=>true));
-            }
-            else
-            {
-                view\View::showJson(array("delete"=>false,"message"=>"Paramètre non valide"));
+                view\View::showJson(array("delete" => true));
+            } else {
+                view\View::showJson(array("delete" => false, "message" => "Paramètre non valide"));
             }
         }
     }
@@ -186,11 +189,88 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-        view\View::startPage(0,'Admins',[],$_SESSION);
-        view\Admin::showAdmins(Model::getAdmins());
-        view\View::endPage();
+            view\View::startPage(0, 'Admins', [], $_SESSION, Model::getNotViewMessages());
+            view\Admin::showAdmins(Model::getAdmins());
+            view\View::endPage(['admin.js']);
 
         }
+    }
+
+    public static function listMessages()
+    {
+        Model::init();
+        if (Model::$can_connect) {
+            view\View::startPage(0, 'Messages', [], $_SESSION, Model::getNotViewMessages());
+            view\Message::showMessages(Model::getMessages());
+            view\View::endPage(['message.js']);
+        }
+    }
+
+    public static function formPostAdmin()
+    {
+        Model::init();
+        if (Model::$can_connect) {
+            view\View::startPage(0, 'Ajouté un administrateur', [], $_SESSION, Model::getNotViewMessages());
+            view\Admin::showAdminForm();
+            view\View::endPage(['kikim_progress.js', 'api.js', 'admin.js']);
+        }
+    }
+
+    public static function getMessage($id)
+    {
+        Model::init();
+        if (Model::$can_connect) {
+            $message = Model::getMessage((int)$id);
+            if (!empty($message['id'])) {
+                view\View::startPage(0, 'Message', [], $_SESSION, Model::getNotViewMessages());
+                view\Message::showMessage($message);
+                view\View::endPage();
+            } else {
+                self::notFound();
+            }
+
+
+        }
+    }
+
+    public static function postAdmin()
+    {
+
+        if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['role']) && !empty($_POST['pw']) && !empty($_POST['cpw'])) {
+            if (ctrlClient::isemail($_POST['email']) && $_POST['pw'] === $_POST['cpw'] && ($_POST['role'] == 'sc' || $_POST['role'] == 'ec')) {
+                $name = htmlspecialchars($_POST['name']);
+                $email = strtolower(htmlspecialchars($_POST['email']));
+                $pw = sha1($_POST['pw']);
+                $role = htmlspecialchars($_POST['role']);
+                Model::init();
+                if (Model::$can_connect) {
+                    if (!Model::existAdmin($email)) {
+                        Model::addAdmin($email, $pw, $name, $role);
+                        view\View::showJson(array("add" => true));
+
+                    } else {
+                        view\View::showJson(array("add" => false, "message" => 'L\'email "'.$email.'" exist déjà'));
+                    }
+
+                } else {
+                    view\View::showJson(array("add" => false, "message" => "Erreur Serveur 500"));
+                    http_response_code(500);
+                    exit;
+                }
+
+            } else {
+                view\View::showJson(array("add" => false, "message" => "Informations non valides"));
+            }
+
+        } else {
+            view\View::showJson(array("add" => false, "message" => "Informations non valides"));
+        }
+    }
+
+    private static function notFound()
+    {
+        ViewClient::notFound();
+        http_response_code(404);
     }
 
 }

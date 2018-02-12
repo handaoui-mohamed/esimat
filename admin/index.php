@@ -29,13 +29,14 @@ Router::get("file","admin\\src\\controller\\BindRouter::formPostFile","post");
 /**/Router::get("admin","admin\\src\\controller\\BindRouter::formPostAdmin","post");
 
 /**get*/
-/**/Router::get("message/[id]","admin\\src\\controller\\BindRouter::getMessage","");
+Router::get("message/[id]","admin\\src\\controller\\BindRouter::getMessage","")
+    ->with("id",'[1-9][0-9]{0,9}');
 /****post form ****/
 
 Router::post("topic","admin\\src\\controller\\BindRouter::postTopic","post");
 Router::post("album","admin\\src\\controller\\BindRouter::postAlbum","post");
 Router::post("file","admin\\src\\controller\\BindRouter::postFile","post");
-/**/Router::post("admin","admin\\src\\controller\\BindRouter::postAdmin","post");
+Router::post("admin","admin\\src\\controller\\BindRouter::postAdmin","post");
 
 /******show list******/
 

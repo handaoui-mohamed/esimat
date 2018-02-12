@@ -22,12 +22,12 @@ class Admin
                 'role' => 'sc',
             );
         }
-        echo '
-        <div style="padding:20px">
-            <h3 class="blank1">' . ($isNew ? 'Ajouter un nouveau modérateur' : 'Modifier les informations du modérateur') . '</h3>
+        echo
+        '<div style="padding:20px">
+            <h3 class="blank1">' . ($isNew ? 'Ajouter un nouveau administrateur' : 'Modifier les informations du administrateur') . '</h3>
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
-                    <form class="form-horizontal" id="new-album-form" onsubmit="return false">
+                    <form class="form-horizontal" id="new-admin-form" onsubmit="return false">
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Nom Complet</label>
                             <div class="col-sm-8">
@@ -44,23 +44,23 @@ class Admin
                             <label for="radio" class="col-sm-2 control-label">Catégorie (rôle)</label>
                             <div class="col-sm-8">
                                 <div class="radio-inline">
-                                    <label><input type="radio" value="sc" name="type" ' . ($admin['type'] == 'sc' ? '' : 'checked') . '> Scientifique</label>
+                                    <label><input type="radio" value="sc" name="role" ' . ($admin['role'] == 'sc' ? 'checked' : '') . '> Scientifique</label>
                                 </div>
                                 <div class="radio-inline">
-                                        <label><input type="radio" value="ec" name="type" ' . ($admin['type'] == 'ec' ? 'checked' : '') . '> Echequienne</label>
+                                        <label><input type="radio" value="ec" name="role" ' . ($admin['role'] == 'ec' ? 'checked' : '') . '> Echequienne</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="pw" class="col-sm-2 control-label">Mot de passe</label>
                             <div class="col-sm-8">
-                                <input value="' . $admin['pw'] . '" type="password" class="form-control1" name="pw" id="pw" placeholder="Mot de passe">
+                                <input type="password" class="form-control1" name="pw" id="pw" placeholder="Mot de passe">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="cpw" class="col-sm-2 control-label">Confirmer le mot de passe</label>
                             <div class="col-sm-8">
-                                <input value="' . $admin['cpw'] . '" type="password" class="form-control1" name="cpw" id="cpw" placeholder="Confirmation">
+                                <input type="password" class="form-control1" name="cpw" id="cpw" placeholder="Confirmation">
                             </div>
                         </div>
                         <div class="row">

@@ -274,7 +274,7 @@ class Controller
                         {
 
                             $message = htmlspecialchars($_POST['message']);
-                            $name = htmlspecialchars($_POST['message']);
+                            $name = htmlspecialchars($_POST['name']);
                             $email = strtolower(htmlspecialchars($_POST['email']));
                             $rep = "Votre message a bien été envoyé";
                             Model::addNewMessage($email, $name, $message);
@@ -301,7 +301,7 @@ class Controller
         }
     }
 
-    private  static function isemail($email)
+    public  static function isemail($email)
     {
         return preg_match('#^[a-z0-9_-]+@[a-z0-9_-]+\.[a-z0-9_-]{2,6}$#i', $_POST['email']);
     }

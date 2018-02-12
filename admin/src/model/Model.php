@@ -217,6 +217,17 @@ class Model extends ModelUser
         $reqGetAdmin->closeCursor();
         return $result;
     }
+    public static function getMessage($id)
+    {
+        $req = self::$connection->prepare('SELECT * FROM message WHERE id=:id');
+        $req->execute(array('id'=>$id));
+        $result = $req->fetch();
+        if (!empty($result['id'])&&$result['view']!=1)
+        {
+            self::setMessageView($id);
+        }
+        return $result;
+    }
     public static function getAdminAlbums()
     {
         $req = self::$connection->prepare('select * from album WHERE');
@@ -256,6 +267,27 @@ class Model extends ModelUser
         $req->execute(array('id' => $id));
         $req->closeCursor();
         self::delete('album',$id);
+    }
+
+    public static function addAdmin($email,$pw,$name,$role)
+    {
+        $reqGetAdmin = self::$connection->prepare('INSERT INTO users (email, password, role, name) VALUES(:email, :pw, :role,:name)');
+        $reqGetAdmin->execute(array(
+            'email'=>$email,
+            'pw'=>$pw,
+            'name'=>$name,
+            'role'=>$role
+        ));
+        $reqGetAdmin->closeCursor();
+    }
+
+    public static function existAdmin($email)
+    {
+        $reqGetAdmin = self::$connection->prepare('select id from users WHERE email=:email');
+        $reqGetAdmin->execute(array('email'=>$email));
+        $email=$reqGetAdmin->fetch();
+        $reqGetAdmin->closeCursor();
+        return !empty($email['id']);
     }
 
 }

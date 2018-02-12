@@ -182,8 +182,8 @@ class Model
     public static  function  addNewMessage($email,$name,$message)
     {
 
-        $topicsReq=self::$connection->prepare('Insert Into message (email, name, body, view)VALUES (:email, :name, :body, :v) ');
-        $topicsReq->execute(array("email"=>$email,"name"=>$name,"body"=>$message,"v"=>"0"));
+        $topicsReq=self::$connection->prepare('Insert Into message (email, name, body, view)VALUES (:email, :aname, :body, :v) ');
+        $topicsReq->execute(array("email"=>$email,"aname"=>$name,"body"=>$message,"v"=>"0"));
         $topicsReq->closeCursor();
 
     }

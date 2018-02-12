@@ -155,7 +155,7 @@ class View
 
         foreach ($messages as $message) {
             $notifications .= '
-            <a href="#">
+            <a href="'.Glob::DOMAIN_ADMIN.'message/'.$message['id'].'">
                <div class="user_img"><img src="' . Glob::DOMAIN . 'static/images/user1.png" alt=""></div>
                <div class="notification_desc">
                     <p style="text-transform: capitalize"><b>' . $message['name'] . '</b></p>

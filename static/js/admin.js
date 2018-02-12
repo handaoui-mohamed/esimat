@@ -14,7 +14,20 @@ function deleteTopic(id) {
         type: "POST",
         data: {id: id},
         success: function (data) {
+            data = JSON.parse(data);
             if (data.delete) $('#admin-' + id).remove();
         }
     });
 }
+
+function addNewAdmin(event) {
+    event.preventDefault();
+    $("#progress-container").show(0);
+    api.sendForm("", "#new-admin-form", "#topic-progress-bar", "#alert-message", function (data) {
+    });
+}
+
+
+$(document).ready(function () {
+    $("#new-admin-form").submit(addNewAdmin);
+});
