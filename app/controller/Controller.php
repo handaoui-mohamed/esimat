@@ -24,15 +24,18 @@ class Controller
         if (Model::$can_connect)
         {
             Model::incVisite();
-            // TRAITEMENT ... REQUETE BDD ...
+
             view\View::startPage(0,"ESIMAT | HOME",self::getUrlUser(),"noImage",['home.css','flexslider.css']);
             view\View::header();
-            // VUE SPECIFIQUE ...
-            view\View::contact();
+
+            view\Topic::topicsHome(Model::getLastTopics(3,0),Model::getLastTopics(3,1));
+            view\Home::HisoriqueHome();
+            $_SESSION['keyForm']=rand(0,1000000).time().rand(0,10000000).sha1('kklcdsdcscd'.time());
+            view\View::contact($_SESSION['keyForm']);
+            view\Home::apropos();
             view\View::endPage(['jquery.flexslider.js','index.js','jquery.countup.js']);
         }
     }
-
     /**
      * @param int $pagetype
      * @return string
@@ -58,27 +61,44 @@ class Controller
             view\View::startPage($pageType,self::getTitleByPageType($pageType),self::getUrlUser(),"noImage");
             view\View::header($pageType);
             // VUE SPECIFIQUE ...
-            $data = array(
-                array(
-                    "id" => 1,
-                    "title" => "topic 1",
-                    "type" => 1,
-                    "images" => "g1.jpg;g4.jpg;g8.jpg;g1.jpg",
-//                            explode(";", "g1.jpg;g4.jpg;g8.jpg;g1.jpg",0)[0]
-                    "body" => "Bacon ipsum dolor amet alcatra doner cupim beef ribs meatloaf ham hock, pastrami sirloin pancetta andouille venison. Tri-tip prosciutto ham hock brisket frankfurter. Ground round boudin flank biltong landjaeger tongue tenderloin prosciutto. Tenderloin short ribs ground round meatloaf landjaeger ham. Turducken picanha shoulder, frankfurter jerky prosciutto bacon cupim sirloin biltong ball tip strip steak alcatra landjaeger.",
-                    "date_post" => "12/12/2012"
-                )
-            );
-            $infosPagin=Logic::getInfosPagine($page,50);
-            view\Topic::topicsPagin($data, $pageType, $infosPagin['start'], $page, $infosPagin['end']);
-            view\View::subscription();
+            if ($pageType==10)
+            {
+                $data=Model::getEchiquienneTopics($page);
+                if (count($data)>0)
+                {
+                    $infosPagin=Logic::getInfosPagine($page,Model::getNbPagesEchiquienne());
+                    view\Topic::topicsPagin($data, $pageType, $infosPagin['start'], $page, $infosPagin['end']);
+                    $_SESSION['keyFormSub']=rand(0,20000).sha1(time()."csdcç-(").rand(5000,10000000);
+                    view\View::subscription($_SESSION['keyFormSub']);
+                }
+                else
+                {
+                    self::notFound();
+                }
+
+            }
+            else
+            {
+                $data=Model::getScientifiqueTopics($page);
+                if (count($data)>0)
+                {
+                    $infosPagin=Logic::getInfosPagine($page,Model::getNbPagesScientifique());
+                    view\Topic::topicsPagin($data, $pageType, $infosPagin['start'], $page, $infosPagin['end']);
+                    $_SESSION['keyFormSub']=rand(0,20000).sha1(time()."csdcç-(").rand(5000,10000000);
+                    view\View::subscription($_SESSION['keyFormSub']);
+                }
+                else
+                {
+                    self::notFound();
+                }
+            }
+
             view\View::endPage();
         }
     }
 
     public static function echiquienneTopics($page=1)
     {
-
         self::topics($page, 10);
     }
 
@@ -92,27 +112,20 @@ class Controller
         Model::Init();
         if (Model::$can_connect) {
             Model::incVisite();
-            $data = array(
-                "id" => 1,
-                "title" => "Article 1",
-                "type" => 1,
-                "images" => "g1.jpg;g4.jpg;g8.jpg;g1.jpg",
-                "videos" => "",
-                "body" => "Spicy jalapeno bacon ipsum dolor amet shank pork belly kevin ham salami, pancetta buffalo pastrami. Pork belly meatball pig cow pastrami short loin filet mignon pork loin bacon leberkas shoulder. Bresaola kielbasa cow ground round ball tip brisket cupim prosciutto tri-tip short loin frankfurter shoulder. Boudin tongue pork chop ground round, beef picanha pork belly tail. Tri-tip ribeye biltong, jerky fatback frankfurter pig ham hock tenderloin turkey shankle spare ribs. Porchetta tri-tip doner, meatball buffalo chicken capicola ball tip cupim. Corned beef turkey rump capicola swine, andouille biltong drumstick tongue picanha kielbasa.
-Ground round boudin swine pork belly, short ribs tri-tip corned beef spare ribs biltong salami shank filet mignon fatback jerky. Cow ground round frankfurter pork belly, meatloaf hamburger prosciutto venison beef ribs bacon shoulder shankle picanha t-bone. Short loin frankfurter burgdoggen short ribs tenderloin prosciutto. Buffalo tongue hamburger short loin salami, spare ribs prosciutto chuck beef ribs. Alcatra capicola prosciutto filet mignon short ribs meatloaf andouille tri-tip porchetta.
-Capicola ribeye bacon alcatra tail turkey beef sausage burgdoggen porchetta. Kielbasa pancetta swine, shoulder hamburger chicken corned beef leberkas picanha bresaola doner pastrami. Jowl cupim buffalo, burgdoggen prosciutto picanha t-bone meatloaf kielbasa filet mignon bacon pork loin swine bresaola pancetta. Sausage ribeye corned beef short loin.
+            $data=Model::getTopic($id);
+            if (!empty($data['id']))
+            {
+                view\View::startPage($pageType, $data['title'] ,self::getUrlUser(), "noImage",['lightcase.css']);
+                view\View::header($pageType);
+                view\Topic::topicDetails($data, $pageType);
+                view\View::endPage(['lightcase.js','jquery.events.touch.js','diapo.js']);
+            }else
+            {
+                include 'errors/404.html';
+                http_response_code(404);
+            }
 
-Bacon drumstick landjaeger, pork belly tail leberkas salami fatback venison corned beef brisket ball tip meatball shankle t-bone. Filet mignon burgdoggen swine bresaola tongue andouille. Buffalo chuck ground round ball tip filet mignon, landjaeger pastrami burgdoggen jowl swine porchetta picanha. Cupim salami jowl doner meatloaf frankfurter pork loin. Kevin pancetta pork shoulder.
-Burgdoggen picanha jowl turkey shoulder cow, beef beef ribs kevin andouille doner ham hock chuck. Brisket filet mignon tail kevin, tongue pork chop short loin pastrami boudin. Pancetta filet mignon tail chuck flank. Pastrami pork belly alcatra, beef ribs chuck ham turkey ground round. Ribeye pastrami pancetta meatball swine venison. Alcatra buffalo venison ham flank pancetta. Jowl sausage pork corned beef, pig pork loin pork chop landjaeger shankle.
-Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!",
-                "date_post" => "12/12/2012"
-            );
 
-            view\View::startPage($pageType, $data['title'] ,self::getUrlUser(), "noImage",['lightcase.css']);
-            view\View::header($pageType);
-
-            view\Topic::topicDetails($data, $pageType);
-            view\View::endPage(['lightcase.js','jquery.events.touch.js','diapo.js']);
         }
     }
 
@@ -131,39 +144,25 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
         if (Model::$can_connect)
         {
             // TRAITEMENT ... REQUETE BDD ...
+            $type=($pageType==12)?1:0;
             Model::incVisite();
             view\View::startPage($pageType,self::getTitleByPageType($pageType),self::getUrlUser(),"noImage");
             view\View::header($pageType);
             // VUE SPECIFIQUE ...
-            $data = array(
-                array(
-                    "id" => 1,
-                    "title" => "Cours ANAD",
-                    "type" => 1,
-                    "image" => "g1.jpg",
-                    "source" => "file1.pdf",
-                    "date_post" => "12/12/2012"
-                ),
-                array(
-                    "id" => 1,
-                    "title" => "Spotify",
-                    "type" => 1,
-                    "image" => "g2.jpg",
-                    "source" => "SpotifySetup.exe",
-                    "date_post" => "12/12/2012"
-                ),
-                array(
-                    "id" => 1,
-                    "title" => "Spotify no img",
-                    "type" => 1,
-                    "image" => "",
-                    "source" => "SpotifySetup.exe",
-                    "date_post" => "12/12/2012"
-                )
-            );
-            $infosPagin=Logic::getInfosPagine($page,50);
-            view\Download::downloadsPagin($data, $pageType,$infosPagin['start'], $page, $infosPagin['end']);
-            view\View::subscription();
+
+            $data=Model::getDownloads($page,$type);
+            if (!empty($data[0]))
+            {
+                $infosPagin=Logic::getInfosPagine($page,Model::getNbPagesDownload($type));
+                view\Download::downloadsPagin($data, $pageType,$infosPagin['start'], $page, $infosPagin['end']);
+                $_SESSION['keyFormSub']=rand(0,20000).sha1(time()."csdcç-(").rand(5000,10000000);
+                view\View::subscription($_SESSION['keyFormSub']);
+            }
+            else
+            {
+                self::notFound();
+            }
+
             view\View::endPage();
         }
     }
@@ -185,17 +184,20 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
             view\View::startPage(30, "ESIMAT | Album", self::getUrlUser(), "noImage");
             view\View::header(30);
 
-            $data = array(
-                array("id" => 1, "title" => "album 1", "image" => "g1.jpg", "description" => "bla bla bla", "date_post" => "2018-11-10"),
-                array("id" => 2, "title" => "album 8", "image" => "g1.jpg", "description" => "bla bla bla", "date_post" => "2018-06-10"),
-                array("id" => 3, "title" => "album 2", "image" => "g1.jpg", "description" => "bla bla bla", "date_post" => "2017-05-1"),
-                array("id" => 1, "title" => "album 3", "image" => "g1.jpg", "description" => "bla bla bla", "date_post" => "2018-01-10"),
-                array("id" => 2, "title" => "album 4", "image" => "g1.jpg", "description" => "bla bla bla  blabla bla blabla bla b blabla bla blabla bla b blabla bla blabla bla b", "date_post" => "12/12/2012"),
-                array("id" => 3, "title" => "album 6", "image" => "g1.jpg", "description" => "bla blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla bla", "date_post" => "12/12/2012")
-            );
-            $infosPagin=Logic::getInfosPagine($page,3);
-            view\Album::albumsPagin($data,$infosPagin['start'], $page, $infosPagin['end']);
-            view\View::subscription();
+
+            $data=Model::getAlbums((int)$page);
+            if (!empty($data[0]))
+            {
+                $infosPagin=Logic::getInfosPagine((int)$page,Model::getNbPagesAlbums());
+                view\Album::albumsPagin($data,$infosPagin['start'], $page, $infosPagin['end']);
+                $_SESSION['keyFormSub']=rand(0,20000).sha1(time()."csdcç-(").rand(5000,10000000);
+                view\View::subscription($_SESSION['keyFormSub']);
+            }
+            else
+            {
+                self::notFound();
+            }
+
             view\View::endPage();
         }
     }
@@ -205,27 +207,144 @@ Does your lorem ipsum text long for something a little meatier? Give our generat
         Model::Init();
         if (Model::$can_connect) {
             Model::incVisite();
-            view\View::startPage(31, "ESIMAT | Album", self::getUrlUser(), "noImage",['lightcase.css']);
-            view\View::header(31);
 
-            $data = array(array("image"=>"g4.jpg","title"=>"Titre 1"),
-                array("image"=>"g4.jpg","title"=>"Titre 3"),
-                array("image"=>"g8.jpg","title"=>"Titre 4"),
-                array("image"=>"g4.jpg","title"=>"Titre 4"),
-            array("image"=>"g4.jpg","title"=>"Titre 3"),
-                array("image"=>"g8.jpg","title"=>"Titre 4"),
-                array("image"=>"g4.jpg","title"=>"Titre 4") ,
-            array("image"=>"g4.jpg","title"=>"Titre 3"),
-                array("image"=>"g8.jpg","title"=>"Titre 4"),
-                array("image"=>"g4.jpg","title"=>"Titre 4")
-                );
-            view\Album::imagesAlbum($data,"le premier evenment",$id,"Cette evenement est ...");
-            view\View::endPage(['lightcase.js','jquery.events.touch.js','diapo.js']);
+            $data =Model::getAlbumImages((int)$id);
+            if (!empty($data[0]))
+            {
+                $album=Model::getAlbum($id);
+                if (!empty($album['title']))
+                {
+                    $title=$album['title'];
+                }
+                else{$title="";}
+
+                view\View::startPage(31, "ESIMAT | Album", self::getUrlUser(), "noImage",['lightcase.css']);
+                view\View::header(31);
+                view\Album::imagesAlbum($data,
+                    $title,
+                    $id,
+                    !empty($album['date_post'])?$album['date_post']:'inconnue',
+                    !empty($album['description'])?$album['description']:'');
+                view\View::endPage(['lightcase.js','jquery.events.touch.js','diapo.js']);
+
+            }
+            else
+            {
+                $album=Model::getAlbum((int)$id);
+                if (!empty($album['id']))
+                {
+                    view\View::startPage(31, "ESIMAT | Album", self::getUrlUser(), "noImage",['lightcase.css']);
+                    view\View::header(31);
+                    view\Album::vide();
+                    view\View::endPage();
+                }
+                else
+                {
+                    http_response_code(404);
+                    include 'errors/404.html';
+                }
+
+
+            }
+
+
         }
     }
 
 
+    private  static function notFound()
+    {
+        view\View::notFound();
+        http_response_code(404);
+    }
 
+    public  static  function  contact()
+    {
+        Model::Init();
+        if (Model::$can_connect) {
+            view\View::startPage(-1, "ESIMAT | Contact", self::getUrlUser(), "noImage");
+            view\View::header(-1);
+            if (!empty($_POST['email']) && !empty($_POST['name']) && !empty($_POST['message'])) {
+
+                if (!empty($_POST['key']) && !empty($_SESSION['keyForm'])) {
+
+                    if ($_POST['key'] == $_SESSION['keyForm']) {
+
+                        if (self::isemail( $_POST['email']))
+                        {
+
+                            $message = htmlspecialchars($_POST['message']);
+                            $name = htmlspecialchars($_POST['message']);
+                            $email = strtolower(htmlspecialchars($_POST['email']));
+                            $rep = "Votre message a bien été envoyé";
+                            Model::addNewMessage($email, $name, $message);
+                            $rep = "<span>Votre message a bien été envoyé</span>";
+
+                        } else {
+                            $rep = "Informations non valides";
+                        }
+
+                    } else {
+
+                        $rep = "Votre message a bien été envoyé";
+                    }
+                } else {
+
+                    $rep = "Votre message a bien été envoyé";
+
+                }
+            } else {
+                $rep = "Informations non valides";
+            }
+            view\View::showMessage($rep);
+            view\View::endPage();
+        }
+    }
+
+    private  static function isemail($email)
+    {
+        return preg_match('#^[a-z0-9_-]+@[a-z0-9_-]+\.[a-z0-9_-]{2,6}$#i', $_POST['email']);
+    }
+
+    public  static  function  subscription()
+    {
+        view\View::startPage(-1, "ESIMAT | Abonnement", self::getUrlUser(), "noImage");
+        view\View::header(-1);
+        $message="";
+        Model::Init();
+        if (Model::$can_connect) {
+            if (!empty($_POST['email'])) {
+
+                if (!empty($_POST['key']) && !empty($_SESSION['keyFormSub'])) {
+
+                    if ($_POST['key'] == $_SESSION['keyFormSub']) {
+                        if (self::isemail($_POST['email'])) {
+                            $email = strtolower(htmlspecialchars($_POST['email']));
+                            $exsiteSub = Model::getSubByEmail($email);
+                            if (empty($exsiteSub['email'])) {
+                                Model::addSub($email);
+                                $message = "Vous êtes abonné.";
+                            } else {
+                                $message = "Vous êtes déjà abonné à ESIMAT";
+                        }
+
+                        } else {
+                            $message = "Adress email non valide.";
+                        }
+
+                    } else {
+                        $message = "Information non valide.";
+                    }
+                } else {
+                    $message = "Information non valide.";
+                }
+            } else {
+                $message = "Information non valide.";
+            }
+            view\View::showMessage($message);
+            view\View::endPage();
+        }
+    }
 //remarque
 /*
  * on peut mettre le header dans la metthod start_page dans (class use app\view\view) mais pour

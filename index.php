@@ -1,7 +1,8 @@
 <?php
-
+session_start();
 require'vendor/autoload.php';
 use KikimR\router\Router;
+
 
 
 Router::init();// Middlewares ou fonctions toujours éxécutées
@@ -35,6 +36,10 @@ Router::get("albums/[page]","app\\controller\\Controller::albums")
     ->addPath("albums/");
 Router::get("album/[id]","app\\controller\\Controller::album")
     ->with("id",'[1-9][0-9]{0,9}');
+
+Router::post("contact","app\\controller\\Controller::contact");
+Router::post("subscription","app\\controller\\Controller::subscription");
+
 
 
 

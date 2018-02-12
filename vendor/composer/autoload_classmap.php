@@ -6,20 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'KikimR\\router\\Router' => $vendorDir . '/KikimR/router/router.php',
-    'KikimR\\router\\RouterException' => $vendorDir . '/KikimR/router/routerexception.php',
-    'KikimR\\router\\Validate' => $vendorDir . '/KikimR/router/Validate.php',
-    'KikimR\\router\\route' => $vendorDir . '/KikimR/router/route.php',
-    'admin\\src\\controller\\Connexion' => $baseDir . '/admin/src/controller/connexion.php',
-    'admin\\src\\controller\\Controller' => $baseDir . '/admin/src/controller/Controller.php',
-    'admin\\src\\controller\\ControllerAutontification' => $baseDir . '/admin/src/controller/ControllerAutontification.php',
-    'admin\\src\\controller\\bindRouter' => $baseDir . '/admin/src/controller/bindRouter.php',
-    'admin\\src\\model\\Model' => $baseDir . '/admin/src/model/Model.php',
-    'admin\\src\\view\\Connexion' => $baseDir . '/admin/src/view/connexion.php',
-    'admin\\src\\view\\View' => $baseDir . '/admin/src/view/view.php',
-    'app\\Glob' => $baseDir . '/app/Glob.php',
-    'app\\controller\\Controller' => $baseDir . '/app/controller/Controller.php',
-    'app\\model\\Model' => $baseDir . '/app/model/Model.php',
-    'app\\view\\Album' => $baseDir . '/app/view/Album.php',
-    'app\\view\\View' => $baseDir . '/app/view/View.php',
 );

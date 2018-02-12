@@ -18,10 +18,10 @@ private static function AlbumPaginPresentation($album)
 {
  return '<div class="col-md-4 list-grid" style="margin-bottom: 20px;">
 						<div class="list-img">
-							<img src="'.Glob::DOMAIN.self::$dirimgcoveralbum.$album['image'].'" class="img-responsive" alt="Une image de l\'album '.$album['title'].'">
+							<img src="'.Glob::DOMAIN.'static/images/logo.png" class="img-responsive" alt="'.$album['title'].'">
 							<div class="textbox"></div>
 						</div>						
-						<h4>'.$album['title'].'</h4>
+						<h4>Album: '.$album['title'].'</h4>
 						<p>'.View::date($album['date_post']).'<a href="'.Glob::DOMAIN.'album/'.$album['id'].'" class="btn btn-primary" style="float: right">Visualiser</a></p>
 						<p style="text-overflow: ellipsis;height:50px;max-height: 50px;overflow: hidden">'.$album['description'].'</p>
 					</div>				
@@ -55,14 +55,14 @@ public static function albumsPagin($albums,$start,$curpage,$end,$pagin=true)
     {
 
         $dirimgalbummin=Glob::DOMAIN.self::$dirimgcoveralbum.'min/';
-        $dirimgalbumorigin=Glob::DOMAIN.self::$dirimgcoveralbum.'origin/';
+        $dirimgalbumorigin=Glob::DOMAIN.self::$dirimgcoveralbum;
      return '<div class="w3_agile_portfolio_grid1">
 						<a href="'.$dirimgalbumorigin.$image_album['image'].'" class="showcase" data-rel="lightcase:myCollection:slideshow" title="'.$image_album['title'].'">
 							<div class="agileits_portfolio_sub_grid agileits_w3layouts_team_grid">	
 								<div class="w3layouts_port_head">
 									<h3>'.$image_album['title'].'</h3>
 								</div>
-								<img src="'.$dirimgalbummin.$image_album['image'].'" alt="'.$image_album['title'].'" class="img-responsive" />
+								<img src="'.$dirimgalbummin.$image_album['imagemin'].'" alt="'.$image_album['title'].'" class="img-responsive" />
 							</div>
 						</a>
 					</div>';
@@ -72,7 +72,6 @@ public static function albumsPagin($albums,$start,$curpage,$end,$pagin=true)
     public static function imagesAlbum($images,$title,$id,$date,$description="")
     {
       $nb_images=count($images);
-
       echo '
             <div class="banner-bottom" style="padding-top: 5px;">
             <div class="container">
@@ -80,6 +79,7 @@ public static function albumsPagin($albums,$start,$curpage,$end,$pagin=true)
                 <div class="agileits_heading_section">
                     <h2 class="agileinfo_header">Album : '.$title.'</h2>
                 <p class="agileits_dummy_para">'.$description.'</p>
+                <p class="agileits_dummy_para"><span class="fa fa-calendar"></span> '.$date.'</p>
                 </div>
 			<div class="w3ls_portfolio_grids">
 			<div class="col-md-4 agileinfo_portfolio_grid">';
@@ -96,6 +96,11 @@ public static function albumsPagin($albums,$start,$curpage,$end,$pagin=true)
 
       echo '</div></div></div></div>';
 
+    }
+
+    public static function vide()
+    {
+        echo '<br><h3 class="agileinfo_header"><span class="fa fa-bookmark-o"></span>Cette album est vide.</h3><br>';
     }
 
 }

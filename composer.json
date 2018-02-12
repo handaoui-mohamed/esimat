@@ -8,7 +8,7 @@
             "email": "da_oukhenniche@esi.dz"
         }
     ],
-        "autoload":{"psr-4":{"KikimR\\":"vendor/KikimR/","app\\":"app","admin\\":"admin"}},
+        "autoload":{"psr-4":{"KikimR\\":"vendor/KikimR/","app\\":"app/","admin\\":"admin/"}},
     "require": {}
 
 }

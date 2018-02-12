@@ -33,31 +33,11 @@ class ComposerStaticInite33a4ab107b7acf86f61fac81117945b
         ),
     );
 
-    public static $classMap = array (
-        'KikimR\\router\\Router' => __DIR__ . '/..' . '/KikimR/router/router.php',
-        'KikimR\\router\\RouterException' => __DIR__ . '/..' . '/KikimR/router/routerexception.php',
-        'KikimR\\router\\Validate' => __DIR__ . '/..' . '/KikimR/router/Validate.php',
-        'KikimR\\router\\route' => __DIR__ . '/..' . '/KikimR/router/route.php',
-        'admin\\src\\controller\\Connexion' => __DIR__ . '/../..' . '/admin/src/controller/connexion.php',
-        'admin\\src\\controller\\Controller' => __DIR__ . '/../..' . '/admin/src/controller/Controller.php',
-        'admin\\src\\controller\\ControllerAutontification' => __DIR__ . '/../..' . '/admin/src/controller/ControllerAutontification.php',
-        'admin\\src\\controller\\bindRouter' => __DIR__ . '/../..' . '/admin/src/controller/bindRouter.php',
-        'admin\\src\\model\\Model' => __DIR__ . '/../..' . '/admin/src/model/Model.php',
-        'admin\\src\\view\\Connexion' => __DIR__ . '/../..' . '/admin/src/view/connexion.php',
-        'admin\\src\\view\\View' => __DIR__ . '/../..' . '/admin/src/view/view.php',
-        'app\\Glob' => __DIR__ . '/../..' . '/app/Glob.php',
-        'app\\controller\\Controller' => __DIR__ . '/../..' . '/app/controller/Controller.php',
-        'app\\model\\Model' => __DIR__ . '/../..' . '/app/model/Model.php',
-        'app\\view\\Album' => __DIR__ . '/../..' . '/app/view/Album.php',
-        'app\\view\\View' => __DIR__ . '/../..' . '/app/view/View.php',
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInite33a4ab107b7acf86f61fac81117945b::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInite33a4ab107b7acf86f61fac81117945b::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInite33a4ab107b7acf86f61fac81117945b::$classMap;
 
         }, null, ClassLoader::class);
     }

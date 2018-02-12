@@ -384,7 +384,11 @@ class UploadData
                                                 if ($result['img'] == 3) {
                                                     $codeerrors = 3;
                                                 } else {
-                                                    $result['img'] = $result['img']['img'];
+                                                    if (!empty($result['img'] ))
+                                                    {
+                                                        unlink('../downloads/images/'.$result['img']['img']);
+                                                    }
+                                                    $result['img'] = $result['img']['imgmin'];
                                                 }
 
                                             } else {

@@ -14,60 +14,60 @@ $middleware= [["fn"=>"admin\\src\\controller\\ControllerAutontification::ditecte
 
 Router::init($middleware); //midelware de session et d'autorisation
 /*******Conenxion *******/
-Router::get("login","admin\\src\\controller\\connexion::login" );
-Router::post("login","admin\\src\\controller\\connexion::postLogin");
-Router::get("logout","admin\\src\\controller\\connexion::logout");
+Router::get("login","admin\\src\\controller\\Connexion::login" );
+Router::post("login","admin\\src\\controller\\Connexion::postLogin");
+Router::get("logout","admin\\src\\controller\\Connexion::logout");
 
 /***********************************    Admin       ************/
 
-Router::get("home","admin\\src\\controller\\bindRouter::Home");
+Router::get("home","admin\\src\\controller\\BindRouter::Home");
 
 /****Get form ****/
-Router::get("topic","admin\\src\\controller\\bindRouter::formPostTopic","post");
-Router::get("album","admin\\src\\controller\\bindRouter::formPostAlbum","post");
-Router::get("file","admin\\src\\controller\\bindRouter::formPostFile","post");
-/**/Router::get("admin","admin\\src\\controller\\bindRouter::formPostAdmin","post");
+Router::get("topic","admin\\src\\controller\\BindRouter::formPostTopic","post");
+Router::get("album","admin\\src\\controller\\BindRouter::formPostAlbum","post");
+Router::get("file","admin\\src\\controller\\BindRouter::formPostFile","post");
+/**/Router::get("admin","admin\\src\\controller\\BindRouter::formPostAdmin","post");
 
 /**get*/
-/**/Router::get("message/[id]","admin\\src\\controller\\bindRouter::getMessage","");
+/**/Router::get("message/[id]","admin\\src\\controller\\BindRouter::getMessage","");
 /****post form ****/
 
-Router::post("topic","admin\\src\\controller\\bindRouter::postTopic","post");
-Router::post("album","admin\\src\\controller\\bindRouter::postAlbum","post");
-Router::post("file","admin\\src\\controller\\bindRouter::postFile","post");
-/**/Router::post("admin","admin\\src\\controller\\bindRouter::postAdmin","post");
+Router::post("topic","admin\\src\\controller\\BindRouter::postTopic","post");
+Router::post("album","admin\\src\\controller\\BindRouter::postAlbum","post");
+Router::post("file","admin\\src\\controller\\BindRouter::postFile","post");
+/**/Router::post("admin","admin\\src\\controller\\BindRouter::postAdmin","post");
 
 /******show list******/
 
-Router::get("topics","admin\\src\\controller\\bindRouter::listTopics","list");
-Router::get("albums","admin\\src\\controller\\bindRouter::listAlbums","list");
-Router::get("files","admin\\src\\controller\\bindRouter::listFiles","list");
-/**/Router::get("subs","admin\\src\\controller\\bindRouter::listSubs","list");
-/**/Router::get("messages","admin\\src\\controller\\bindRouter::listMessages","list");
+Router::get("topics","admin\\src\\controller\\BindRouter::listTopics","list");
+Router::get("albums","admin\\src\\controller\\BindRouter::listAlbums","list");
+Router::get("files","admin\\src\\controller\\BindRouter::listFiles","list");
+/**/Router::get("subs","admin\\src\\controller\\BindRouter::listSubs","list");
+/**/Router::get("messages","admin\\src\\controller\\BindRouter::listMessages","list");
 
 /******delete******/
 
-Router::post("topic","admin\\src\\controller\\bindRouter::deleteTopic","delete");
-Router::post("album","admin\\src\\controller\\bindRouter::deleteAlbum","delete");
-Router::post("file","admin\\src\\controller\\bindRouter::deleteFile","delete");
-Router::post("message","admin\\src\\controller\\bindRouter::deleteMessage","delete");
-/**/Router::post("sub","admin\\src\\controller\\bindRouter::deleteSub","delete");
-/**/Router::post("admin","admin\\src\\controller\\bindRouter::deleteAdmin","delete");
+Router::post("topic","admin\\src\\controller\\BindRouter::deleteTopic","delete");
+Router::post("album","admin\\src\\controller\\BindRouter::deleteAlbum","delete");
+Router::post("file","admin\\src\\controller\\BindRouter::deleteFile","delete");
+Router::post("message","admin\\src\\controller\\BindRouter::deleteMessage","delete");
+/**/Router::post("sub","admin\\src\\controller\\BindRouter::deleteSub","delete");
+/**/Router::post("admin","admin\\src\\controller\\BindRouter::deleteAdmin","delete");
 
 /******update******/
-/**/Router::get("topic/[id]","admin\\src\\controller\\bindRouter::formUpdateTopic","update");
-/**/Router::post("topic/[id]","admin\\src\\controller\\bindRouter::updateTopic","update");
-/**/Router::get("album/[id]","admin\\src\\controller\\bindRouter::formUpdateAlbum","update");
-/**/Router::post("album/[id]","admin\\src\\controller\\bindRouter::updateAlbum","update");
-/**/Router::post("album/image/[id]","admin\\src\\controller\\bindRouter::deleteImage","delete");
-/**/Router::get("file/[id]","admin\\src\\controller\\bindRouter::formUpdateFile","update");
-/**/Router::post("file/[id]","admin\\src\\controller\\bindRouter::updateFile","update");
+/**/Router::get("topic/[id]","admin\\src\\controller\\BindRouter::formUpdateTopic","update");
+/**/Router::post("topic/[id]","admin\\src\\controller\\BindRouter::updateTopic","update");
+/**/Router::get("album/[id]","admin\\src\\controller\\BindRouter::formUpdateAlbum","update");
+/**/Router::post("album/[id]","admin\\src\\controller\\BindRouter::updateAlbum","update");
+/**/Router::post("album/image/[id]","admin\\src\\controller\\BindRouter::deleteImage","delete");
+/**/Router::get("file/[id]","admin\\src\\controller\\BindRouter::formUpdateFile","update");
+/**/Router::post("file/[id]","admin\\src\\controller\\BindRouter::updateFile","update");
 
 
 
 
 /**********root*************/
-Router::get("admins","admin\\src\\controller\\bindRouter::showAdmins","root");
+Router::get("admins","admin\\src\\controller\\BindRouter::showAdmins","root");
 Router::when(404,'../errors/404.html');
 
 Router::run();

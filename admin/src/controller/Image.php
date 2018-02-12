@@ -26,9 +26,9 @@ class Image
     }
     function __construct()
     {
-        $this->width_resize=200;
-        $this->height_resize=170;
-        $this->resizeMinQuality=64;
+        $this->width_resize=310;
+        $this->height_resize=250;
+        $this->resizeMinQuality=80;
 
     }
 
@@ -248,7 +248,7 @@ class Image
                 }
 
                 $this->writeText($link,self::$path.$image_name,"esi-mat.com");
-                $this->resize_image(self::$path.$image_name.".jpg",self::$path."min/min_".$image_min_name,$this->width_resize,$this->height_resize,$this->resizeMinQuality,$this->type=="J");
+                $this->resize_image(self::$path.$image_name.".jpg",self::$path."min/".$image_min_name,$this->width_resize,$this->height_resize,$this->resizeMinQuality,$this->type=="J");
                 $finalExt="jpg";
             }
             else
@@ -256,7 +256,7 @@ class Image
                 move_uploaded_file($src,self::$path.$image_name.".gif");
                 $this->compress_image(self::$path.$image_name.".gif",self::$path.$image_name,$qualityCompression);
                 $this->writeText(self::$path.$image_name.".jpg",self::$path.$image_name,"fb.com/DevWebAndProg");
-                $this->resize_image(self::$path.$image_name.".jpg",self::$path."min/min_".$image_min_name,$this->width_resize,$this->height_resize,$this->resizeMinQuality,$this->type=="J");
+                $this->resize_image(self::$path.$image_name.".jpg",self::$path."min/".$image_min_name,$this->width_resize,$this->height_resize,$this->resizeMinQuality,$this->type=="J");
                 unlink(self::$path.$image_name.".jpg");
                 $finalExt="gif";
             }

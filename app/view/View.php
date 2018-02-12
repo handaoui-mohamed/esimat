@@ -49,16 +49,16 @@ class View
 
         return'<!--SeO part 1--> 
               <meta property="og:type" content=""/>
-              <meta property="og:title" content="Le club '.$title.'">
+              <meta property="og:title" content="'.$title.'">
               <meta property="og:url" content="'.$url.'">
               <meta property="og:image" content="'.$url_img.'">
-              <meta property="og:description" content="Description sur cette page"/>
+              <meta property="og:description" content="Le club esimat"/>
               <meta property="og:site_name" content="ESIMAT">
               <meta property="fb:pages" content=""> 
               <!--twitter-->   
               <meta name="twitter:card" content="summary">
-              <meta name="twitter:creator" content="nom de site">
-              <meta name="twitter:description" content="Description sur cette page ">
+              <meta name="twitter:creator" content="esi-mat.com">
+              <meta name="twitter:description" content="esimat club">
               <meta name="twitter:domain" content="esimat.com">
               <meta name="twitter:image" content="'.$url_img.'">
               <meta name="twitter:site" content="ESIMAT">
@@ -89,6 +89,7 @@ class View
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon"  href="'.Glob::DOMAIN.'favicon/logo.ico">
 '.self::genSEO($title,$pageType,$url,$url_img,$state).'
 <link href="'.$StaticFilesDirLink.'css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="'.$StaticFilesDirLink.'css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -165,47 +166,29 @@ class View
 					<div class="flexslider">
 						<ul class="slides">
 							<li>
-								<div class="agileits_w3layouts_banner_info">
-									 <h3>Esimat</h3>
-                  <p>E1</p>
-									<div class="agileits_w3layouts_banner_info_pos">
-										<ul>
-											<li><a href="#">Facebook</a><label></label></li>
-											<li><a href="#">Twitter</a><label></label></li>
-											<li><a href="#">Instagram</a><label></label></li>
-											<li><a href="#">VK</a><label></label></li>
-										</ul>
-									</div>
+								<div class="agileits_w3layouts_banner_info" style="margin-top: 5px;">
+								<h3>Esimat - Le site est en maintenance</h3>
+									<p style="text-align: center;" >
+									<img src="static/images/logoP.png"  style="border-radius: 100% 100%;max-width: 100%;display: inline-block;margin: auto;">
+									</p>
+									<p style="font-size: 2em;">Club des echecs</p>
 								</div>
 							</li>
 							<li>
-								<div class="agileits_w3layouts_banner_info">
-									 <h3>Esimat</h3>
-                  <p>2</p>
-									<div class="agileits_w3layouts_banner_info_pos">
-										<ul>
-											<li><a href="#">Instagram</a><label></label></li>
-											<li><a href="#">VK</a><label></label></li>
-											<li><a href="#">Facebook</a><label></label></li>
-											<li><a href="#">Twitter</a><label></label></li>
-										</ul>
-									</div>
+								<div class="agileits_w3layouts_banner_info" style="margin-top: 20px;">
+				                <h3 style="text-transform: uppercase">troisième édition de la conference débat sur le chess computing</h3><br>
 								</div>
+								<p style="text-align: center;">
+								<img src="static/images/conf3.png" class="ka" style="max-width: 100%;display: inline-block;margin: auto;max-height: 300px;">
+								</p>
 							</li>
 							<li>
-								<div class="agileits_w3layouts_banner_info">
-									<h3>Esimat</h3>
-									<p>3</p>
-									<div class="agileits_w3layouts_banner_info_pos">
-										<ul>
-											<li><a href="#">Twitter</a><label></label></li>
-											<li><a href="#">Instagram</a><label></label></li>
-											<li><a href="#">Facebook</a><label></label></li>
-											<li><a href="#">VK</a><label></label></li>
-											<div class="clearfix"> </div>
-										</ul>
-									</div>
+								<div class="agileits_w3layouts_banner_info" style="margin-top: 20px;">
+				                <h3 style="text-transform: capitalize">deuxième conference sur le chess computing 2016</h3><br>
 								</div>
+									<p style="text-align: center;">
+									<img src="static/images/conf2.jpg" class="ka" style="max-width: 100%;display: inline-block;margin: auto;max-height: 300px;">
+									</p>
 							</li>
 						</ul>
 					</div>
@@ -225,7 +208,7 @@ class View
 					</button>
 					
 					<h1>
-					<a class="navbar-brand" href="'.Glob::DOMAIN.'"><img src="'.Glob::DOMAIN.self::$staticFilesDir.'images/logo_.png" style="display: inline-block;width: 90px;height: 90px;border-radius: 100% 100%;"> <span> ESI </span>MAT</a></h1>
+					<a class="navbar-brand" href="'.Glob::DOMAIN.'"><img src="'.Glob::DOMAIN.self::$staticFilesDir.'images/logo_.png" style="display: inline-block;width: 90px;height: 90px;border-radius: 100% 100%;margin-top: -12px;"> <span> ESI </span>MAT</a></h1>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
@@ -347,7 +330,7 @@ return '<div style="text-align: center;margin-top: 10px;"><br><br><ul class="pag
       return $s;
   }
 
-    public static function subscription()
+    public static function subscription($key)
     {
         echo
             '<div class="newsletter">
@@ -356,8 +339,9 @@ return '<div style="text-align: center;margin-top: 10px;"><br><br><ul class="pag
                         <h3>Abonnez-vous !</h3>
                     </div>
                     <div class="agileinfo_newsletter_right">
-                        <form action="#" method="post">
-                            <input class="email" type="email" placeholder="Votre Email..." required>
+                        <form action="'.Glob::DOMAIN.'subscription" method="post">
+                            <input class="email" name="email" type="email" placeholder="Votre Email..." required>
+                            <input type="hidden" name="key" value="'.$key.'">
                             <input type="submit" value="S\'abonner">
                         </form>
                     </div>
@@ -366,23 +350,24 @@ return '<div style="text-align: center;margin-top: 10px;"><br><br><ul class="pag
             </div>';
     }
 
-    static public function contact()
+    static public function contact($key)
     {
-        echo '<div class="footer" id="contact">
-		<div class="container">
-			<h2 class="agileinfo_header">Contact</h2>
-			<p class="agileits_dummy_para">Contacter le club ESIMAT ...</p>
+
+
+        echo '<div class="footer" id="contact" style="background:#111;">
+		<div class="container" >
+			<h2 class="agileinfo_header" style="color: white">Contact</h2>
+			<p class="agileits_dummy_para" style="color: white">Contacter le club ESIMAT ...</p>
 				<div class="agileits_mail_grids">
 				<div class="col-md-7 agileits_mail_grid_left">
-					<form action="#" method="post">
-						<h4>Votre nom *</h4>
-						<input type="text" name="Name" placeholder="Name..." required="">
+					<form action="contact" method="post">
+						<h4 >Votre nom *</h4>
+						<input type="text" name="name" placeholder="Votre nom" required>
 						<h4>Adress email*</h4>
-						<input type="email" name="Email" placeholder="Email..." required="">
-						<h4>Numero de téléphone</h4>
-						<input type="text" name="Phone" placeholder="Phone...">
+						<input type="email" name="email" placeholder="Votre adresse email" required>
 						<h4>Message *</h4>
-						<textarea placeholder="Message..." name="Message" required=""></textarea>
+						<textarea placeholder="Votre Message..." name="message" required></textarea>
+						<input type="hidden" value="'.$key.'" name="key">
 						<input type="submit" value="Envoyer">
 					</form>
 				</div>
@@ -390,12 +375,11 @@ return '<div style="text-align: center;margin-top: 10px;"><br><br><ul class="pag
 					<div class="agile-map">
 						<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d865.839200036845!2d3.1711340786054616!3d36.7051485466274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sfr!2sdz!4v1514384908392"  allowfullscreen></iframe>
 					</div>
-					<div class="left-agileits">
-						<h3>Adresse</h3>
-							<ul>
-								<li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> ESI</li>
-								<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">info@example.com</a></li>
-								<li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> </li>
+					<div class="left-agileits" id="wh" >
+						<h3 >Adresse</h3>
+							<ul style="color: white;">
+								<li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> BP 68M OUED SMAR, 16309, EL HARRACH، 16309، الجزائر</li>
+								<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:contact@esi-mat.com" style="color: white;">contact@esi-mat.com</a></li>
 							</ul>
 					</div>
 				</div>
@@ -409,6 +393,16 @@ return '<div style="text-align: center;margin-top: 10px;"><br><br><ul class="pag
  {
      return'<i class="fa fa-calendar" aria-hidden="true"></i> <span title="Date de publication ">'.Glob::getDate($date).'</span>';
  }
+
+ public static function notFound()
+{
+    echo '<br><h3 class="agileinfo_header"><span class="fa fa-bookmark-o"></span>Not found.</h3><br>';
+}
+
+    public static function showMessage($rep)
+    {
+        echo '<br><br><h3 class="agileinfo_header"><span class="fa fa-bookmark-o"></span>'.$rep.'</h3><br><br>';
+    }
 
 }
 
