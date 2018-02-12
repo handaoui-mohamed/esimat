@@ -8,6 +8,7 @@
 
 namespace admin\src\view;
 
+use app\Glob;
 
 class Album
 {
@@ -33,8 +34,8 @@ class Album
                 'images' => [],
             );
         }
-        echo '
-        <div style="padding:20px">
+        echo
+        '<div style="padding:20px">
             <h3 class="blank1">'.($isNew ? 'Ajouter un nouveau album' : 'Modifier l\'album').'</h3>
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
@@ -82,15 +83,14 @@ class Album
                     </form>
                 </div>
             </div>
-        </div>
-        ';
+        </div>';
     }
 
     public static function showAlbums($albums = [])
     {
-        echo '
-        <div style="padding:20px">
-            <h3 class="blank1">Liste des articles</h3>
+        echo
+        '<div style="padding:20px">
+            <h3 class="blank1">Liste des album</h3>
             <div class="xs tabls">
                 <div class="bs-example4" data-example-id="contextual-table">
                     <table class="table">
@@ -106,8 +106,7 @@ class Album
                         <tbody>' . self::getAlbumsRows($albums) . '</tbody>
                     </table>
                 </div>
-            </div>
-        ';
+            </div>';
     }
 
     private static function getAlbumsRows($albums)
@@ -117,14 +116,14 @@ class Album
 
         for ($i = 0; $i < $nbAlbums; $i++) {
             $album = $albums[$i];
-            $content .= '
-            <tr class="' . ($i % 2 == 0 ? 'active' : '') . '" id="album-' . $album['id'] . '">
+            $content .=
+            '<tr  onclick="navigateTo(\''.Glob::DOMAIN_ADMIN.'album/'.$album['id'].'\')" class="clickabale-row ' . ($i % 2 == 0 ? 'active' : '') . '" id="album-' . $album['id'] . '">
                 <th scope="row">' . $album['id'] . '</th>
                 <td>' . $album['date_post'] . '</td>
                 <td>' . $album['title'] . '</td>
                 <td>' . $album['description'] . '</td>
                 <td>
-                    <a href="' . Glob::DOMAIN_ADMIN . 'update/album/' . $album['id'] . '">
+                    <a id="edit-' . $album['id'] . '" href="' . Glob::DOMAIN_ADMIN . 'update/album/' . $album['id'] . '">
                         <i class="fa fa-pencil action-icon edit-action" ></i>
                     </a>
                     <a id="delete-' . $album['id'] . '">
@@ -132,8 +131,7 @@ class Album
                     </a>
                     <div class="confirmation-buttons"></div>
                 </td>
-            </tr>
-            ';
+            </tr>';
         }
         return $content;
     }

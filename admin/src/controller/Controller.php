@@ -116,9 +116,8 @@ class Controller
         Model::init();
         if (Model::$can_connect) {
             view\View::startPage(20, 'Liste des albums', [], $_SESSION, Model::getNotViewMessages());
-            $albums = array();
-            view\Album::showAlbums($albums);
-            view\View::endPage(['kikim_progress.js', 'api.js', 'album.js']);
+            view\Album::showAlbums(Model::getAdminAlbums());
+            view\View::endPage(['album.js']);
         }
     }
 
@@ -127,9 +126,8 @@ class Controller
         Model::init();
         if (Model::$can_connect) {
             view\View::startPage(30, 'Liste des fichiers', [], $_SESSION, Model::getNotViewMessages());
-            $files = array();
-            view\File::showFiles($files);
-            view\View::endPage(['kikim_progress.js', 'api.js', 'album.js']);
+            view\File::showFiles(Model::getAdminFiles());
+            view\View::endPage(['file.js']);
         }
     }
 
@@ -189,7 +187,7 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            view\View::startPage(0, 'Admins', [], $_SESSION, Model::getNotViewMessages());
+            view\View::startPage(60, 'Admins', [], $_SESSION, Model::getNotViewMessages());
             view\Admin::showAdmins(Model::getAdmins());
             view\View::endPage(['admin.js']);
 
@@ -200,7 +198,7 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            view\View::startPage(0, 'Messages', [], $_SESSION, Model::getNotViewMessages());
+            view\View::startPage(50, 'Messages', [], $_SESSION, Model::getNotViewMessages());
             view\Message::showMessages(Model::getMessages());
             view\View::endPage(['message.js']);
         }
@@ -210,7 +208,7 @@ class Controller
     {
         Model::init();
         if (Model::$can_connect) {
-            view\View::startPage(0, 'Ajouté un administrateur', [], $_SESSION, Model::getNotViewMessages());
+            view\View::startPage(60, 'Ajouté un administrateur', [], $_SESSION, Model::getNotViewMessages());
             view\Admin::showAdminForm();
             view\View::endPage(['kikim_progress.js', 'api.js', 'admin.js']);
         }
@@ -222,7 +220,7 @@ class Controller
         if (Model::$can_connect) {
             $message = Model::getMessage((int)$id);
             if (!empty($message['id'])) {
-                view\View::startPage(0, 'Message', [], $_SESSION, Model::getNotViewMessages());
+                view\View::startPage(50, 'Message', [], $_SESSION, Model::getNotViewMessages());
                 view\Message::showMessage($message);
                 view\View::endPage();
             } else {

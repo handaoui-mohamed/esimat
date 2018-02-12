@@ -36,8 +36,8 @@ class View
             $css .= '<link href="' . $StaticFilesDirLink . 'css/' . $arrayCSS[$i] . '" rel="stylesheet" type="text/css" media="all" />';
 
 
-        echo '
-            <!DOCTYPE html>
+        echo
+            '<!DOCTYPE html>
             <html lang="en">
             <head>
                 <title>' . $title . '</title>
@@ -75,15 +75,15 @@ class View
     {
         $scroll = "";
         if ($pageType == 0) $scroll = 'class="scroll"';
-        return '
-        <div class="left-side sticky-left-side">
+        return
+        '<div class="left-side sticky-left-side">
 
 			<!--logo and iconic logo start-->
 			<div class="logo">
-				<h1><a href="' . Glob::DOMAIN_ADMIN . '/home">ESIMAT <span>Admin</span></a></h1>
+				<h1><a href="' . Glob::DOMAIN_ADMIN.'home">ESIMAT <span>Admin</span></a></h1>
 			</div>
 			<div class="logo-icon text-center">
-				<a href="' . Glob::DOMAIN_ADMIN . '/home"><i class="lnr lnr-home"></i> </a>
+				<a href="' . Glob::DOMAIN .'"><i class="lnr lnr-home"></i> </a>
 			</div>
 
 			<!--logo and iconic logo end-->
@@ -91,7 +91,7 @@ class View
 
 				<!--sidebar nav start-->
 					<ul class="nav nav-pills nav-stacked custom-nav">
-						<li class="'.self::setActive($pageType,0).'"><a href="'.Glob::DOMAIN_ADMIN.'/home"><i class="lnr lnr-power-switch"></i><span>Tableau de bord</span></a></li>
+						<li class="'.self::setActive($pageType,0).'"><a href="'.Glob::DOMAIN_ADMIN.'home"><i class="lnr lnr-power-switch"></i><span>Tableau de bord</span></a></li>
 						<li class="menu-list '.self::setActive($pageType,10).'">
 							<a href="#"><i class="fa fa-file-text-o"></i>
                             <span>Articles</span></a>
@@ -122,7 +122,7 @@ class View
 							<a href="#"><i class="lnr lnr-user"></i>
                             <span>Adminitrateurs</span></a>
                             <ul class="sub-menu-list">
-                                <li><a href="'.Glob::DOMAIN_ADMIN.'list/admins">Liste des admins</a> </li>
+                                <li><a href="'.Glob::DOMAIN_ADMIN.'root/admins">Liste des admins</a> </li>
                                 <li><a href="'.Glob::DOMAIN_ADMIN.'post/admin">Ajouter un admin</a></li>
                             </ul>
 						</li>
@@ -138,8 +138,8 @@ class View
     {
         $nbMessages = count($messages);
 
-        $notifications = '
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        $notifications =
+            '<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-envelope"></i><span class="badge">' . ($nbMessages > 0 ? $nbMessages : '') . '</span>
             </a>
 									
@@ -154,8 +154,8 @@ class View
         $notifications .= '</h3> </div> </li> <li style="max-height: 200px;overflow-y: auto;">';
 
         foreach ($messages as $message) {
-            $notifications .= '
-            <a href="'.Glob::DOMAIN_ADMIN.'message/'.$message['id'].'">
+            $notifications .=
+            '<a href="'.Glob::DOMAIN_ADMIN.'message/'.$message['id'].'">
                <div class="user_img"><img src="' . Glob::DOMAIN . 'static/images/user1.png" alt=""></div>
                <div class="notification_desc">
                     <p style="text-transform: capitalize"><b>' . $message['name'] . '</b></p>
@@ -166,22 +166,21 @@ class View
             </a>';
         }
 
-        $notifications .= '
-             </li>
+        $notifications .=
+            '</li>
             <li>
                 <div class="notification_bottom">
-                    <a href="#">Voir tous les messages</a>
+                    <a href="'.Glob::DOMAIN_ADMIN.'list/messages">Voir tous les messages</a>
                 </div> 
             </li>
-        </ul>
-        ';
+        </ul>';
         return $notifications;
     }
 
     private static function header($messages, $user)
     {
-        return '
-        <!-- main content start-->
+        return
+        '<!-- main content start-->
 		<div class="main-content">
 			<!-- header-starts -->
 			<div class="header-section">
@@ -231,8 +230,7 @@ class View
 			  </div>
 			<!--notification menu end -->
 			</div>
-		    <!-- //header-ends -->
-        ';
+		    <!-- //header-ends -->';
     }
 
 
@@ -247,8 +245,8 @@ class View
             $scripts .= '<script src="' . $StaticFilesDirLink . 'js/' . $Arrayscript[$i] . '"></script>';
 
 
-        echo '
-        </div>
+        echo
+        '</div>
         <footer style="background: #eee;">
            <p style="height: 30px;line-height: 30px;">© ' . date("Y") . ' <b>ESIMAT</b>  Club <b>d\'Echecs</b> .</p> 
         </footer>

@@ -174,4 +174,8 @@ $(function () {
         }
     });
 });
-	
+
+function navigateTo(url) {
+    if (!$(event.target).is('a, a *, button, button *'))
+        location.href = url;
+}

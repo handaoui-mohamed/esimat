@@ -19,8 +19,8 @@ class Home
     }
 
     private static function showShortcuts(){
-        return '
-            <div style="padding-top: 0" id="page-wrapper">
+        return
+           '<div style="padding-top: 0" id="page-wrapper">
 				<div class="graphs">
 					<div class="col_3">
 						<div class="col-md-4 page-shortcuts">
@@ -47,8 +47,7 @@ class Home
 						<div class="clearfix"> </div>
 					</div>
                 </div>
-            </div>
-        ';
+            </div>';
     }
 
     private static function showStat($states)
@@ -65,8 +64,8 @@ class Home
             }
         }
 
-        return '
-            <div id="page-wrapper">
+        return
+            '<div id="page-wrapper">
 				<div class="graphs">
 					<div class="col_3">
 					
@@ -145,7 +144,6 @@ Et '.$article[1].' article(s) Echequienne(s)">'.($article[0]+$article[1]).'</h5>
 						<div class="clearfix"> </div>
 					</div>
                 </div>
-            </div>
-        ';
+            </div>';
     }
 }

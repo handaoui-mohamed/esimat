@@ -18,8 +18,8 @@ class Topic
         $nbImages = count($images);
         $content = '<div class="col-sm-6"></div><div></div>';
         if($nbImages > 0 && !empty($images[0])){
-            $content = '
-            <div class="col-sm-6">
+            $content =
+           '<div class="col-sm-6">
                 <img id="image-preview"  style="height:205px; width:100%;"  src="'.$images[0].'" >
             </div><div>';
             for ($i = 1; $i < $nbImages; $i++) {
@@ -42,8 +42,8 @@ class Topic
                 'videos' => '',
             );
         }
-        echo '
-        <div style="padding:20px">
+        echo
+        '<div style="padding:20px">
             <h3 class="blank1">'.($isNew ? 'Ajouter un nouveau article' : 'Modifier l\'article').'</h3>
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
@@ -116,14 +116,13 @@ class Topic
                     </form>
                 </div>
             </div>
-        </div>
-        ';
+        </div>';
     }
 
     public static function showTopics($topics = [])
     {
-        echo '
-        <div style="padding:20px">
+        echo
+        '<div style="padding:20px">
             <h3 class="blank1">Liste des articles ('.count($topics).')</h3>
             <div class="xs tabls">
                 <div class="bs-example4" data-example-id="contextual-table">
@@ -141,8 +140,7 @@ class Topic
                         <tbody>' . self::getTopicsRows($topics) . '</tbody>
                     </table>
                 </div>
-            </div>
-        ';
+            </div>';
     }
 
     private static function getTopicsRows($topics)
@@ -155,15 +153,15 @@ class Topic
             $topic = $topics[$i];
             $topicBodyPreview = substr($topic['body'], 0, 70);
             $topicBodyPreview .= strlen($topic['body']) > 70 ? " ..." : ".";
-            $content .= '
-            <tr class="' . ($i % 2 == 0 ? 'active' : '') . '" id="topic-' . $topic['id'] . '">
+            $content .=
+            '<tr onclick="navigateTo(\''.Glob::DOMAIN_ADMIN.'topic/'.$topic['id'].'\')" class="clickabale-row ' . ($i % 2 == 0 ? 'active' : '') . '" id="topic-' . $topic['id'] . '">
                 <th scope="row">' . $topic['id'] . '</th>
                 <td>' .Glob::getDate($topic['date_post']). '</td>
                 <td>' . $topic['title'] . '</td>
                 <td>' . $type[$topic['type']] . '</td>
                 <td>' . $topicBodyPreview . '</td>
                 <td>
-                    <a href="' . Glob::DOMAIN_ADMIN . 'update/topic/' . $topic['id'] . '">
+                    <a id="edit-' . $topic['id'] . '" href="' . Glob::DOMAIN_ADMIN . 'update/topic/' . $topic['id'] . '">
                         <i class="fa fa-pencil action-icon edit-action" ></i>
                     </a>
                     <a id="delete-' . $topic['id'] . '">
@@ -171,8 +169,7 @@ class Topic
                     </a>
                     <div class="confirmation-buttons"></div>
                 </td>
-            </tr>
-            ';
+            </tr>';
         }
         return $content;
     }

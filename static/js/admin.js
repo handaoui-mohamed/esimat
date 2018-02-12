@@ -2,10 +2,14 @@ function showDeleteConfirm(id) {
     content = '<button id="confirm-delete-' + id + '" onclick="deleteTopic(' + id + ')">Confirmer</button>' +
         ' <button id="cancel-delete-' + id + '" onclick="hideDeleteConfirm(' + id + ')">Annuler</button>';
     $('#admin-' + id + ' .confirmation-buttons').html(content);
+    $("#delete-"+id).hide(0);
+    $("#edit-"+id).hide(0);
 }
 
 function hideDeleteConfirm(id) {
     $('#admin-' + id + ' .confirmation-buttons').html('');
+    $("#delete-"+id).show(0);
+    $("#edit-"+id).show(0);
 }
 
 function deleteTopic(id) {

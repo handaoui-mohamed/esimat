@@ -9,12 +9,14 @@
 namespace admin\src\view;
 
 
+use app\Glob;
+
 class Message
 {
     public static function showMessage($msg)
     {
-        echo '
-        <div style="padding:20px">
+        echo
+        '<div style="padding:20px">
             <h3 class="blank1">Détail du message</h3>
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
@@ -40,14 +42,13 @@ class Message
                     </form>
                 </div>
             </div>
-        </div>
-        ';
+        </div>';
     }
 
     public static function showMessages($messages = [])
     {
-        echo '
-        <div style="padding:20px">
+        echo
+        '<div style="padding:20px">
             <h3 class="blank1">Liste des message</h3>
             <div class="xs tabls">
                 <div class="bs-example4" data-example-id="contextual-table">
@@ -59,37 +60,36 @@ class Message
                                 <th>Nom Complet</th>
                                 <th>Message</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>' . self::getMessagesRows($messages) . '</tbody>
                     </table>
                 </div>
-            </div>
-        ';
+            </div>';
     }
 
     private static function getMessagesRows($messages)
     {
         $content = '';
-        $nbMessages = count($messages);
 
         foreach ($messages as $message) {
             $messageBodyPreview = substr($message['body'], 0, 70);
             $messageBodyPreview .= strlen($message['body']) > 70 ? " ..." : ".";
-            $content .= '
-            <tr class="' . ($message['view'] ? 'active' : '') . '" id="message-' . $message['id'] . '">
+            $content .=
+            '<tr onclick="navigateTo(\''.Glob::DOMAIN_ADMIN.'message/'.$message['id'].'\')" class="clickabale-row ' . ($message['view'] ? 'active' : '') . '" id="message-' . $message['id'] . '">
                 <th scope="row">' . $message['id'] . '</th>
                 <td>' . $message['email'] . '</td>
                 <td>' . $message['name'] . '</td>
                 <td>' . $messageBodyPreview . '</td>
+                <td>' . ($message['view'] ? '':'<div style="background-color: #3fa243;color: #fff;width: 70px;text-align: center">nouveau</div>' ) . '</td>
                 <td>
                     <a id="delete-' . $message['id'] . '">
                         <i class="fa fa-trash action-icon delete-action"  onclick="showDeleteConfirm(' . $message['id'] . ')"></i>
                     </a>
                     <div class="confirmation-buttons"></div>
                 </td>
-            </tr>
-            ';
+            </tr>';
         }
         return $content;
     }

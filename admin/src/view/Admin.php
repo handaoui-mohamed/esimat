@@ -76,14 +76,13 @@ class Admin
                     </form>
                 </div>
             </div>
-        </div>
-        ';
+        </div>';
     }
 
     public static function showAdmins($admins = [])
     {
-        echo '
-        <div style="padding:20px">
+        echo
+        '<div style="padding:20px">
             <h3 class="blank1">Liste des articles (' . count($admins) . ')</h3>
             <div class="xs tabls">
                 <div class="bs-example4" data-example-id="contextual-table">
@@ -100,8 +99,7 @@ class Admin
                         <tbody>' . self::getAdminsRows($admins) . '</tbody>
                     </table>
                 </div>
-            </div>
-        ';
+            </div>';
     }
 
     private static function getAdminsRows($admins)
@@ -110,14 +108,14 @@ class Admin
         $role = array('sc' => 'Scientifique', 'ec' => 'Echequienne');
 
         foreach ($admins as $admin) {
-            $content .= '
-            <tr id="admin-' . $admin['id'] . '">
+            $content .=
+            '<tr onclick="navigateTo(\''.Glob::DOMAIN_ADMIN.'admin/'.$admin['id'].'\')" class="clickabale-row" id="admin-' . $admin['id'] . '">
                 <th scope="row">' . $admin['id'] . '</th>
                 <td>' . $admin['name'] . '</td>
                 <td>' . $admin['email'] . '</td>
                 <td>' . $role[$admin['role']] . '</td>
                 <td>
-                    <a href="' . Glob::DOMAIN_ADMIN . 'update/admin/' . $admin['id'] . '">
+                    <a id="edit-' . $admin['id'] . '" href="' . Glob::DOMAIN_ADMIN . 'update/admin/' . $admin['id'] . '">
                         <i class="fa fa-pencil action-icon edit-action" ></i>
                     </a>
                     <a id="delete-' . $admin['id'] . '">
@@ -125,8 +123,7 @@ class Admin
                     </a>
                     <div class="confirmation-buttons"></div>
                 </td>
-            </tr>
-            ';
+            </tr>';
         }
         return $content;
     }
