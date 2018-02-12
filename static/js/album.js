@@ -35,6 +35,7 @@ function deleteTopic(id) {
         type: "POST",
         data: {id: id},
         success: function (data) {
+            data = JSON.parse(data);
             if(data.delete) $('#album-' + id).remove();
         }
     });
