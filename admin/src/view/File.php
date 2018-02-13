@@ -8,6 +8,7 @@
 
 namespace admin\src\view;
 
+use app\Glob;
 
 class File
 {
@@ -20,8 +21,8 @@ class File
                 'type' => 0
             );
         }
-        echo '
-        <div style="padding:20px">
+        echo
+        '<div style="padding:20px">
             <h3 class="blank1">'.($isNew ? 'Ajouter un nouveau fichier' : 'Modifier le fichier').'</h3>
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
@@ -78,14 +79,13 @@ class File
                     </form>
                 </div>
             </div>
-        </div>
-        ';
+        </div>';
     }
 
     public static function showFiles($files = [])
     {
-        echo '
-        <div style="padding:20px">
+        echo
+        '<div style="padding:20px">
             <h3 class="blank1">Liste des articles</h3>
             <div class="xs tabls">
                 <div class="bs-example4" data-example-id="contextual-table">
@@ -103,8 +103,7 @@ class File
                         <tbody>' . self::getFilesRows($files) . '</tbody>
                     </table>
                 </div>
-            </div>
-        ';
+            </div>';
     }
 
     private static function getFilesRows($files)
@@ -115,15 +114,15 @@ class File
 
         for ($i = 0; $i < $nbFiles; $i++) {
             $file = $files[$i];
-            $content .= '
-            <tr class="' . ($i % 2 == 0 ? 'active' : '') . '" id="file-' . $file['id'] . '">
+            $content .=
+            '<tr  onclick="navigateTo(\''.Glob::DOMAIN_ADMIN.'file/'.$file['id'].'\')" class="clickabale-row ' . ($i % 2 == 0 ? 'active' : '') . '" id="file-' . $file['id'] . '">
                 <th scope="row">' . $file['id'] . '</th>
                 <td>' . $file['date_post'] . '</td>
                 <td>' . $file['title'] . '</td>
                 <td>' . $type[$file['type']] . '</td>
-                <td>' . $file['source'] . '</td>
+                <td style="max-width: 50ch;overflow: hidden;text-overflow: ellipsis;">' . $file['source'] . '</td>
                 <td>
-                    <a href="' . Glob::DOMAIN_ADMIN . 'update/file/' . $file['id'] . '">
+                    <a id="edit-' . $file['id'] . '" href="' . Glob::DOMAIN_ADMIN . 'update/file/' . $file['id'] . '">
                         <i class="fa fa-pencil action-icon edit-action" ></i>
                     </a>
                     <a id="delete-' . $file['id'] . '">
@@ -131,8 +130,7 @@ class File
                     </a>
                     <div class="confirmation-buttons"></div>
                 </td>
-            </tr>
-            ';
+            </tr>';
         }
         return $content;
     }

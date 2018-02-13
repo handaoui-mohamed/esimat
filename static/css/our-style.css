@@ -121,6 +121,7 @@ button[id^='confirm-delete']{
 tr[id^='topic-'] td,
 tr[id^='album-'] td,
 tr[id^='message-'] td,
+tr[id^='file-'] td,
 tr[id^='admin-'] td{
     position: relative;
 }
@@ -134,6 +135,10 @@ tr[id^='admin-'] td{
 
 #alert-message{
     display: none;
+}
+
+.clickabale-row{
+    cursor: pointer !important;
 }
 /*end custom*/
 

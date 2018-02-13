@@ -230,7 +230,7 @@ class Model extends ModelUser
     }
     public static function getAdminAlbums()
     {
-        $req = self::$connection->prepare('select * from album WHERE');
+        $req = self::$connection->prepare('select * from album');
         $req->execute(array());
         $admins = $req->fetchAll(\PDO::FETCH_ASSOC);
         $req->closeCursor();
