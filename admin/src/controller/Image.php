@@ -105,28 +105,36 @@ class Image
         $info = @getimagesize($src_file);
 
         if ($info['mime'] == 'image/jpeg')
-        {
-            $image = imagecreatefromjpeg($src_file);
+        {   
+            $image = @imagecreatefromjpeg($src_file);
+
 
         }
         elseif ($info['mime'] == 'image/gif')
         {
 
-            $image = imagecreatefromgif($src_file);
+            $image = @imagecreatefromgif($src_file);
 
         }
         elseif ($info['mime'] == 'image/png')
         {
-            $image = imagecreatefrompng($src_file);
+            $image = @imagecreatefrompng($src_file);
         }
         else
         {
             return false;
         }
+          if (!empty($image))  
+          {
+            imagejpeg($image, $dest.".jpg", $quality);
+            return true;
+          }
+          else
+          {
+            return false;
+          }
+        
 
-        imagejpeg($image, $dest.".jpg", $quality);
-
-        return true;
     }
 
 
@@ -148,7 +156,7 @@ class Image
                 break;
         }
         if ($source_gd_image === false) {
-            return false;
+            return 3;
         }
 
         $x=0;
@@ -189,10 +197,9 @@ class Image
             }
             else
             {
-                echo "La  doit etre > a (hauteur/largeur)".$width."/".$height;
+
                 unlink($source_image_path);
-                exit;
-                return false;
+                return 10;
             }
 
         }
@@ -232,12 +239,21 @@ class Image
                     if ($width>800 || $height>600)
                     {
                         // resize avec compression de 90
-                        $this->resize_image($src,self::$path.$image_name,800,600,$qualityCompression,true);
+                        $r=$this->resize_image($src,self::$path.$image_name,800,600,$qualityCompression,true);
+                        if(true!==$r)
+                        {
+                            return $r;
+                        }
+
                     }
                     else
                     {
                         // compresion de 90 seulement
-                        $this->compress_image($src,self::$path.$image_name,$qualityCompression);
+                        if(!$this->compress_image($src,self::$path.$image_name,$qualityCompression))
+                        {
+
+                            return 3;
+                        }
                     }
                     // unlink($src);
                     $link=self::$path.$image_name.".jpg";
@@ -248,22 +264,34 @@ class Image
                 }
 
                 $this->writeText($link,self::$path.$image_name,"esi-mat.com");
-                $this->resize_image(self::$path.$image_name.".jpg",self::$path."min/".$image_min_name,$this->width_resize,$this->height_resize,$this->resizeMinQuality,$this->type=="J");
+                $r=$this->resize_image(self::$path.$image_name.".jpg",self::$path."min/".$image_min_name,$this->width_resize,$this->height_resize,$this->resizeMinQuality,$this->type=="J");
                 $finalExt="jpg";
+                if(true!==$r)
+                {
+                    return $r;
+                }
             }
             else
             {
                 move_uploaded_file($src,self::$path.$image_name.".gif");
-                $this->compress_image(self::$path.$image_name.".gif",self::$path.$image_name,$qualityCompression);
-                $this->writeText(self::$path.$image_name.".jpg",self::$path.$image_name,"fb.com/DevWebAndProg");
-                $this->resize_image(self::$path.$image_name.".jpg",self::$path."min/".$image_min_name,$this->width_resize,$this->height_resize,$this->resizeMinQuality,$this->type=="J");
+                if (!$this->compress_image(self::$path.$image_name.".gif",self::$path.$image_name,$qualityCompression))
+                {
+                       return 3;
+                }
+                $this->writeText(self::$path.$image_name.".jpg",self::$path.$image_name,"esi-mat.com");
+                $r=$this->resize_image(self::$path.$image_name.".jpg",self::$path."min/".$image_min_name,$this->width_resize,$this->height_resize,$this->resizeMinQuality,$this->type=="J");
+                if(true!==$r)
+                {
+                    return $r;
+                }
+
                 unlink(self::$path.$image_name.".jpg");
                 $finalExt="gif";
             }
 
             return array('img' =>$image_name.".".$finalExt ,"imgmin"=>$image_min_name.".jpg");
         }
-        return false;
+        return 6;
     }
 
 }

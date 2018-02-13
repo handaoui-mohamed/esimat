@@ -24,7 +24,8 @@ class UploadData
         "Problème de compression de fichier",
         "La Taille max des vidéos est 60 Mo",
         "La Taille max du fichier est de 20 Mo",
-        'La Taille max de tous les données est '
+        'La Taille max de tous les données est ',
+        'La  > (hauteur/largeur)  doit etre > à 310px/250px',
     );
 
     // j'ai pas limité la taille pour les images
@@ -108,12 +109,18 @@ class UploadData
             if (in_array($type, $array_type_int_acc) && in_array($ext, $array_type)) {
 
                 $i = new Image();
-                return $i->saveImage($file['tmp_name'], $ext);
+                $images=$i->saveImage($file['tmp_name'], $ext);
+
+                if (!is_array($images))
+                {
+                    return array('error'=>true,'codeError'=>$images);
+                }
+                return $images;
             } else {
-                return 3;// png jpg
+                return array('error'=>true,'code'=>3);
             }
         } else {
-            return 3;
+            return array('error'=>true,'code'=>3);
         }
 
     }
@@ -153,11 +160,11 @@ class UploadData
                                     if (is_uploaded_file($_FILES["im_0"]['tmp_name']) && $_FILES["im_0"]['error'] === 0) {
 
                                         $infoPrincipaleImage = self::saveImageIfpossible($_FILES["im_0"]);
-                                        if ($infoPrincipaleImage != 3) {
+                                        if (empty($infoPrincipaleImage['error'])) {
                                             $result['img'] = $infoPrincipaleImage['img'];
                                             $result['imgmin'] = $infoPrincipaleImage['imgmin'];
                                         } else {
-                                            $codeError = 3;
+                                            $codeError = $infoPrincipaleImage['codeError'];
                                             $addTopic = false;
                                         }
 
@@ -202,10 +209,10 @@ class UploadData
                                 if (!empty($_FILES["ims"]['tmp_name'][$i]) && is_uploaded_file($_FILES["ims"]['tmp_name'][$i]) && $_FILES["ims"]['error'][$i] === 0) {
                                     if (!empty($_FILES["ims"]['size'][$i]) && $_FILES["ims"]['size'][$i] != 0) {
                                         $ImageInfo = self::saveImageIfpossible(array('tmp_name' => $_FILES["ims"]['tmp_name'][$i], 'name' => $_FILES["ims"]['name'][$i]));
-                                        if ($ImageInfo == 3) {
+                                        if (!empty($ImageInfo['error'])) {
                                             // SUPRESSION ...
                                             $addTopic = false;
-                                            $codeError = 3;
+                                            $codeError = $ImageInfo['codeError'];
                                         } else {
                                             $temp['img'][] = $ImageInfo['img'];
                                             $temp['imgmin'][] = $ImageInfo['imgmin'];
@@ -313,9 +320,9 @@ class UploadData
                             if (!empty($_FILES["ims"]['size'][$i]) && $_FILES["ims"]['size'][$i] != 0) {
 
                                 $ImageInfo = self::saveImageIfpossible(array('tmp_name' => $_FILES["ims"]['tmp_name'][$i], 'name' => $_FILES["ims"]['name'][$i]));
-                                if ($ImageInfo == 3) {
+                                if (!empty($ImageInfo ['error'])) {
                                     // SUPRESSION ...
-                                    $codeerror = 3;
+                                    $codeerror = $ImageInfo ['codeError'];
                                     $add = false;
                                 }
                                 else
@@ -333,12 +340,11 @@ class UploadData
                             } else
                             {
                                 $add = false;
-                                $codeError = 0;
+
                             }
                         } else
                         {
                             $add = false;
-                            $codeError = 0;
                         }
 
                     }
@@ -353,9 +359,11 @@ class UploadData
          return  array('add' => false, 'data' => self::$errorsPost[9].ini_get('post_max_size'));
         }
 
-        if (!empty($add)) return array('add' => true, 'data' => $result);
-        else return array('add' => false, 'data' => self::$errorsPost[3]);
-
+        if (!empty($add)) {return array('add' => true, 'data' => $result);}
+        else {
+            if (isset($codeerror)) return array('add' => false, 'data' => self::$errorsPost[$codeerror]);
+        }
+        return array('add' => false, 'data' => self::$errorsPost[3]);
     }
 
     public static function uploadFile()
@@ -381,8 +389,8 @@ class UploadData
                                             if ($_FILES["im"]['error'] === 0 && is_uploaded_file($_FILES["im"]['tmp_name'])) {
                                                 Image::setpath('../downloads/images/');
                                                 $result['img'] = self::saveImageIfpossible($_FILES["im"]);
-                                                if ($result['img'] == 3) {
-                                                    $codeerrors = 3;
+                                                if (!empty($result['img']['error'])) {
+                                                    $codeerrors = $result['img']['codeError'];
                                                 } else {
                                                     if (!empty($result['img'] ))
                                                     {
